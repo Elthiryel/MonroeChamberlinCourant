@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text;
 
 namespace MonroeChamberlinCourant.Framework
 {
@@ -16,6 +17,24 @@ namespace MonroeChamberlinCourant.Framework
             Candidates = candidates;
             NumberOfVoters = numberOfVoters;
             VotersPreferences = votersPreferences;
+        }
+
+        public override string ToString()
+        {
+            var builder = new StringBuilder();
+            foreach (var candidate in Candidates.Values)
+            {
+                builder.Append(candidate.Id).Append(": ").Append(candidate.Name).AppendLine();
+            }
+            foreach (var voterPreferences in VotersPreferences)
+            {
+                foreach (var id in voterPreferences)
+                {
+                    builder.Append(id).Append(" ");
+                }
+                builder.AppendLine();
+            }
+            return builder.ToString();
         }
     }
 }

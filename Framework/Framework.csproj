@@ -47,6 +47,8 @@
     <Compile Include="Candidate.cs" />
     <Compile Include="DataLoader.cs" />
     <Compile Include="Exceptions\InvalidPreferencesFormatException.cs" />
+    <Compile Include="Generation\IPreferencesGenerator.cs" />
+    <Compile Include="Generation\PolyaStrictGenerator.cs" />
     <Compile Include="Literals.cs" />
     <Compile Include="Preferences.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
