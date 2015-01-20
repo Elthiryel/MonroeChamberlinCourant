@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{054173CE-16A4-4826-826C-2E093A39ABCD}</ProjectGuid>
+    <ProjectGuid>{03134F8C-677C-4D97-A3D6-E2E7435B3F11}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MonroeChamberlinCourant.Framework</RootNamespace>

@@ -48,8 +48,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MonroeChamberlinCourant\Framework.csproj">
-      <Project>{054173CE-16A4-4826-826C-2E093A39ABCD}</Project>
+    <ProjectReference Include="..\Framework\Framework.csproj">
+      <Project>{03134f8c-677c-4d97-a3d6-e2e7435b3f11}</Project>
       <Name>Framework</Name>
     </ProjectReference>
   </ItemGroup>
