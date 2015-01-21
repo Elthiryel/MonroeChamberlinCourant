@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using MonroeChamberlinCourant.Framework;
 using MonroeChamberlinCourant.Framework.Generation;
+using MonroeChamberlinCourant.Framework.Model;
 
 namespace MonroeChamberlinCourant.Test
 {

@@ -1,4 +1,4 @@
-﻿namespace MonroeChamberlinCourant.Framework
+﻿namespace MonroeChamberlinCourant.Framework.Model
 {
     public class Candidate
     {

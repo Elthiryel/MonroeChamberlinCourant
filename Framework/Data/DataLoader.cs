@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using MonroeChamberlinCourant.Framework.Exceptions;
+using MonroeChamberlinCourant.Framework.Model;
+using MonroeChamberlinCourant.Framework.Resources;
 
-namespace MonroeChamberlinCourant.Framework
+namespace MonroeChamberlinCourant.Framework.Data
 {
     public class DataLoader
     {

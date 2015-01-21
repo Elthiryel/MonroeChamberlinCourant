@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using MonroeChamberlinCourant.Framework.Model;
 
 namespace MonroeChamberlinCourant.Framework.Generation
 {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text;
 
-namespace MonroeChamberlinCourant.Framework
+namespace MonroeChamberlinCourant.Framework.Model
 {
     public class Preferences
     {
