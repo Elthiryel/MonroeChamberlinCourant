@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using MonroeChamberlinCourant.Framework.Generation;
 using MonroeChamberlinCourant.Framework.Model;
+using MonroeChamberlinCourant.Framework.Utils;
 
 namespace MonroeChamberlinCourant.Test
 {
@@ -23,6 +24,12 @@ namespace MonroeChamberlinCourant.Test
             var preferences = generator.Generate(candidates, 20);
             Console.Write(preferences);
             Console.WriteLine();
+
+            var results = new Results(preferences, new[] {8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8},
+                new[] {4, 3, 2, 1, 0}, RuleType.ChamberlinCourant);
+            var score = ScoreCalculator.CalculateScore(results);
+            Console.WriteLine(score);
+
             Console.ReadKey();
         }
     }

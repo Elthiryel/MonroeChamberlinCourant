@@ -8,30 +8,34 @@ namespace MonroeChamberlinCourant.Framework.Model
         Monroe, ChamberlinCourant
     }
 
+    public delegate int SatisfactionFunction(int position);
+
     public class Results
     {
         public Preferences Preferences { get; private set; }
-        public IEnumerable<int> Winners { get; private set; }
+        public IList<int> Winners { get; private set; }
+        public int[] SatisfactionFunction { get; private set; }
         public RuleType Type { get; private set; }
 
-        public Results(Preferences preferences, IEnumerable<int> winners, RuleType type)
+        public Results(Preferences preferences, IList<int> winners, int[] satisfactionFunction, RuleType type)
         {
             Preferences = preferences;
             Winners = winners;
+            SatisfactionFunction = satisfactionFunction;
             Type = type;
         }
 
-        public List<int> WinnersSet()
+        public IList<int> WinnersSet()
         {
             return Winners.Distinct().ToList();
         }
 
-        public List<Candidate> WinnersAsCandidates()
+        public IList<Candidate> WinnersAsCandidates()
         {
             return Winners.Select(winner => Preferences.Candidates[winner]).ToList();
         }
 
-        public List<Candidate> WinnersSetAsCandidates()
+        public IList<Candidate> WinnersSetAsCandidates()
         {
             return Winners.Distinct().Select(winner => Preferences.Candidates[winner]).ToList();
         } 

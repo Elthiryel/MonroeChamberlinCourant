@@ -1,8 +1,14 @@
-﻿namespace MonroeChamberlinCourant.Framework.Utils
+﻿using System.Linq;
+using MonroeChamberlinCourant.Framework.Model;
+
+namespace MonroeChamberlinCourant.Framework.Utils
 {
     public class ScoreCalculator
     {
-        // TODO
-        //public static int CalculateByRepresentatives(IEnumerable<> )
+        public static int CalculateScore(Results results)
+        {
+            return results.Winners.Select((winner, i) => results.Preferences.VotersPreferences[i].IndexOf(winner))
+                .Sum(position => results.SatisfactionFunction[position]);
+        }
     }
 }
