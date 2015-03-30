@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using MonroeChamberlinCourant.Algorithms.ChamberlinCourant;
 using MonroeChamberlinCourant.Framework.Generation;
 using MonroeChamberlinCourant.Framework.Model;
 using MonroeChamberlinCourant.Framework.Utils;
@@ -25,10 +26,20 @@ namespace MonroeChamberlinCourant.Test
             Console.Write(preferences);
             Console.WriteLine();
 
-            var results = new Results(preferences, new[] {8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8},
-                new[] {4, 3, 2, 1, 0}, RuleType.ChamberlinCourant);
-            var score = ScoreCalculator.CalculateScore(results);
-            Console.WriteLine(score);
+//            var results = new Results(preferences, new[] {8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8},
+//                new[] {4, 3, 2, 1, 0}, RuleType.ChamberlinCourant);
+//            var score = ScoreCalculator.CalculateScore(results);
+//            Console.WriteLine(score);
+
+            var algorithm = new BruteForceCC();
+            var results = algorithm.Run(preferences, 2, p => -p + 4);
+
+            foreach (var winner in results.Winners)
+            {
+                Console.Write(winner);
+                Console.Write(" ");
+            }
+            Console.WriteLine();
 
             Console.ReadKey();
         }

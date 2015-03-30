@@ -7,7 +7,7 @@ namespace MonroeChamberlinCourant.Algorithms
 
     public interface IAlgorithm
     {
-        Results Run(Preferences preferences, IList<int> satisfactionFunction);
-        Results Run(Preferences preferences, SatisfactionFunction satisfactionFunction);
+        Results Run(Preferences preferences, int winnersCount, IList<int> satisfactionFunction);
+        Results Run(Preferences preferences, int winnersCount, SatisfactionFunction satisfactionFunction);
     }
 }

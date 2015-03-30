@@ -14,10 +14,10 @@ namespace MonroeChamberlinCourant.Framework.Model
     {
         public Preferences Preferences { get; private set; }
         public IList<int> Winners { get; private set; }
-        public int[] SatisfactionFunction { get; private set; }
+        public IList<int> SatisfactionFunction { get; private set; }
         public RuleType Type { get; private set; }
 
-        public Results(Preferences preferences, IList<int> winners, int[] satisfactionFunction, RuleType type)
+        public Results(Preferences preferences, IList<int> winners, IList<int> satisfactionFunction, RuleType type)
         {
             Preferences = preferences;
             Winners = winners;

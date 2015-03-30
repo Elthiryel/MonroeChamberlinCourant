@@ -48,6 +48,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Algorithms\Algorithms.csproj">
+      <Project>{3C9F8D98-64DC-4BB3-AA50-18FA0BE2A572}</Project>
+      <Name>Algorithms</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Framework\Framework.csproj">
       <Project>{03134f8c-677c-4d97-a3d6-e2e7435b3f11}</Project>
       <Name>Framework</Name>
