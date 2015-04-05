@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using MonroeChamberlinCourant.Algorithms.ChamberlinCourant;
+using MonroeChamberlinCourant.Algorithms.Monroe;
 using MonroeChamberlinCourant.Framework.Generation;
 using MonroeChamberlinCourant.Framework.Model;
 using MonroeChamberlinCourant.Framework.Utils;
@@ -31,7 +32,8 @@ namespace MonroeChamberlinCourant.Test
 //            var score = ScoreCalculator.CalculateScore(results);
 //            Console.WriteLine(score);
 
-            var algorithm = new BruteForceCC();
+//            var algorithm = new BruteForceCC();
+            var algorithm = new BruteForceMonroe();
             var results = algorithm.Run(preferences, 2, p => -p + 4);
 
             foreach (var winner in results.Winners)
