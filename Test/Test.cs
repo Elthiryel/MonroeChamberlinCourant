@@ -33,8 +33,10 @@ namespace MonroeChamberlinCourant.Test
 //            Console.WriteLine(score);
 
 //            var algorithm = new BruteForceCC();
-            var algorithm = new BruteForceMonroe();
-            var results = algorithm.Run(preferences, 2, p => -p + 4);
+//            var algorithm = new BruteForceMonroe();
+            var algorithm = new AlgorithmA();
+
+            var results = algorithm.Run(preferences, 3, p => -p + 4);
 
             foreach (var winner in results.Winners)
             {
