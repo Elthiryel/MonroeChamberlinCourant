@@ -5,6 +5,12 @@
         public int Id { get; private set; }
         public string Name { get; private set; }
 
+        public Candidate(int id)
+        {
+            Id = id;
+            Name = id.ToString();
+        }
+
         public Candidate(int id, string name)
         {
             Id = id;

@@ -43,6 +43,8 @@
     <Compile Include="ChamberlinCourant\BruteForceCC.cs" />
     <Compile Include="IAlgorithm.cs" />
     <Compile Include="Monroe\AlgorithmA.cs" />
+    <Compile Include="Monroe\AlgorithmB.cs" />
+    <Compile Include="Monroe\AlgorithmCMonroe.cs" />
     <Compile Include="Monroe\BruteForceMonroe.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

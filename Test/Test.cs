@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using MonroeChamberlinCourant.Algorithms;
 using MonroeChamberlinCourant.Algorithms.ChamberlinCourant;
 using MonroeChamberlinCourant.Algorithms.Monroe;
 using MonroeChamberlinCourant.Framework.Generation;
@@ -34,18 +35,27 @@ namespace MonroeChamberlinCourant.Test
 
 //            var algorithm = new BruteForceCC();
 //            var algorithm = new BruteForceMonroe();
-            var algorithm = new AlgorithmA();
+//            var algorithm = new AlgorithmA();
 
+            RunAlgorithm(new AlgorithmA(), preferences);
+            RunAlgorithm(new AlgorithmCMonroe(3), preferences);
+            RunAlgorithm(new AlgorithmCMonroe(5), preferences);
+
+            Console.ReadKey();
+        }
+
+        private static void RunAlgorithm(IAlgorithm algorithm, Preferences preferences)
+        {
             var results = algorithm.Run(preferences, 3, p => -p + 4);
-
             foreach (var winner in results.Winners)
             {
                 Console.Write(winner);
                 Console.Write(" ");
             }
             Console.WriteLine();
-
-            Console.ReadKey();
+            var score = ScoreCalculator.CalculateScore(results);
+            Console.Write(score);
+            Console.WriteLine();
         }
     }
 }
