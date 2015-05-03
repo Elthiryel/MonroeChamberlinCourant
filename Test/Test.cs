@@ -25,7 +25,7 @@ namespace MonroeChamberlinCourant.Test
                 {9, new Candidate(9, "EEE")}
             };
             var generator = new PolyaStrictGenerator();
-//            var preferences = generator.Generate(candidates, 20);
+            var preferences = generator.Generate(candidates, 20);
             var votersPreferences = new List<IList<int>>
             {
                 new List<int> {23, 8, 22, 9, 45},
@@ -50,7 +50,7 @@ namespace MonroeChamberlinCourant.Test
                 new List<int> {8, 22, 23, 9, 45}
             };
 
-            var preferences = new Preferences(5, candidates, 20, votersPreferences);
+//            var preferences = new Preferences(5, candidates, 20, votersPreferences);
             Console.Write(preferences);
             Console.WriteLine();
 
@@ -70,16 +70,19 @@ namespace MonroeChamberlinCourant.Test
 //                Console.Write(ScoreCalculator.CalculateScore(results));
 //                Console.WriteLine();
 //            }
-            RunAlgorithm(new AlgorithmA(), preferences);
-            RunAlgorithm(new AlgorithmCMonroe(1), preferences);
+            RunAlgorithm(new AlgorithmA(), preferences, "A Monroe");
+            RunAlgorithm(new AlgorithmCMonroe(3), preferences, "C Monroe (3)");
+            RunAlgorithm(new AlgorithmCCC(3), preferences, "C Cha-Cou (3))");
+            RunAlgorithm(new BruteForceCC(), preferences, "BruteForce Cha-Cou");
 //            RunAlgorithm(new AlgorithmCMonroe(2), preferences);
 //            RunAlgorithm(new AlgorithmCMonroe(3), preferences);
 
             Console.ReadKey();
         }
 
-        private static void RunAlgorithm(IAlgorithm algorithm, Preferences preferences)
+        private static void RunAlgorithm(IAlgorithm algorithm, Preferences preferences, string label)
         {
+            Console.WriteLine(label);
             var results = algorithm.Run(preferences, 3, p => -p + 4);
             foreach (var winner in results.Winners)
             {

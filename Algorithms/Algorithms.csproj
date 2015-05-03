@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractAlgorithm.cs" />
+    <Compile Include="ChamberlinCourant\AlgorithmCCC.cs" />
     <Compile Include="ChamberlinCourant\BruteForceCC.cs" />
     <Compile Include="IAlgorithm.cs" />
     <Compile Include="Monroe\AlgorithmA.cs" />
