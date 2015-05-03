@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using MonroeChamberlinCourant.Algorithms;
 using MonroeChamberlinCourant.Algorithms.ChamberlinCourant;
 using MonroeChamberlinCourant.Algorithms.Monroe;
@@ -24,7 +25,32 @@ namespace MonroeChamberlinCourant.Test
                 {9, new Candidate(9, "EEE")}
             };
             var generator = new PolyaStrictGenerator();
-            var preferences = generator.Generate(candidates, 20);
+//            var preferences = generator.Generate(candidates, 20);
+            var votersPreferences = new List<IList<int>>
+            {
+                new List<int> {23, 8, 22, 9, 45},
+                new List<int> {45, 22, 8, 23, 9},
+                new List<int> {8, 22, 9, 23, 45},
+                new List<int> {23, 8, 9, 22, 45},
+                new List<int> {22, 9, 23, 45, 8},
+                new List<int> {8, 22, 9, 23, 45},
+                new List<int> {9, 22, 45, 8, 23},
+                new List<int> {23, 8, 22, 45, 9},
+                new List<int> {8, 45, 22, 23, 9},
+                new List<int> {23, 8, 9, 22, 45},
+                new List<int> {9, 8, 22, 45, 23},
+                new List<int> {45, 23, 9, 8, 22},
+                new List<int> {23, 22, 9, 8, 45},
+                new List<int> {45, 8, 23, 22, 9},
+                new List<int> {9, 8, 22, 23, 45},
+                new List<int> {8, 23, 22, 45, 9},
+                new List<int> {23, 22, 8, 9, 45},
+                new List<int> {45, 23, 22, 8, 9},
+                new List<int> {9, 8, 22, 23, 45},
+                new List<int> {8, 22, 23, 9, 45}
+            };
+
+            var preferences = new Preferences(5, candidates, 20, votersPreferences);
             Console.Write(preferences);
             Console.WriteLine();
 
@@ -37,9 +63,17 @@ namespace MonroeChamberlinCourant.Test
 //            var algorithm = new BruteForceMonroe();
 //            var algorithm = new AlgorithmA();
 
+
+//            for (var i = 0; i < 1000; ++i)
+//            {
+//                var results = new AlgorithmA().Run(preferences, 3, p => -p + 4);
+//                Console.Write(ScoreCalculator.CalculateScore(results));
+//                Console.WriteLine();
+//            }
             RunAlgorithm(new AlgorithmA(), preferences);
-            RunAlgorithm(new AlgorithmCMonroe(3), preferences);
-            RunAlgorithm(new AlgorithmCMonroe(5), preferences);
+            RunAlgorithm(new AlgorithmCMonroe(1), preferences);
+//            RunAlgorithm(new AlgorithmCMonroe(2), preferences);
+//            RunAlgorithm(new AlgorithmCMonroe(3), preferences);
 
             Console.ReadKey();
         }
