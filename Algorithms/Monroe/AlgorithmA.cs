@@ -7,25 +7,6 @@ namespace MonroeChamberlinCourant.Algorithms.Monroe
 {
     public class AlgorithmA : AbstractAlgorithm
     {
-        private class AgentComparer : IComparer<int>
-        {
-            private readonly int _alternativeId;
-            private readonly IList<IList<int>> _agentsPreferences;
-
-            public AgentComparer(int alternativeId, IList<IList<int>> agentsPreferences)
-            {
-                _alternativeId = alternativeId;
-                _agentsPreferences = agentsPreferences;
-            }
-
-            public int Compare(int x, int y)
-            {
-                var xPosition = _agentsPreferences[x].IndexOf(_alternativeId);
-                var yPosition = _agentsPreferences[y].IndexOf(_alternativeId);
-                return xPosition - yPosition;
-            }
-        }
-
         public override Results Run(Preferences preferences, int winnersCount, IList<int> satisfactionFunction)
         {
             var ratio = (double) preferences.NumberOfVoters / winnersCount;

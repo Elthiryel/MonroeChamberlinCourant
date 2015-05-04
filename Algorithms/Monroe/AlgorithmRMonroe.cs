@@ -21,7 +21,7 @@ namespace MonroeChamberlinCourant.Algorithms.Monroe
             var potentialWinners = new List<IList<int>>(_samplingSteps);
             for (var i = 0; i < _samplingSteps; ++i)
             {
-                potentialWinners[i] = GetRandomAlternatives(preferences.Candidates.Keys.ToList(), winnersCount);
+                potentialWinners[i] = AlgorithmUtils.GetRandomAlternatives(preferences.Candidates.Keys.ToList(), winnersCount, _random);
             }
 
             // TODO use network-flow-based approach to assign elements of potentialWinners
@@ -29,24 +29,6 @@ namespace MonroeChamberlinCourant.Algorithms.Monroe
             throw new NotImplementedException();
         }
 
-        private IList<int> GetRandomAlternatives(IList<int> alternatives, int numberNeeded)
-        {
-            var randomAlternatives = new List<int>(numberNeeded);
-            var alternativesCount = alternatives.Count;
-            for (var i = 0; i < alternativesCount; ++i)
-            {
-                var numberLeft = alternativesCount - i;
-                var probability = numberNeeded / (double) numberLeft;
-                var randomValue = _random.NextDouble();
-                if (randomValue <= probability)
-                {
-                    randomAlternatives.Add(alternatives[i]);
-                    --numberNeeded;
-                    if (numberNeeded == 0)
-                        break;
-                }
-            }
-            return randomAlternatives;
-        } 
+
     }
 }

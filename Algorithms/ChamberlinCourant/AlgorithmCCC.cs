@@ -6,35 +6,6 @@ namespace MonroeChamberlinCourant.Algorithms.ChamberlinCourant
 {
     public class AlgorithmCCC : AbstractAlgorithm
     {
-        private class AssignmentInfo
-        {
-            private AssignmentInfo()
-            {
-            }
-
-            public AssignmentInfo(Preferences preferences)
-            {
-                Assignment = Enumerable.Repeat(-1, preferences.NumberOfVoters).ToList();
-                RemainingAlternatives = new List<int>(preferences.Candidates.Keys);
-                Score = 0;
-            }
-
-            public List<int> Assignment { get; private set; } 
-            public List<int> RemainingAlternatives { get; private set; }
-            public int Score { get; set; }
-
-            public static AssignmentInfo CopyFrom(AssignmentInfo assignmentInfo)
-            {
-                var newAssignmentInfo = new AssignmentInfo
-                {
-                    Assignment = new List<int>(assignmentInfo.Assignment),
-                    RemainingAlternatives = new List<int>(assignmentInfo.RemainingAlternatives),
-                    Score = assignmentInfo.Score
-                };
-                return newAssignmentInfo;
-            }
-        }
-
         public AlgorithmCCC(int d)
         {
             _d = d;
@@ -44,7 +15,7 @@ namespace MonroeChamberlinCourant.Algorithms.ChamberlinCourant
 
         public override Results Run(Preferences preferences, int winnersCount, IList<int> satisfactionFunction)
         {
-            var par = new List<AssignmentInfo>(1) {new AssignmentInfo(preferences)};
+            var par = new List<AssignmentInfo>(1) {new AssignmentInfo(preferences, false)};
 
             for (var i = 1; i <= winnersCount; ++i)
             {

@@ -7,57 +7,6 @@ namespace MonroeChamberlinCourant.Algorithms.Monroe
 {
     public class AlgorithmCMonroe : AbstractAlgorithm
     {
-        private class AgentComparer : IComparer<int>
-        {
-            private readonly int _alternativeId;
-            private readonly IList<IList<int>> _agentsPreferences;
-
-            public AgentComparer(int alternativeId, IList<IList<int>> agentsPreferences)
-            {
-                _alternativeId = alternativeId;
-                _agentsPreferences = agentsPreferences;
-            }
-
-            public int Compare(int x, int y)
-            {
-                var xPosition = _agentsPreferences[x].IndexOf(_alternativeId);
-                var yPosition = _agentsPreferences[y].IndexOf(_alternativeId);
-                return xPosition - yPosition;
-            }
-        }
-
-        private class AssignmentInfo
-        {
-            private AssignmentInfo()
-            {
-            }
-
-            public AssignmentInfo(Preferences preferences)
-            {
-                Assignment = Enumerable.Repeat(-1, preferences.NumberOfVoters).ToList();
-                RemainingAlternatives = new List<int>(preferences.Candidates.Keys);
-                RemainingAgents = Enumerable.Range(0, preferences.NumberOfVoters).ToList();
-                Score = 0;
-            }
-
-            public List<int> Assignment { get; private set; } 
-            public List<int> RemainingAlternatives { get; private set; }
-            public List<int> RemainingAgents { get; private set; }
-            public int Score { get; set; }
-
-            public static AssignmentInfo CopyFrom(AssignmentInfo assignmentInfo)
-            {
-                var newAssignmentInfo = new AssignmentInfo
-                {
-                    Assignment = new List<int>(assignmentInfo.Assignment),
-                    RemainingAlternatives = new List<int>(assignmentInfo.RemainingAlternatives),
-                    RemainingAgents = new List<int>(assignmentInfo.RemainingAgents),
-                    Score = assignmentInfo.Score
-                };
-                return newAssignmentInfo;
-            }
-        }
-
         public AlgorithmCMonroe(int d)
         {
             _d = d;
@@ -72,7 +21,7 @@ namespace MonroeChamberlinCourant.Algorithms.Monroe
             var lowerBound = (int) Math.Floor(ratio);
             var upperBoundUseCount = (int) Math.Round((1 - (upperBound - ratio)) * winnersCount);
 
-            var par = new List<AssignmentInfo>(1) {new AssignmentInfo(preferences)};
+            var par = new List<AssignmentInfo>(1) {new AssignmentInfo(preferences, true)};
 
             for (var i = 1; i <= winnersCount; ++i)
             {
