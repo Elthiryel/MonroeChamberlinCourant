@@ -16,6 +16,7 @@ namespace MonroeChamberlinCourant.Framework.Model
         public IList<int> Winners { get; private set; }
         public IList<int> SatisfactionFunction { get; private set; }
         public RuleType Type { get; private set; }
+        public int? Score { get; set; }
 
         public Results(Preferences preferences, IList<int> winners, IList<int> satisfactionFunction, RuleType type)
         {
@@ -23,6 +24,7 @@ namespace MonroeChamberlinCourant.Framework.Model
             Winners = winners;
             SatisfactionFunction = satisfactionFunction;
             Type = type;
+            Score = null;
         }
 
         public IList<int> WinnersSet()
