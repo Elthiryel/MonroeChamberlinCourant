@@ -72,8 +72,9 @@ namespace MonroeChamberlinCourant.Test
 //            }
 //            RunAlgorithm(new AlgorithmA(), preferences, "A Monroe");
 //            RunAlgorithm(new AlgorithmCMonroe(3), preferences, "C Monroe (3)");
-            RunAlgorithm(new AlgorithmCCC(3), preferences, "C Cha-Cou (3))");
-            RunAlgorithm(new AlgorithmRCC(10), preferences, "R Cha-Cou (10)");
+//            RunAlgorithm(new AlgorithmCCC(3), preferences, "C Cha-Cou (3))");
+//            RunAlgorithm(new AlgorithmRCC(10), preferences, "R Cha-Cou (10)");
+            RunAlgorithm(new AlgorithmGMCC(), preferences, "GM Cha-Cou");
             RunAlgorithm(new BruteForceCC(), preferences, "BruteForce Cha-Cou");
 //            RunAlgorithm(new AlgorithmCMonroe(2), preferences);
 //            RunAlgorithm(new AlgorithmCMonroe(3), preferences);

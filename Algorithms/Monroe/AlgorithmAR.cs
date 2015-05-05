@@ -7,8 +7,8 @@ namespace MonroeChamberlinCourant.Algorithms.Monroe
 {
     public class AlgorithmAR : AbstractAlgorithm
     {
-        private double _epsilon;
-        private double _lambda;
+        private readonly double _epsilon;
+        private readonly double _lambda;
 
         public AlgorithmAR(double epsilon, double lambda)
         {
