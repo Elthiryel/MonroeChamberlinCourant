@@ -46,6 +46,7 @@
     <Compile Include="ChamberlinCourant\AlgorithmP.cs" />
     <Compile Include="ChamberlinCourant\AlgorithmRCC.cs" />
     <Compile Include="ChamberlinCourant\BruteForceCC.cs" />
+    <Compile Include="ChamberlinCourant\GeneticAlgorithmCC.cs" />
     <Compile Include="IAlgorithm.cs" />
     <Compile Include="Monroe\AlgorithmA.cs" />
     <Compile Include="Monroe\AlgorithmAR.cs" />

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using System.Linq.Expressions;
 using MonroeChamberlinCourant.Algorithms;
 using MonroeChamberlinCourant.Algorithms.ChamberlinCourant;
@@ -16,39 +18,46 @@ namespace MonroeChamberlinCourant.Test
         {
 //            var preferences = DataLoader.LoadPreferences("example_prefs.txt");
 //            var a = 1;
-            var candidates = new Dictionary<int, Candidate>(5)
+//            var candidates = new Dictionary<int, Candidate>(5)
+//            {
+//                {8, new Candidate(8, "AAA")},
+//                {23, new Candidate(23, "BBB")},
+//                {45, new Candidate(45, "CCC")},
+//                {22, new Candidate(22, "DDD")},
+//                {9, new Candidate(9, "EEE")}
+//            };
+            var candidateIds = Enumerable.Range(0, 20);
+            var candidates = new Dictionary<int, Candidate>();
+            foreach (var candidateId in candidateIds)
             {
-                {8, new Candidate(8, "AAA")},
-                {23, new Candidate(23, "BBB")},
-                {45, new Candidate(45, "CCC")},
-                {22, new Candidate(22, "DDD")},
-                {9, new Candidate(9, "EEE")}
-            };
+                candidates[candidateId] = new Candidate(candidateId);
+            }
+
             var generator = new PolyaStrictGenerator();
-            var preferences = generator.Generate(candidates, 20);
-            var votersPreferences = new List<IList<int>>
-            {
-                new List<int> {23, 8, 22, 9, 45},
-                new List<int> {45, 22, 8, 23, 9},
-                new List<int> {8, 22, 9, 23, 45},
-                new List<int> {23, 8, 9, 22, 45},
-                new List<int> {22, 9, 23, 45, 8},
-                new List<int> {8, 22, 9, 23, 45},
-                new List<int> {9, 22, 45, 8, 23},
-                new List<int> {23, 8, 22, 45, 9},
-                new List<int> {8, 45, 22, 23, 9},
-                new List<int> {23, 8, 9, 22, 45},
-                new List<int> {9, 8, 22, 45, 23},
-                new List<int> {45, 23, 9, 8, 22},
-                new List<int> {23, 22, 9, 8, 45},
-                new List<int> {45, 8, 23, 22, 9},
-                new List<int> {9, 8, 22, 23, 45},
-                new List<int> {8, 23, 22, 45, 9},
-                new List<int> {23, 22, 8, 9, 45},
-                new List<int> {45, 23, 22, 8, 9},
-                new List<int> {9, 8, 22, 23, 45},
-                new List<int> {8, 22, 23, 9, 45}
-            };
+            var preferences = generator.Generate(candidates, 1000);
+//            var votersPreferences = new List<IList<int>>
+//            {
+//                new List<int> {23, 8, 22, 9, 45},
+//                new List<int> {45, 22, 8, 23, 9},
+//                new List<int> {8, 22, 9, 23, 45},
+//                new List<int> {23, 8, 9, 22, 45},
+//                new List<int> {22, 9, 23, 45, 8},
+//                new List<int> {8, 22, 9, 23, 45},
+//                new List<int> {9, 22, 45, 8, 23},
+//                new List<int> {23, 8, 22, 45, 9},
+//                new List<int> {8, 45, 22, 23, 9},
+//                new List<int> {23, 8, 9, 22, 45},
+//                new List<int> {9, 8, 22, 45, 23},
+//                new List<int> {45, 23, 9, 8, 22},
+//                new List<int> {23, 22, 9, 8, 45},
+//                new List<int> {45, 8, 23, 22, 9},
+//                new List<int> {9, 8, 22, 23, 45},
+//                new List<int> {8, 23, 22, 45, 9},
+//                new List<int> {23, 22, 8, 9, 45},
+//                new List<int> {45, 23, 22, 8, 9},
+//                new List<int> {9, 8, 22, 23, 45},
+//                new List<int> {8, 22, 23, 9, 45}
+//            };
 
 //            var preferences = new Preferences(5, candidates, 20, votersPreferences);
             Console.Write(preferences);
@@ -75,7 +84,8 @@ namespace MonroeChamberlinCourant.Test
 //            RunAlgorithm(new AlgorithmCCC(3), preferences, "C Cha-Cou (3))");
 //            RunAlgorithm(new AlgorithmRCC(10), preferences, "R Cha-Cou (10)");
 //            RunAlgorithm(new AlgorithmGMCC(), preferences, "GM Cha-Cou");
-            RunAlgorithm(new AlgorithmP(), preferences, "P Cha-Cou");
+            RunAlgorithm(new AlgorithmCCC(3), preferences, "C Cha-Cou (3)");
+            RunAlgorithm(new GeneticAlgorithmCC(5, 5), preferences, "Genetic Cha-Cou (5, 5)");
             RunAlgorithm(new BruteForceCC(), preferences, "BruteForce Cha-Cou");
 //            RunAlgorithm(new AlgorithmCMonroe(2), preferences);
 //            RunAlgorithm(new AlgorithmCMonroe(3), preferences);
@@ -86,7 +96,10 @@ namespace MonroeChamberlinCourant.Test
         private static void RunAlgorithm(IAlgorithm algorithm, Preferences preferences, string label)
         {
             Console.WriteLine(label);
+            var stopwatch = Stopwatch.StartNew();
             var results = algorithm.Run(preferences, 3, p => -p + 4);
+            stopwatch.Stop();
+            Console.WriteLine("Time taken: {0}ms", stopwatch.Elapsed.TotalMilliseconds);
             foreach (var winner in results.Winners)
             {
                 Console.Write(winner);
