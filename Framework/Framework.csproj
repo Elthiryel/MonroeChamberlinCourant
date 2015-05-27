@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\DataPersister.cs" />
+    <Compile Include="Generation\GenerationHelper.cs" />
     <Compile Include="Model\Candidate.cs" />
     <Compile Include="Data\DataLoader.cs" />
     <Compile Include="Exceptions\InvalidPreferencesFormatException.cs" />

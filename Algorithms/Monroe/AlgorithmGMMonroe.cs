@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using MonroeChamberlinCourant.Framework.Model;
+using MonroeChamberlinCourant.Framework.Utils;
 
 namespace MonroeChamberlinCourant.Algorithms.Monroe
 {
@@ -9,27 +10,39 @@ namespace MonroeChamberlinCourant.Algorithms.Monroe
     {
         public override Results Run(Preferences preferences, int winnersCount, IList<int> satisfactionFunction)
         {
-            var assignment = Enumerable.Repeat(-1, preferences.NumberOfVoters).ToList();
+            IList<int> assignment = Enumerable.Repeat(-1, preferences.NumberOfVoters).ToList();
             var used = new List<int>(winnersCount);
             var remaining = new List<int>(preferences.Candidates.Keys.ToList());
             for (var i = 1; i <= winnersCount; ++i)
             {
-                assignment = GetBestAssignment(used, remaining, assignment, preferences, satisfactionFunction);
+                assignment = GetBestAssignment(used, remaining, preferences, satisfactionFunction, winnersCount);
             }
-            return new Results(preferences, assignment, satisfactionFunction, RuleType.ChamberlinCourant);
+            return new Results(preferences, assignment, satisfactionFunction, RuleType.Monroe);
         }
 
-        private List<int> GetBestAssignment(ICollection<int> used, ICollection<int> remaining, IReadOnlyList<int> assignment,
-            Preferences preferences, IList<int> satisfactionFunction)
+        private IList<int> GetBestAssignment(ICollection<int> used, ICollection<int> remaining, Preferences preferences, IList<int> satisfactionFunction, int winnersCount)
         {
             var bestScore = -1;
             var bestAlternative = -1;
-            var bestAssignment = new List<int>();
+            IList<int> bestAssignment = new List<int>();
             foreach (var alternative in remaining)
             {
-                // TODO use network-flow-based approach to assign alternatives to agents (partial K-assignment)
+                var currentAlternatives = new List<int>(used.Count + 1);
+                currentAlternatives.AddRange(used);
+                currentAlternatives.Add(alternative);
+                var newAssignment = AlgorithmUtils.AssignBestForMonroe(currentAlternatives, preferences.VotersPreferences, satisfactionFunction, winnersCount);
+                var newResults = new Results(preferences, newAssignment, satisfactionFunction, RuleType.Monroe);
+                var newScore = ScoreCalculator.CalculateScore(newResults);
+                if (newScore > bestScore)
+                {
+                    bestScore = newScore;
+                    bestAlternative = alternative;
+                    bestAssignment = newAssignment;
+                }
             }
-            throw new NotImplementedException();
+            used.Add(bestAlternative);
+            remaining.Remove(bestAlternative);
+            return bestAssignment;
         }
     }
 }

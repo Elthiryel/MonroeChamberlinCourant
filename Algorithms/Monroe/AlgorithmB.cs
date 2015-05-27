@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using MonroeChamberlinCourant.Framework.Model;
 
 namespace MonroeChamberlinCourant.Algorithms.Monroe
@@ -9,10 +10,8 @@ namespace MonroeChamberlinCourant.Algorithms.Monroe
         {
             var algorithmA = new AlgorithmA();
             var initialResults = algorithmA.Run(preferences, winnersCount, satisfactionFunction);
-
-            // TODO use network-flow-based approach to reassign initialResults
-
-            return initialResults;
+            var finalWinners = AlgorithmUtils.AssignBestForMonroe(initialResults.Winners.Distinct().ToList(), preferences.VotersPreferences, satisfactionFunction);
+            return new Results(preferences, finalWinners, satisfactionFunction, RuleType.Monroe);
         }
     }
 }

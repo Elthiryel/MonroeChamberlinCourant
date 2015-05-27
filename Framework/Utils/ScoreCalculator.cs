@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using MonroeChamberlinCourant.Framework.Model;
+﻿using MonroeChamberlinCourant.Framework.Model;
 
 namespace MonroeChamberlinCourant.Framework.Utils
 {
@@ -7,8 +6,16 @@ namespace MonroeChamberlinCourant.Framework.Utils
     {
         public static int CalculateScore(Results results)
         {
-            return results.Winners.Select((winner, i) => results.Preferences.VotersPreferences[i].IndexOf(winner))
-                .Sum(position => results.SatisfactionFunction[position]);
+            var result = 0;
+            for (var i = 0; i < results.Winners.Count; ++i)
+            {
+                var winner = results.Winners[i];
+                if (winner >= 0)
+                {
+                    result += results.SatisfactionFunction[results.Preferences.VotersPreferences[i].IndexOf(winner)];
+                }
+            }
+            return result;
         }
     }
 }

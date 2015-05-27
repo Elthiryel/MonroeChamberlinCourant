@@ -47,7 +47,10 @@ namespace MonroeChamberlinCourant.Algorithms.Monroe
                 par = newPar.Take(_d).ToList();
             }
 
-            // TODO use network-flow-based approach to reassign elements of par
+            foreach (var assignmentInfo in par)
+            {
+                assignmentInfo.Assignment = AlgorithmUtils.AssignBestForMonroe(assignmentInfo.Assignment.Distinct().ToList(), preferences.VotersPreferences, satisfactionFunction);
+            }
 
             var finalPar = AssignScoresAndSort(par, preferences, satisfactionFunction);
 

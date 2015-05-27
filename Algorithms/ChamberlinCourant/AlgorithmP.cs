@@ -10,7 +10,7 @@ namespace MonroeChamberlinCourant.Algorithms.ChamberlinCourant
         public override Results Run(Preferences preferences, int winnersCount, IList<int> satisfactionFunction)
         {
             var winners = Enumerable.Repeat(-1, preferences.NumberOfVoters).ToList();
-            var x = getX(preferences.NumberOfCandidates, winnersCount);
+            var x = GetX(preferences.NumberOfCandidates, winnersCount);
             var remainingAlternatives = preferences.Candidates.Keys.ToList();
 
             for (var i = 1; i <= winnersCount; ++i)
@@ -45,9 +45,9 @@ namespace MonroeChamberlinCourant.Algorithms.ChamberlinCourant
             return new Results(preferences, winners, satisfactionFunction, RuleType.ChamberlinCourant);
         }
 
-        private int getX(int m, int k)
+        private static int GetX(int m, int k)
         {
-            var w = 0.85;  // TODO calculate Lambert's w function
+            var w = AlgorithmUtils.LambertsFunction(k);
             var x = (int) Math.Ceiling(m * w / k);
             return x;
         }

@@ -9,7 +9,7 @@ namespace MonroeChamberlinCourant.Algorithms.ChamberlinCourant
     {
         public override Results Run(Preferences preferences, int winnersCount, IList<int> satisfactionFunction)
         {
-            var subsets = GetSubsets(preferences.Candidates.Keys.ToList(), winnersCount);
+            var subsets = AlgorithmUtils.GetSubsets(preferences.Candidates.Keys.ToList(), winnersCount);
             var bestScore = 0;
             Results results = null;
             foreach (var subset in subsets)
@@ -37,36 +37,6 @@ namespace MonroeChamberlinCourant.Algorithms.ChamberlinCourant
                 }
             }
             return results;
-        }
-
-        private static IEnumerable<ISet<int>> GetSubsets(IList<int> superSet, int k)
-        {
-            var res = new List<ISet<int>>();
-            GetSubsets(superSet, k, 0, new HashSet<int>(), res);
-            return res;
-        } 
-
-        private static void GetSubsets(IList<int> superSet, int k, int idx, ISet<int> current, IList<ISet<int>> solution)
-        {
-            // successful stop clause
-            if (current.Count == k)
-            {
-                solution.Add(new HashSet<int>(current));
-                return;
-            }
-
-            // unsuccessful stop clause
-            if (idx == superSet.Count)
-                return;
-            var x = superSet[idx];
-            current.Add(x);
-
-            // "guess" x is in the subset
-            GetSubsets(superSet, k, idx + 1, current, solution);
-            current.Remove(x);
-
-            // "guess" x is not in the subset
-            GetSubsets(superSet, k, idx + 1, current, solution);
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using MonroeChamberlinCourant.Framework.Model;
+using MonroeChamberlinCourant.Framework.Utils;
 
 namespace MonroeChamberlinCourant.Algorithms.Monroe
 {
@@ -21,14 +22,24 @@ namespace MonroeChamberlinCourant.Algorithms.Monroe
             var potentialWinners = new List<IList<int>>(_samplingSteps);
             for (var i = 0; i < _samplingSteps; ++i)
             {
-                potentialWinners[i] = AlgorithmUtils.GetRandomAlternatives(preferences.Candidates.Keys.ToList(), winnersCount, _random);
+                potentialWinners.Add(AlgorithmUtils.GetRandomAlternatives(preferences.Candidates.Keys.ToList(), winnersCount, _random));
             }
 
-            // TODO use network-flow-based approach to assign elements of potentialWinners
+            var bestScore = -1;
+            Results bestResults = null;
+            foreach (var candidates in potentialWinners)
+            {
+                var winners = AlgorithmUtils.AssignBestForMonroe(candidates, preferences.VotersPreferences, satisfactionFunction);
+                var results = new Results(preferences, winners, satisfactionFunction, RuleType.Monroe);
+                var score = ScoreCalculator.CalculateScore(results);
+                if (score > bestScore)
+                {
+                    bestScore = score;
+                    bestResults = results;
+                }
+            }
 
-            throw new NotImplementedException();
+            return bestResults;
         }
-
-
     }
 }
