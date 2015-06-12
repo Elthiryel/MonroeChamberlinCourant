@@ -1,0 +1,115 @@
+
+\documentclass[en,11pt]{aghdpl}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+
+% dodatkowe pakiety
+\usepackage{enumerate}
+\usepackage{listings}
+\usepackage{framed}
+\lstloadlanguages{TeX}
+
+\lstset{
+  literate={ą}{{\k{a}}}1
+           {ć}{{\'c}}1
+           {ę}{{\k{e}}}1
+           {ó}{{\'o}}1
+           {ń}{{\'n}}1
+           {ł}{{\l{}}}1
+           {ś}{{\'s}}1
+           {ź}{{\'z}}1
+           {ż}{{\.z}}1
+           {Ą}{{\k{A}}}1
+           {Ć}{{\'C}}1
+           {Ę}{{\k{E}}}1
+           {Ó}{{\'O}}1
+           {Ń}{{\'N}}1
+           {Ł}{{\L{}}}1
+           {Ś}{{\'S}}1
+           {Ź}{{\'Z}}1
+           {Ż}{{\.Z}}1
+}
+
+%---------------------------------------------------------------------------
+
+\author{Piotr Szmigielski}
+\shortauthor{P. Szmigielski}
+
+\titlePL{Implementacja algorytmów dla systemów Monroe i Chamberlina-Couranta z nieliniową funkcją satysfakcji}
+\titleEN{Implementation of algorithms for Monroe and Chamberlin-Courant systems under nonlinear satisfaction function}
+
+\shorttitlePL{Implementacja algorytmów dla systemów Monroe i Chamberlina-Couranta z nieliniową funkcją satysfakcji}
+\shorttitleEN{Implementation of algorithms for Monroe and Chamberlin-Courant systems under nonlinear satisfaction function}
+
+\thesistype{Master of Science Thesis}
+
+\supervisor{Piotr Faliszewski, PhD}
+
+\degreeprogramme{Computer Science}
+
+\date{2015}
+
+\department{Department of Computer Science}
+
+\faculty{Faculty of Computer Science, Electronics and Telecommunications}
+
+
+\setlength{\cftsecnumwidth}{10mm}
+
+%---------------------------------------------------------------------------
+
+\usepackage{array}
+\newcolumntype{C}[1]{>{\centering\arraybackslash\hspace{0pt}}m{#1}}
+
+\begin{document}
+
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+\let\cleardoublepage\clearpage
+\def\bibname{References}
+\def\listtablename{List of Tables}
+\def\tablename{Table}
+
+\titlepages
+
+\tableofcontents
+
+\include{rozdzial1}
+\include{rozdzial2}
+\include{rozdzial3}
+\include{rozdzial4}
+\include{rozdzial5}
+\include{rozdzial6}
+\include{rozdzial7}
+
+% itd.
+% \appendix
+% \include{dodatekA}
+% \include{dodatekB}
+% itd.
+
+
+\addcontentsline{toc}{chapter}{\bibname}
+\bibliographystyle{alpha}
+\bibliography{bibliografia}
+\begin{thebibliography}{1}
+
+\bibitem{1}
+B. Chamberlin and P. Courant. Representative deliberations and representative decisions: Proportional representation and the borda rule. {\em American Political Science Review}, 77(3):718-733, 1983.
+
+\bibitem{2}
+B. Monroe. Fully proportional representation. {\em American Political Science Review}, 89(4):925-940, 1995.
+
+\bibitem{3}
+P. Skowron, P. Faliszewski and A. Slinko. Achieving Fully Proportional Representation is Easy in Practice. arXiv:1301.6400 [cs.MA], 2013.
+
+\bibitem{4}
+P. Skowron, P. Faliszewski and A. Slinko. Achieving Fully Proportional Representation: Approximability Results. arXiv:1312.4026 [cs.AI], 2013.
+
+\end{thebibliography}
+
+\addcontentsline{toc}{chapter}{\listtablename}
+\listoftables
+
+\end{document}
