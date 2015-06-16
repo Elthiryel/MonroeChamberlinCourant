@@ -174,6 +174,21 @@ namespace MonroeChamberlinCourant.Algorithms
             return randomAlternatives;
         }
 
+        public static IList<int> AssignBestForCC(IList<int> candidates, IList<IList<int>> votersPreferences)
+        {
+            var votersCount = votersPreferences.Count;
+            var winners = Enumerable.Repeat(candidates[0], votersCount).ToList();
+            foreach (var candidate in candidates)
+            {
+                for (var i = 0; i < votersCount; ++i)
+                {
+                    if (votersPreferences[i].IndexOf(candidate) < votersPreferences[i].IndexOf(winners[i]))
+                        winners[i] = candidate;
+                }
+            }
+            return winners;
+        } 
+
         public static IList<int> AssignBestForMonroe(IList<int> candidates, IList<IList<int>> votersPreferences, IList<int> satisfactionFunction, int winnersCount = -1)
         {
             var candidatesCount = candidates.Count;
@@ -330,6 +345,11 @@ namespace MonroeChamberlinCourant.Algorithms
             var computedValue = w * Math.Pow(Math.E, w);
             greater = x > computedValue;
             return Math.Abs(computedValue - x) < diff;
+        }
+
+        public static double AcceptanceProbability(UInt64 energy, UInt64 newEnergy, double temperature)
+        {
+            return newEnergy < energy ? 1.0d : Math.Exp((energy - newEnergy) / temperature);
         }
     }
 }

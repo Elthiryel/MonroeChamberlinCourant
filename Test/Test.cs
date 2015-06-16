@@ -17,7 +17,7 @@ namespace MonroeChamberlinCourant.Test
     {
         public static void Main(string[] args)
         {
-            var preferences = GenerationHelper.GenerateAndPersistData(new PolyaStrictGenerator(), 10, 10, "test.txt");
+            var preferences = GenerationHelper.GenerateAndPersistData(new PolyaStrictGenerator(), 20, 100, "test.txt");
 //
 ////            var preferences = DataLoader.LoadPreferences("test.txt");
 //            
@@ -27,23 +27,25 @@ namespace MonroeChamberlinCourant.Test
 //            RunAlgorithm(new AlgorithmCMonroe(3), preferences, "Algorithm C (3)");
 //            
             // CHAMBERLIN-COURANT
-            Console.WriteLine("CHAMBERLIN-COURANT");
-            RunAlgorithm(new AlgorithmCCC(3), preferences, "Algorithm C (3)");
-            RunAlgorithm(new AlgorithmGMCC(), preferences, "Algorithm GM");
-            RunAlgorithm(new AlgorithmP(), preferences, "Algorithm P");
-            RunAlgorithm(new AlgorithmRCC(5), preferences, "Algorithm R (5)");
-            RunAlgorithm(new GeneticAlgorithmCC(10, 10), preferences, "Genetic Algorithm (10, 10)");
-            RunAlgorithm(new BruteForceCC(), preferences, "Brute Force");
+//            Console.WriteLine("CHAMBERLIN-COURANT");
+//            RunAlgorithm(new AlgorithmCCC(3), preferences, "Algorithm C (3)");
+//            RunAlgorithm(new AlgorithmGMCC(), preferences, "Algorithm GM");
+//            RunAlgorithm(new AlgorithmP(), preferences, "Algorithm P");
+//            RunAlgorithm(new AlgorithmRCC(5), preferences, "Algorithm R (5)");
+//            RunAlgorithm(new GeneticAlgorithmCC(10, 10), preferences, "Genetic Algorithm (10, 10)");
+//            RunAlgorithm(new BruteForceCC(), preferences, "Brute Force");
 
             // MONROE
-            Console.WriteLine("MONROE");
-            RunAlgorithm(new AlgorithmA(), preferences, "Algorithm A");
-            RunAlgorithm(new AlgorithmB(), preferences, "Algorithm B");
-            RunAlgorithm(new AlgorithmCMonroe(3), preferences, "Algorithm C (3)");
-            RunAlgorithm(new AlgorithmRMonroe(5), preferences, "Algorithm R (5)");
-            RunAlgorithm(new AlgorithmAR(0.015, 0.75), preferences, "Algorithm AR (0.014, 0.75");
-            RunAlgorithm(new AlgorithmGMMonroe(), preferences, "Algorithm GM");
-            RunAlgorithm(new BruteForceWithFlowMonroe(), preferences, "Brute Force with Flow");
+//            Console.WriteLine("MONROE");
+//            RunAlgorithm(new AlgorithmA(), preferences, "Algorithm A");
+//            RunAlgorithm(new AlgorithmB(), preferences, "Algorithm B");
+//            RunAlgorithm(new AlgorithmCMonroe(3), preferences, "Algorithm C (3)");
+//            RunAlgorithm(new AlgorithmRMonroe(5), preferences, "Algorithm R (5)");
+//            //RunAlgorithm(new AlgorithmAR(0.015, 0.75), preferences, "Algorithm AR (0.114, 0.5)");
+//            RunAlgorithm(new AlgorithmGMMonroe(), preferences, "Algorithm GM");
+//            RunAlgorithm(new BruteForceWithFlowMonroe(), preferences, "Brute Force with Flow");
+            RunAlgorithm(new SimulatedAnnealingCC(20000000, 0.02), preferences, "Simulated annealing");
+            RunAlgorithm(new BruteForceCC(), preferences, "Brute Force");
 
 //
 //            Console.WriteLine("DONE...");
@@ -62,8 +64,8 @@ namespace MonroeChamberlinCourant.Test
         {
             Console.WriteLine(label);
             var stopwatch = Stopwatch.StartNew();
-            //var results = algorithm.Run(preferences, 5, new[] {262144, 131072, 65536, 32768, 16384, 8192, 4096, 2048, 1024, 512, 256, 128, 64, 32, 16, 8, 4, 2, 1, 0});
-            var results = algorithm.Run(preferences, 2, new[] {9, 8, 7, 6, 5, 4, 3, 2, 1, 0});
+            var results = algorithm.Run(preferences, 5, new[] {262144, 131072, 65536, 32768, 16384, 8192, 4096, 2048, 1024, 512, 256, 128, 64, 32, 16, 8, 4, 2, 1, 0});
+            //var results = algorithm.Run(preferences, 5, new[] {9, 8, 7, 6, 5, 4, 3, 2, 1, 0});
             stopwatch.Stop();
 //            Console.WriteLine();
 //            foreach (var winner in results.Winners)
