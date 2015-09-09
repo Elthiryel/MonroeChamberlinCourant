@@ -2,13 +2,15 @@
 \contentsline {chapter}{\numberline {1}Introduction}{4}
 \contentsline {chapter}{\numberline {2}Motivation and Goals}{6}
 \contentsline {chapter}{\numberline {3}Preliminaries}{7}
-\contentsline {chapter}{\numberline {4}State of the Art}{8}
-\contentsline {chapter}{\numberline {5}Implemented Algorithms}{9}
-\contentsline {section}{\numberline {5.1}AlgorithmA}{9}
-\contentsline {section}{\numberline {5.2}AlgorithmB}{9}
-\contentsline {section}{\numberline {5.3}AlgorithmCC}{9}
-\contentsline {section}{\numberline {5.4}Genetic Algorithm}{9}
-\contentsline {chapter}{\numberline {6}Evaluation Results}{10}
-\contentsline {chapter}{\numberline {7}Summary}{11}
-\contentsline {chapter}{References}{12}
-\contentsline {chapter}{List of Tables}{12}
+\contentsline {section}{\numberline {3.1}Basic notions}{7}
+\contentsline {section}{\numberline {3.2}Monroe and Chamberlin-Courant rules}{8}
+\contentsline {section}{\numberline {3.3}Computational complexity}{9}
+\contentsline {chapter}{\numberline {4}State of the Art}{10}
+\contentsline {chapter}{\numberline {5}Implemented Algorithms}{11}
+\contentsline {section}{\numberline {5.1}AlgorithmA}{11}
+\contentsline {section}{\numberline {5.2}AlgorithmB}{11}
+\contentsline {section}{\numberline {5.3}AlgorithmCC}{11}
+\contentsline {section}{\numberline {5.4}Genetic Algorithm}{11}
+\contentsline {chapter}{\numberline {6}Evaluation Results}{13}
+\contentsline {chapter}{\numberline {7}Summary}{14}
+\contentsline {chapter}{List of Tables}{15}

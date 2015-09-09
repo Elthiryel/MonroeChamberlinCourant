@@ -8,6 +8,11 @@
 \usepackage{enumerate}
 \usepackage{listings}
 \usepackage{framed}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
 \lstloadlanguages{TeX}
 
 \lstset{
@@ -71,6 +76,9 @@
 \def\listtablename{List of Tables}
 \def\tablename{Table}
 
+\newcommand{\abs}[1]{\lvert#1\rvert}
+\newcommand{\norm}[1]{\lVert#1\rVert}
+
 \titlepages
 
 \tableofcontents
@@ -90,24 +98,9 @@
 % itd.
 
 
-\addcontentsline{toc}{chapter}{\bibname}
-\bibliographystyle{alpha}
-\bibliography{bibliografia}
-\begin{thebibliography}{1}
 
-\bibitem{1}
-B. Chamberlin and P. Courant. Representative deliberations and representative decisions: Proportional representation and the borda rule. {\em American Political Science Review}, 77(3):718-733, 1983.
-
-\bibitem{2}
-B. Monroe. Fully proportional representation. {\em American Political Science Review}, 89(4):925-940, 1995.
-
-\bibitem{3}
-P. Skowron, P. Faliszewski and A. Slinko. Achieving Fully Proportional Representation is Easy in Practice. arXiv:1301.6400 [cs.MA], 2013.
-
-\bibitem{4}
-P. Skowron, P. Faliszewski and A. Slinko. Achieving Fully Proportional Representation: Approximability Results. arXiv:1312.4026 [cs.AI], 2013.
-
-\end{thebibliography}
+\bibliography{bibliography}
+\bibliographystyle{unsrt}
 
 \addcontentsline{toc}{chapter}{\listtablename}
 \listoftables

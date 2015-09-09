@@ -1,14 +1,46 @@
 \chapter{Implemented Algorithms}
 \label{cha:implementedAlgorithms}
 
+In this chapter we present implemented algorithms for the utilitarian versions of Monroe and Chamberlin-Courant multiwinner voting rules in the satisfaction-based framework.
+\\
+
+\noindent
+\textbf{Proposition 1 (Implicit in the paper of Betzler et al. \cite{3}).} Let $\alpha$ be a normal DFSF, $N$ be a set of agents, $A$ be a set of alternatives, $V$ be a preference profile of $N$ over $A$, and $S$ a $K$-element subset of $A$ (where $K$ divides $\norm{N}$). Then there is a polynomial-time-algorithm that computes a (possibly partial) optimal K-assignment $\Phi^{S}_{\alpha}$ (Monroe K-assignment $\Phi^{S}_{\alpha}$) of the agents to the alternatives from $S$.
+\\
+
 \section{AlgorithmA}
-\label{cha:oppMarcinLis}
+
+Algorithm A was first presented by Skowron et al. \cite{1} and tries to solve $\alpha$-Monroe-SatWinner. It builds a solution iteratively (greedily). In each step we pick some not-yet-assigned alternative $a_{i}$ (using some criterion) and assign it to those $\frac{N}{K}$ agents that are not assigned to any other alternative yet and whose satisfaction of being matched with $a_{i}$ is maximal.
+\begin{algorithm}
+\caption{Algorithm A}\label{euclid}
+\begin{algorithmic}[1]
+	\Procedure{ComputeMonroeSatWinner}{}
+		\State $\Phi \gets$ a map defining a partial assignment, iteratively built by the algorithm
+		\State $\Phi^{\leftarrow} \gets$ the set of agents for which the assignment is already defined
+		\State $\Phi^{\rightarrow} \gets$ the set of alternatives already used in the assignment
+		\If {$K \leq 2$}
+			\State compute the optimal solution using an algorithm of Betzler et al. \cite{1} and return
+		\EndIf
+		\State $\Phi$ = $\{\}$
+		\For{$i \gets 1$ to $K$}
+			\State $score \gets \{\}$
+			\State $bests \gets \{\}$
+			\ForAll{$a_{i} \in A \setminus \Phi^{\rightarrow}$}
+				\State $agents \gets$ sort $N \setminus \Phi^{\leftarrow}$ so that if agent $j$ preceeds agent $j'$ then $pos_{j}(a_{i}) \leq pos_{j'}(a_{i})$
+				\State $bests[a_{i}] \gets$ choose first $\frac{N}{K}$ elements from $agents$
+				\State $score[a_{i}] \gets \sum_{j \in bests[a_{i}]}(m - pos_{j}(a_{i}))$
+			\EndFor
+			\State $a_{best} \gets argmax_{a \in A \setminus \Phi^{\rightarrow}} score[a]$
+			\ForAll{$j \in bests[a_{best}]$}
+				\State $\Phi[j] \gets a_{best}$
+			\EndFor
+		\EndFor
+	\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 
 \section{AlgorithmB}
-\label{cha:oppMarcinLis}
 
 \section{AlgorithmCC}
-\label{cha:oppMarcinLis}
 
 \section{Genetic Algorithm}
-\label{cha:oppMarcinLis}

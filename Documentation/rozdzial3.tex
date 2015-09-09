@@ -1,5 +1,79 @@
 \chapter{Preliminaries}
 \label{cha:preliminaries}
 
+In the first part of the chapter we explain basic notions regarding multiwinner election problem. Then we present formal definitions of winner determination problem under Monroe and Chamberlin-Courant voting rules. Finally, we present some notions regarding computational complexity.
 
+\section{Basic notions}
 
+\noindent
+\textbf{Preferences.} \hspace{.1in} For each $n \in \mathbb{N}$, by $[n]$ we mean $\left\{ 1, \ldots, n \right\}$. We assume that there is a set $N = [n]$ of \textit{agents} and a set $A = \left\{ a_{1}, \ldots a_{m} \right\}$ of \textit{alternatives}. Each agent $i$ has a \textit{preference order}  $\succ_{i}$ over $A$, i.e., a strict linear order of the form $a_{\pi(1)} \succ_{i} a_{\pi(2)} \succ_{i} \ldots \succ_{i} a_{\pi(m)}$ for some permutation $\pi$ of $[m]$. For an alternative $a$, by $pos_{i}(a)$ we mean the position of $a$ in the $i$'th agent's preference order. For example, if $a$ is the most preferred alternative for $i$ then $pos_{i}(a) = 1$, and if $a$ is the least preferred one then $pos_{i}(a) = m$. A collection $V = (\succ_{1}, \ldots, \succ_{n})$ of agents' preference orders is called a \textit{preference profile}.
+\\
+
+Subsets of the alternatives are often included in the descriptions of preference orders. If $A$ is the set of all the alternatives and $B$ is a nonempty strict subset of $A$, then by $B \succ A - B$ we mean that for the preference order $\succ$ all alternatives in $B$ are preferred to those outside of $B$.
+\\
+
+\noindent
+\textbf{Positional scoring function.} \hspace{.1in} A \textit{positional scoring function} (PSF) is a function $\alpha^{m}: [m] \rightarrow \mathbb{N}$. A PSF $\alpha^{m}$ is an \textit{increasing positional scoring function} (IPSF) if for each $i,j \in [m]$, if $i < j$ then $\alpha^{m}(i) < \alpha^{m}(j)$. Analogously, a PSF $\alpha^{m}$ is a \textit{decreasing positional scoring function} (DPFS) if for each $i,j \in [m]$, if $i < j$ then $\alpha^{m}(i) > \alpha^{m}(j)$.
+\\
+
+If $\beta^{m}$ is an IPSF then $\beta^{m}(i)$ can represent the \textit{dissatisfaction} of an agent if she is assigned to an alternative ranked $i$'th in her preference order. We assume that for each IPSF $\beta^{m}(1) = 0$ (an agent is not dissatisfied with her best alternative). Analogously, a DPSF $\gamma^{m}$ can represent an agent's satisfaction. We assume that for each DPSF $\gamma^{m}(m) = 0$ (an agent is completely not satisfied with her worst alternative). In some cases, we will write $\alpha$ instead of $\alpha^{m}$ to simplify notation.
+\\
+
+An IPSF (DPSF) $\alpha^{m}$ is considered a \textit{linear dissatisfaction (satisfaction) function} if for each $i \in [m-1]$ value $\alpha^{m}(i+1) - \alpha^{m}(i)$ is constant. Every IPSF (DPSF) not satisfying that constraint is considered a \textit{nonlinear dissatisfaction (satisfaction) function}.
+\\
+
+We define a family $\alpha$ of IPSFs (DPSFs) of the form $\alpha = (\alpha^{m})_{m \in \mathbb{N}}$, where $\alpha^{m}$ is a PSF on $[m]$, such that:
+
+\begin{enumerate}
+	\item For a family of IPSFs it holds that $\alpha^{m+1}(i) = \alpha^{m}(i)$ for all $m \in \mathbb{N}$ and $i \in [m]$.
+	\item For a family of DPSFs it holds that $\alpha^{m+1}(i+1) = \alpha^{m}(i)$ for all $m \in \mathbb{N}$ and $i \in [m]$.
+\end{enumerate}
+
+We build families of IPSFs (DPSFs) by appending (prepending) values to functions with smaller domains. To simplify notation, we will refer to such families of IPSFs (DPSFs) as \textit{normal} IPSFs (DPSFs).
+\\
+
+\noindent
+\textbf{Assignment functions.} \hspace{.1in} A \textit{K-assignment function} is any function $\Phi: N \rightarrow A$, such that $\norm{\Phi(N)} \leq K$ (it assigns agents to at most $K$ alternatives). A \textit{Monroe K-assignment function} is an assignment function that additionally satisfies the following constraint: For each alternative $a \in A$ we have that either $\left\lfloor \frac{\norm{N}}{K} \right\rfloor \leq \norm{\Phi^{-1}(a)} \leq \left\lceil \frac{\norm{N}}{K} \right\rceil$ or $\norm{\Phi^{-1}(a)} = 0$.
+\\
+
+A \textit{partial K-assignment function} is defined in the same way as a regular one, except that it may assign a null alternative, $\bot$, to some of the agents. It is convenient to think that for each agent $i$ we have $pos_{i}(\bot) = m$. A \textit{partial Monroe K-assignment} is a partial K-assignment that can be extended to a regular Monroe K-assignment. If he have an assignment function $\Phi$, for each agent $i$ we refer to alternative $\Phi(i)$ as the \textit{representative} of $i$.
+\\
+
+Having a normal IPSF (DPSF) $\alpha$, we may consider the following three functions, each assigning a positive integer to a given assignment $\Phi$:
+\begin{gather}
+	l^{\alpha}_{sum}(\Phi) = \sum^{n}_{i=1} \alpha (pos_{i}(\Phi(i))),\\
+	l^{\alpha}_{max}(\Phi) = max^{n}_{i=1} \alpha (pos_{i}(\Phi(i))),\\
+	l^{\alpha}_{min}(\Phi) = min^{n}_{i=1} \alpha (pos_{i}(\Phi(i))).
+\end{gather}
+These functions aggreagte individual dissatisfaction (satisfaction) values of the agents to measure the quality of the assignment for the entire society. In the utilitarian framework (which is used in this thesis), we use the first function as the \textit{total dissatisfaction function} in the IPSF case and as the \textit{total satisfaction function} in the DPSF case. We use the second and the third functions, respectively, as the total dissatisfaction and satisfaction functions for IPSF and DPSF cases in the egalitarian framework.
+
+\section{Monroe and Chamberlin-Courant rules}
+
+We will now define the problems of winner determination under the Monroe and Chamberlin-Courant (abbreviated as CC) rules. In both cases the goal is to find an optimal assignment function, where the optimality is relative to on eof the total dissatisfaction or satisfaction functions introduced earlier. The former is to be minimized and the latter is to be maximized.
+\\
+
+\noindent
+\textbf{Definition 1.} Let $\alpha$ be a normal IPSF. An instance of $\alpha$\textit{-CC-DisWinner} problem consists of a set of agents $N = [n]$, a set of alternatives $A = \left\{ a_{1}, \ldots, a_{m} \right\}$, a preference profile $V$ of the agents, and positive integer $K$. We ask for a K-assignment function $\Phi$ such that $l^{\alpha}_{sum}(\Phi)$ is minimized. The problem $\alpha$\textit{-Monroe-DisWinner} is defined in the same way but we additionally require $\Phi$ to be a Monroe K-assignment function.
+\\
+
+\noindent
+\textbf{Definition 2.} Let $\alpha$ be a normal DPSF. The problem $\alpha$\textit{-CC-SatWinner} is defined in the same way as $\alpha$\textit{-CC-DisWinner}, except that we seek a K-assignment $\Phi$ such that $l^{\alpha}_{sum}(\Phi)$ is maximized. The problem $\alpha$\textit{-Monroe-SatWinner} is defined in the same way but we additionally require $\Phi$ to be a Monroe K-assignment function.
+\\
+
+In terms of solutions dissatisfaction-based problems are equivalent to the satisfaction-based ones. One can always transform an DPSF to an equivalent IPSF and vice versa.
+\\
+
+The goal in our problems is to compute a particular (Monroe) K-assignment function. Such a function defines a set of $K$ alternatives, who are viewed as the winners of the given multiwinner election.
+\\
+
+For each subset of the alternatives $S \subseteq A$ such that $\norm{S} \leq K$, we write $\Phi^{S}_{\alpha}$ to denote the partial (Monroe) K-assignment that assigns agents only to the alternatives from $S$ and such that $\Phi^{S}_{\alpha}$ maximizes the utilitarian satisfaction $l^{\alpha}_{sum}(\Phi^{S}_{
+\alpha})$.
+
+\section{Computational complexity}
+
+As for many normal IPSFs our problems are NP-hard \cite{2}, we seek approximate solutions.
+\\
+
+\noindent
+\textbf{Definition 3.} Let $r$ be a real number such that $r \geq 1 (0 < r \leq 1)$, let $\alpha$ be a normal IPSF (DPSF), and let $R$ be either Monroe or CC. An algorithm is an r-approximation algorithm for $\alpha$-R-DisWinner problem ($\alpha$-R-SatWinner problem) if on each instance $I$ it returns a feasible assignment $\Phi$ such that $l^{\alpha}_{sum}(\Phi) \leq r \cdot OPT$ (such that $l^{\alpha}_{sum}(\Phi) \geq r \cdot OPT$), where $OPT$ is the optimal total dissatisfaction (satisfaction) $l^{\alpha}_{sum}(\Phi_{OPT})$.
+\\

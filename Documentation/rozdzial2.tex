@@ -1,4 +1,8 @@
 \chapter{Motivation and Goals}
 \label{cha:motivation}
 
+Monroe and Chamberlin-Courant systems may be potentially very useful, because they are one of the few multiwinner election systems that provide both accountability of candidates to the voters (each voter has one particular representative in the elected commitee) and proportional results. Most of the currently used voting rules lack at least one of these properties. For example, D'Hondt method used to elect members of Polish lower house of parliament lacks accountability (voters are accountable to political parties rather than specific parliament members), while single-member constituency plurality system used for United Kingdom parliament elections lacks proportionality.
 
+As finding optimal solution for both of the aforementioned systems is NP-hard \cite{2}, there is a need to provide good algorithms which can compute result which is suboptimal but still as close to optimal as possible. Using such result in real-life elections (e.g. for parliament) is disputable. However, for some software applications, e.g. recommendation systems, it can be used seamlessly.
+
+Skowron et. al \cite{1} have already provided approximation algorithms for these systems, but only under linear satisfaction function. In this thesis we focus on providing algorithms for non-linear satisfaction functions, as they can better reflect real preferences of the voters.
