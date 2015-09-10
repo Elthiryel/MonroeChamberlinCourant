@@ -15,4 +15,10 @@ A.~Slinko N.~Betzler and J.~Uhlmann.
 \newblock On the computation of fully proportional representation.
 \newblock {\em Journal on Artificial Intelligence Research}, 47:475--519, 2013.
 
+\bibitem{4}
+Tyler Lu and Craig Boutilier.
+\newblock Budgeted social choice: From consensus to personalized decision
+  making.
+\newblock {\em IJCAI}, 11, 2011.
+
 \end{thebibliography}

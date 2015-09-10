@@ -8,9 +8,10 @@ In this chapter we present implemented algorithms for the utilitarian versions o
 \textbf{Proposition 1 (Implicit in the paper of Betzler et al. \cite{3}).} Let $\alpha$ be a normal DFSF, $N$ be a set of agents, $A$ be a set of alternatives, $V$ be a preference profile of $N$ over $A$, and $S$ a $K$-element subset of $A$ (where $K$ divides $\norm{N}$). Then there is a polynomial-time-algorithm that computes a (possibly partial) optimal K-assignment $\Phi^{S}_{\alpha}$ (Monroe K-assignment $\Phi^{S}_{\alpha}$) of the agents to the alternatives from $S$.
 \\
 
-\section{AlgorithmA}
+\section{Algorithm A}
 
-Algorithm A was first presented by Skowron et al. \cite{1} and tries to solve $\alpha$-Monroe-SatWinner. It builds a solution iteratively (greedily). In each step we pick some not-yet-assigned alternative $a_{i}$ (using some criterion) and assign it to those $\frac{N}{K}$ agents that are not assigned to any other alternative yet and whose satisfaction of being matched with $a_{i}$ is maximal.
+Algorithm A was first presented by Skowron et al. \cite{1} and tries to solve $\alpha$-Monroe-SatWinner. It builds a solution iteratively (greedily). In each step we pick some not-yet-assigned alternative $a_{i}$ (using some criterion) and assign it to those $\frac{N}{K}$ agents that are not assigned to any other alternative yet and whose satisfaction of being matched with $a_{i}$ is maximal. This algorithm runs in polynomial time. Pseudocode is presented in Algorithm 1.
+
 \begin{algorithm}
 \caption{Algorithm A}\label{euclid}
 \begin{algorithmic}[1]
@@ -39,8 +40,117 @@ Algorithm A was first presented by Skowron et al. \cite{1} and tries to solve $\
 \end{algorithmic}
 \end{algorithm}
 
-\section{AlgorithmB}
+\section{Algorithm B}
 
-\section{AlgorithmCC}
+Algorithm B is an extension to Algorithm A and was presented in the same paper. The idea is to run Algorithm A first and then, using Proposition 1, optimally reassign the alternatives to the voters. It should noticeably improve the results of the algorithm and it still runs in polynomial time.
 
-\section{Genetic Algorithm}
+\section{Algorithm C}
+
+Algorithm C is a further improvement over Algorithm B, also presented by Skowron et al. \cite{1}. The idea is that instead of keeping only one partial function $\Phi$ that is iteratively extended up to the full assignment, we keep a list of up to $d$ partial assignment functions, where $d$ is a parameter of the algorithm. At each iteration, for each assignment function $\Phi$ among the $d$ stored ones and for each alternative $a$ that does not yet have agents assigned to by this $\Phi$, we compute an optimal extension of this $\Phi$ that assigns to $a$. As a result we obtain possibly more than $d$ (partial) assignment functions. For the next iteration we keep those $d$ of them that give highest satisfaction. If we take $d = 1$, we obtain Algorithm B. Pseudocode is presented in Algorithm 3.
+\\
+
+Unlike previous algorithms, Algorithm C can be used for both Monroe and Chamberlin-Courant rules. To adapt it for the Chamberlin-Courant rule, we have to replace the contents of the first for all loop with the appropriate code, presented in Algorithm 2.
+
+\begin{algorithm}
+\caption{Algorithm C - for all code replacement}\label{euclid}
+\begin{algorithmic}[1]
+	\ForAll{$a_{i} \in A \setminus \Phi^{\rightarrow}$}
+		\State $\Phi' \gets \Phi$
+		\ForAll{$j \in N$}
+			\If{agent $j$ prefers $a_{i}$ to $\Phi'(j)$}
+				\State $\Phi'(j) \gets a_{i}$
+			\EndIf
+		\EndFor
+		\State $newPar.push(\Phi')$
+	\EndFor
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+\caption{Algorithm C}\label{euclid}
+\begin{algorithmic}[1]
+	\Procedure{ComputeMonroeSatWinner}{}
+		\State $\Phi \gets$ a map defining a partial assignment, iteratively built by the algorithm
+		\State $\Phi^{\leftarrow} \gets$ the set of agents for which the assignment is already defined
+		\State $\Phi^{\rightarrow} \gets$ the set of alternatives already used in the assignment
+		\State $Par \gets$ a list of partial representation functions
+		\State $Par = []$
+		\State $Par.push(/{/})$
+		\For{$i \gets 1$ to $K$}
+			\State $newPar = []$
+			\For{$\Phi \in Par$}
+				\State $bests \gets \{\}$
+				\ForAll{$a_{i} \in A \setminus \Phi^{\rightarrow}$}
+					\State $agents \gets$ sort $N \setminus \Phi^{\leftarrow}$ (agent $j$ preceeds agent $j'$ implies that $pos_{j}(a_{i}) \leq pos_{j'}(a_{i})$
+					\State $bests[a_{i}] \gets$ choose first $\frac{N}{K}$ elements of $agents$
+					\State $\Phi' \gets \Phi$
+					\ForAll{$j \in bests[a_{i}]$}
+						\State $\Phi'[j] \gets a_{i}$
+					\EndFor
+					\State $newPar.push(\Phi')$
+				\EndFor
+			\EndFor
+			\State sort $newPar$ according to descending order of the total satisfaction of the assigned agents
+			\State $Par \gets$ choose first $d$ elements of $newPar$
+		\EndFor
+		\For{$\Phi \in Par$}
+			\State $\Phi \gets$ compute the optimal representative function using an algorithm of Betzler et al. \cite{3} for the set of winners $\Phi^{\rightarrow}$
+		\EndFor
+		\State \Return the best representative function from $Par$
+	\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\section{Algorithm R}
+
+As shown by Skowron et al. \cite{1}, algorithms A, B and C achieve very high approximations ratios under linear satisfaction function for the cases where $K$ is small relative to $m$. For the remaining cases, we can use a sampling-based randomized algorithm (called Algorithm R). We expect that under nonlinear satisfaction function algorithms should behave analogously in relation to each other.
+\\
+
+The idea of this algorithm is to randomly pick $K$ alternatives and match them optimally to the agents, using Proposition 1. Such an algorithm may be very unlucky and pick $K$ alternatives that all of the agents rank low. Yet, if $K$ is comparable to $m$ then it is likely that such a random sample would include a large chunk of some optimal solution. Algorithm can naturally be used for both Monroe and Chamberlin-Courant systems.
+
+\section{Algorithm AR}
+
+As algorithm family A-C and algorithm R are suitable for different cases. Therefore, Skowron et al. \cite{1} proposed to combine algorithms A and R. Pseudocode is presented in Algorithm 4.
+\\
+
+TODO: requires further description
+
+\begin{algorithm}
+\caption{Algorithm AR}\label{euclid}
+\begin{algorithmic}[1]
+	\Procedure{ComputeMonroeSatWinner}{}
+		\State $\lambda \gets$ required probability of achieving the approximation ratio equal $0.715 - e$
+		\If{$\frac{H_{K}}{K} \geq \frac{e}{2}$}
+			\State compute the optimal solution using an algorithm of Betzler et al. \cite{3} and return
+		\EndIf
+		\If{$m \leq 1 + \frac{2}{e}$}
+			\State compute the optimal solution using a simple brute force algorithm and return
+		\EndIf
+		\State $\Phi_{1} \gets$ solution returned by Algorithm A
+		\State $\Phi_{2} \gets$ run the sampling-based algorithm - $\log (1 - \lambda) \cdot \frac{2 + e}{e}$ times; select the assignment of the best quality
+		\State \Return the better assignment among $\Phi_{1}$ and $\Phi_{2}$
+	\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\section{Algorithm GM}
+
+Algorithm GM (greedy marginal improvement) was introduced by Lu and Boutilier \cite{4} for the Chamberlin-Courant rule. It was generalized by Skowron et al. \cite{1} to apply it to the Monroe rule as well, for which it can be viewed as an extension to Algorithm B.
+\\
+
+We start with an empty set $S$. Then we execute $K$ iterations. In each iteration we find an alternative $a$ that is not assigned to agents yet, and that maximizes the value $\Phi^{S \cup \{a\}}_{\alpha}$. It requires a large number of computations of $\Phi^{S}_{\alpha}$, which is a notable disadvantage for the Monroe case, as a computation is a slow based process based on min-cost/max-flow algorithm \cite{3}. Pseudocode is presented in Algorithm 5.
+
+\begin{algorithm}
+\caption{Algorithm GM}\label{euclid}
+\begin{algorithmic}[1]
+	\Procedure{ComputeSatWinner}{}
+		\State $\Phi^{S}_{\alpha}$ - the partial assignment that assigns a single alternative to at most $\frac{n}{K}$ agents, that assigns to the agents only the alternatives from $S$, and that maximizes the utilitarian satisfaction $l^{\alpha}_{sum}(\Phi^{S}_{\alpha})$
+		\State $S \gets \emptyset$
+		\For{$i \gets 1$ to $K$}
+			\State $a \gets argmax_{a \in A \setminus S} l^{\alpha}_{sum} (\Phi^{S \cup \{\alpha\}}_{\alpha})$
+			\State $S \gets S \cup \{a\}$
+		\EndFor
+		\State \Return $\Phi^{S}_{\alpha}$
+	\EndProcedure
+\end{algorithmic}
+\end{algorithm}
