@@ -12,6 +12,4 @@ Unbalanced braces---line 34 of file bibliography.bib
  :     pages   = "280-286
  :                       }"
 I'm skipping whatever remains of this entry
-Name 1 in "P. Skowron, P. Faliszewski, and A. Slinko" has a comma at the end for entry 1
-while executing---line 944 of file unsrt.bst
-(There were 2 error messages)
+(There was 1 error message)
