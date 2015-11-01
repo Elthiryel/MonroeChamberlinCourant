@@ -110,7 +110,7 @@ The idea of this algorithm is to randomly pick $K$ alternatives and match them o
 
 \section{Algorithm AR}
 
-As algorithm family A-C and algorithm R are suitable for different cases. Therefore, Skowron et al. \cite{1} proposed to combine algorithms A and R. Pseudocode is presented in Algorithm 4.
+Algorithm family A-C and algorithm R are naturally suitable for different cases. Therefore, Skowron et al. \cite{1} proposed to combine algorithms A and R. Pseudocode is presented in Algorithm 4.
 \\
 
 TODO: requires further description
@@ -138,7 +138,7 @@ TODO: requires further description
 Algorithm GM (greedy marginal improvement) was introduced by Lu and Boutilier \cite{4} for the Chamberlin-Courant rule. It was generalized by Skowron et al. \cite{1} to apply it to the Monroe rule as well, for which it can be viewed as an extension to Algorithm B.
 \\
 
-We start with an empty set $S$. Then we execute $K$ iterations. In each iteration we find an alternative $a$ that is not assigned to agents yet, and that maximizes the value $\Phi^{S \cup \{a\}}_{\alpha}$. It requires a large number of computations of $\Phi^{S}_{\alpha}$, which is a notable disadvantage for the Monroe case, as a computation is a slow based process based on min-cost/max-flow algorithm \cite{3}. Pseudocode is presented in Algorithm 5.
+We start with an empty set $S$. Then we execute $K$ iterations. In each iteration we find an alternative $a$ that is not assigned to agents yet, and that maximizes the value $\Phi^{S \cup \{a\}}_{\alpha}$. It requires a large number of computations of $\Phi^{S}_{\alpha}$, which is a notable disadvantage for the Monroe case, as a computation is a slow process based on min-cost/max-flow algorithm \cite{3}. Pseudocode is presented in Algorithm 5.
 
 \begin{algorithm}
 \caption{Algorithm GM}\label{euclid}
@@ -154,3 +154,71 @@ We start with an empty set $S$. Then we execute $K$ iterations. In each iteratio
 	\EndProcedure
 \end{algorithmic}
 \end{algorithm}
+
+\section{Algorithm P}
+
+This algorithm, introduced by Skowron et al. \cite{1}, computes a certain value $x$ and greedily computes an assignment that (approximately) maximizes the number of agents assigned to one of their top-$x$ alternatives. If after this process some agent has no alternative assigned, we assign her to the most preferred alternative from those already picked.
+\\
+
+$w(x)$ used in the algorithm is a Lambert's W-function, defined to be the solution of the equation $x = w(x)e^{w(x)}$. Pseudocode of Algorithm P is presented in Algorithm 6. It applies to Chamberlin-Courant rule.
+
+\begin{algorithm}
+\caption{Algorithm P}\label{euclid}
+\begin{algorithmic}[1]
+	\Procedure{ComputeCCSatWinner}{}
+		\State $\Phi \gets$ a map defining a partial assignment, iteratively built by the algorithm
+		\State $\Phi^{\leftarrow} \gets$ the set of agents for which the assignment is already defined
+		\State $\Phi^{\rightarrow} \gets$ the set of alternatives already used in the assignment
+		\State $num\_pos_{x}(a) \gets \norm{\left\{ i \in [n] \setminus \Phi^{\leftarrow} : pos_{i}(a) \leq x \right\}}$ - the number of not-yet assigned agents that rank alternative $a$ in one of their first $x$ positions
+		\State $w(\cdot)$ - Lambert's W-function
+		\State $\Phi = \{\}$
+		\State $x = \left\lceil \frac{mw(K)}{K} \right\rceil$
+		\For{$i \gets 1$ to K}
+			\State $a_{i} \gets argmax_{a \in A \setminus \Phi^{\rightarrow}} num\_pos_{x}(a)$
+			\ForAll{$j \in [n] \setminus \Phi^{\leftarrow}$}
+				\If{$pos_{j}(a_{i}) < x$}
+					\State $\Phi[j] \gets a_{i}$
+				\EndIf
+			\EndFor
+		\EndFor
+		\ForAll{$j \in A \setminus \Phi^{\leftarrow}$}
+			\State $a \gets$ such server from $\Phi^{\rightarrow}$ that $\forall_{a' \in \Phi^{\rightarrow}} pos_{j}(a) \leq pos_{j}(a')$
+			\State $\Phi[j] \gets a$
+		\EndFor
+	\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\section{Genetic Algorithm}
+
+This algorithm starts with an initial set of creatures (each of them presenting a possible solution under Chamberlin-Courant rule) which are later mutated and crossed over with each other. The best creatures (ones with the highest total satisfaction) are preferred for further mutation and crossover in order to better investigate neighbourhood of local maxima, but on the other hand algorithm also produces new creatures by crossing over random existing ones to better explore entire solution space, not limiting to local extrema.
+\\
+
+In each iteration of the algorithm creatures are evaluated (satisfaction is computed). Best creature in terms of total satisfaction is compared with currently best found creature and takes its place if it is better. Half of the evaluated creatures (the best ones) are chosen for further propagation. Each of them is then mutated randomly. Remaining creatures are created by crossing over random creatures from the "better" half with each other. Resulting set of creatures is used for the next iteration. Pseudocode of the algorithm is presented in Algorithm 7.
+
+\begin{algorithm}
+\caption{Genetic Algorithm}\label{euclid}
+\begin{algorithmic}[1]
+	\Procedure{ComputeCCSatWinner}{}
+		\State $I$ - number of iterations
+		\State $c$ - number of creatures
+		\State $\Phi_{best}$ - best creature (preference profile)
+		\State $creatures \gets$ generate initial random set of $c$ creatures
+		\For{$i \gets 1$ to I}
+			\State $creaturesSorted \gets$ sort $creatures$ by total satisfaction
+			\If{$satisfaction(creaturesSorted[1]) > satisfaction(\Phi_{best})$}
+				\State $\Phi_{best} = creaturesSorted[1]$
+			\EndIf
+			\State $bestCreatures \gets$ choose first $c/2$ elements from $creaturesSorted$
+			\State $mutated \gets$ mutate all creatures from $bestCreatures$ randomly
+			\State $crossed \gets$ crossover random creatures from $bestCreatures$ to produce $c/2$-element set
+			\State $newCreatures \gets mutated \cup crossed$
+			\State $creatures \gets newCreatures$
+		\EndFor
+	\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\section{Simulated Annealing}
+
+TODO
