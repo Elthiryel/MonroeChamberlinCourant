@@ -49,25 +49,24 @@ These functions combine dissatisfaction (satisfaction) of the agents to assess t
 
 \section{Monroe and Chamberlin-Courant rules}
 
-We will now define the problems of winner determination under the Monroe and Chamberlin-Courant (abbreviated as CC) rules. In both cases the goal is to find an optimal assignment function, where the optimality is relative to on eof the total dissatisfaction or satisfaction functions introduced earlier. The former is to be minimized and the latter is to be maximized.
+We will now define the problems of winner determination under the Monroe and Chamberlin-Courant (abbreviated as CC) rules. The goal is to find an optimal assignment function, where by the optimal function we accept one that either maximizes the total satisfaction or minimizes the total dissatisfaction.
 \\
 
 \noindent
-\textbf{Definition 1.} Let $\alpha$ be a normal IPSF. An instance of $\alpha$\textit{-CC-DisWinner} problem consists of a set of agents $N = [n]$, a set of alternatives $A = \left\{ a_{1}, \ldots, a_{m} \right\}$, a preference profile $V$ of the agents, and positive integer $K$. We ask for a K-assignment function $\Phi$ such that $l^{\alpha}_{sum}(\Phi)$ is minimized. The problem $\alpha$\textit{-Monroe-DisWinner} is defined in the same way but we additionally require $\Phi$ to be a Monroe K-assignment function.
+\textbf{DisWinner.} Let $\alpha$ be a normal IPSF. An instance of $\alpha$\textit{-CC-DisWinner} problem is defined as follows: given a set of agents $N = [n]$, a set of alternatives $A = \left\{ a_{1}, \ldots, a_{m} \right\}$, a preference profile $V$ of the agents, and positive integer $K$ representing commitee size, we seek a K-assignment function $\Phi$ that minimizes $l^{\alpha}_{sum}(\Phi)$. The problem $\alpha$\textit{-Monroe-DisWinner} is defined in the same way but we additionally require $\Phi$ to be a Monroe K-assignment function.
 \\
 
 \noindent
-\textbf{Definition 2.} Let $\alpha$ be a normal DPSF. The problem $\alpha$\textit{-CC-SatWinner} is defined in the same way as $\alpha$\textit{-CC-DisWinner}, except that we seek a K-assignment $\Phi$ such that $l^{\alpha}_{sum}(\Phi)$ is maximized. The problem $\alpha$\textit{-Monroe-SatWinner} is defined in the same way but we additionally require $\Phi$ to be a Monroe K-assignment function.
+\textbf{SatWinner.} Let $\alpha$ be a normal DPSF. The problem $\alpha$\textit{-CC-SatWinner} is defined in the same way as $\alpha$\textit{-CC-DisWinner}, except that we seek a K-assignment $\Phi$ that maximizes $l^{\alpha}_{sum}(\Phi)$. The problem $\alpha$\textit{-Monroe-SatWinner} is defined in the same way but we additionally require $\Phi$ to be a Monroe K-assignment function.
 \\
 
-In terms of solutions dissatisfaction-based problems are equivalent to the satisfaction-based ones. One can always transform an DPSF to an equivalent IPSF and vice versa.
+In terms of optimal solutions, dissatisfaction-based problems and satisfaction-based ones are equivalent, as a DPSF can always be transformed to an IPSF and vice versa.
 \\
 
-The goal in our problems is to compute a particular (Monroe) K-assignment function. Such a function defines a set of $K$ alternatives, who are viewed as the winners of the given multiwinner election.
+These problems' intention is to find a (Monroe) K-assignment function which returns a set of $K$ alternatives, who are viewed as the winners of the given multiwinner election (e.g. elected members of a commitee).
 \\
 
-For each subset of the alternatives $S \subseteq A$ such that $\norm{S} \leq K$, we write $\Phi^{S}_{\alpha}$ to denote the partial (Monroe) K-assignment that assigns agents only to the alternatives from $S$ and such that $\Phi^{S}_{\alpha}$ maximizes the utilitarian satisfaction $l^{\alpha}_{sum}(\Phi^{S}_{
-\alpha})$.
+For each subset of the alternatives $S \subseteq A$ such that $\norm{S} \leq K$, $\Phi^{S}_{\alpha}$ denotes the partial (Monroe) K-assignment that assigns agents only to the alternatives from $S$ and such that $\Phi^{S}_{\alpha}$ maximizes the satisfaction $l^{\alpha}_{sum}(\Phi^{S}_{\alpha})$.
 
 \section{Approximate solutions}
 

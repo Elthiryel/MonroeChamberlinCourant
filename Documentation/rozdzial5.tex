@@ -10,7 +10,7 @@ In this chapter we present implemented algorithms for the utilitarian versions o
 
 \section{Algorithm A}
 
-Algorithm A was first presented by Skowron et al. \cite{1} and tries to solve $\alpha$-Monroe-SatWinner. It builds a solution iteratively (greedily). In each step we pick some not-yet-assigned alternative $a_{i}$ (using some criterion) and assign it to those $\frac{N}{K}$ agents that are not assigned to any other alternative yet and whose satisfaction of being matched with $a_{i}$ is maximal. This algorithm runs in polynomial time. Pseudocode is presented in Algorithm 1.
+Algorithm A was first presented by Skowron et al. \cite{1} and tries to solve $\alpha$-Monroe-SatWinner. It builds a solution iteratively (greedily). In each step we pick some not-yet-assigned alternative $a_{i}$ and assign it to those $\frac{N}{K}$ agents that are not assigned to any other alternative yet and whose satisfaction of being matched with $a_{i}$ is maximal (criterion for picking an alternative in each step is a sum of satisfaction of agents selected this way). This algorithm runs in polynomial time \cite{1}. Pseudocode is presented in Algorithm 1.
 
 \begin{algorithm}
 \caption{Algorithm A}\label{euclid}
@@ -42,17 +42,17 @@ Algorithm A was first presented by Skowron et al. \cite{1} and tries to solve $\
 
 \section{Algorithm B}
 
-Algorithm B is an extension to Algorithm A and was presented in the same paper. The idea is to run Algorithm A first and then, using Proposition 1, optimally reassign the alternatives to the voters. It should noticeably improve the results of the algorithm and it still runs in polynomial time.
+Algorithm B is an extension to Algorithm A and was presented in the same paper. The idea is to run Algorithm A first and then optimally reassign the alternatives to the voters (using Proposition 1). It should noticeably improve the results of the algorithm and it still runs in polynomial time.
 
 \section{Algorithm C}
 
-Algorithm C is a further improvement over Algorithm B, also presented by Skowron et al. \cite{1}. The idea is that instead of keeping only one partial function $\Phi$ that is iteratively extended up to the full assignment, we keep a list of up to $d$ partial assignment functions, where $d$ is a parameter of the algorithm. At each iteration, for each assignment function $\Phi$ among the $d$ stored ones and for each alternative $a$ that does not yet have agents assigned to by this $\Phi$, we compute an optimal extension of this $\Phi$ that assigns to $a$. As a result we obtain possibly more than $d$ (partial) assignment functions. For the next iteration we keep those $d$ of them that give highest satisfaction. If we take $d = 1$, we obtain Algorithm B. Pseudocode is presented in Algorithm 3.
+Algorithm C is a further extension to Algorithm B, also presented by Skowron et al. \cite{1}. While Algorithm B only keeps one partial assignment function $\Phi$ that is extended in each step until it becomes a full assignment, Algorithm C stores a list of $d$ functions ($d$ is provided as an algorithm parameter). At each step, for each alternative $a$ with no agent assigned and for each $\Phi$ of the $d$ functions stored, we compute an extension to $\Phi$ that assigns $\frac{N}{K}$ agents (that are not assigned to any other alternative yet) to $a$ (the same way as in Algorithm A). For the next step, $d$ functions that give the highest satisfaction are kept. If we take $d = 1$, we obtain Algorithm B. Pseudocode is presented in Algorithm 3.
 \\
 
-Unlike previous algorithms, Algorithm C can be used for both Monroe and Chamberlin-Courant rules. To adapt it for the Chamberlin-Courant rule, we have to replace the contents of the first for all loop with the appropriate code, presented in Algorithm 2.
+Unlike previous algorithms, Algorithm C can be used for both Monroe and Chamberlin-Courant rules. To adapt it to the Chamberlin-Courant rule, we have to replace the contents of the first for all loop with the appropriate code, presented in Algorithm 2.
 
 \begin{algorithm}
-\caption{Algorithm C - for all code replacement}\label{euclid}
+\caption{Algorithm C - CC for all code replacement}\label{euclid}
 \begin{algorithmic}[1]
 	\ForAll{$a_{i} \in A \setminus \Phi^{\rightarrow}$}
 		\State $\Phi' \gets \Phi$
@@ -103,10 +103,10 @@ Unlike previous algorithms, Algorithm C can be used for both Monroe and Chamberl
 
 \section{Algorithm R}
 
-As shown by Skowron et al. \cite{1}, algorithms A, B and C achieve very high approximations ratios under linear satisfaction function for the cases where $K$ is small relative to $m$. For the remaining cases, we can use a sampling-based randomized algorithm (called Algorithm R). We expect that under nonlinear satisfaction function algorithms should behave analogously in relation to each other.
+As shown by Skowron et al. \cite{1}, algorithms A, B and C achieve very high approximations ratios under linear satisfaction function for the cases where $K$ is small relative to $m$. For the other cases, we can use a sampling-based randomized algorithm (called Algorithm R). We expect that under nonlinear satisfaction function algorithms should behave analogously in relation to each other.
 \\
 
-The idea of this algorithm is to randomly pick $K$ alternatives and match them optimally to the agents, using Proposition 1. Such an algorithm may be very unlucky and pick $K$ alternatives that all of the agents rank low. Yet, if $K$ is comparable to $m$ then it is likely that such a random sample would include a large chunk of some optimal solution. Algorithm can naturally be used for both Monroe and Chamberlin-Courant systems.
+Algorithm R randomly picks $K$ alternatives and then, using Proposition 1, assigns them to agents optimally. As such an algorithm may be simply unlucky and pick alternatives that are ranked low, random assignment should be computed a given number of times (which is provided as a parameter), so there is a greater probability to attain a high quality solution. If $K$ is comparable to $m$ then it is likely that at least one of the random samples would include a large chunk of some optimal solution. Algorithm can naturally be used for both Monroe and Chamberlin-Courant systems.
 
 \section{Algorithm AR}
 
