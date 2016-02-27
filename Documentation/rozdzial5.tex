@@ -103,10 +103,10 @@ Unlike previous algorithms, Algorithm C can be used for both Monroe and Chamberl
 
 \section{Algorithm R}
 
-As shown by Skowron et al. \cite{1}, algorithms A, B and C achieve very high approximations ratios under linear satisfaction function for the cases where $K$ is small relative to $m$. For the other cases, we can use a sampling-based randomized algorithm (called Algorithm R). We expect that under nonlinear satisfaction function algorithms should behave analogously in relation to each other.
+As shown by Skowron et al. \cite{1}, algorithms A, B and C achieve very high approximations ratios under linear satisfaction function for the cases where $K$ is small relative to $m$. For the other cases, we can use a sampling-based randomized algorithm (called Algorithm R). We expect that under nonlinear satisfaction function algorithms should behave similarly in relation to each other as under a linear one.
 \\
 
-Algorithm R randomly picks $K$ alternatives and then, using Proposition 1, assigns them to agents optimally. As such an algorithm may be simply unlucky and pick alternatives that are ranked low, random assignment should be computed a given number of times (which is provided as a parameter), so there is a greater probability to attain a high quality solution. If $K$ is comparable to $m$ then it is likely that at least one of the random samples would include a large chunk of some optimal solution. Algorithm can naturally be used for both Monroe and Chamberlin-Courant systems.
+Algorithm R randomly picks $K$ alternatives and then, using Proposition 1, assigns them to agents optimally. As such an algorithm may be simply unlucky and pick alternatives that are ranked low, random assignment should be computed a given number of times (which is provided as a parameter), so there is a greater probability to attain a high quality solution. If $K$ is comparable to $m$ then it is likely that generated results would include a solution that is at least close to optimal. Algorithm can naturally be used for both Monroe and Chamberlin-Courant systems.
 
 \section{Algorithm AR}
 
