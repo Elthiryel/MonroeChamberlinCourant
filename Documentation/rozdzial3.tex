@@ -39,6 +39,9 @@ We build families of IPSFs (DPSFs) iteratively by appending (prepending) values 
 A \textit{partial K-assignment function} is similar to a K-assignment function, with one exception: it may assign a null alternative, $\bot$, to some of the agents. A \textit{partial Monroe K-assignment} is a partial K-assignment that can be extended to a regular Monroe K-assignment by replacing each assignment of a null alternative with one from $A$. If we have an assignment function $\Phi$, alternative $\Phi(i)$ is called the \textit{representative} of agent $i$.
 \\
 
+Let $S$ be a set of alternatives. By $\Phi^{S}$ we mean a (possibly partial) K-assignment function that assigns agents only to alternatives from $S$.
+\\
+
 We assume that $\alpha$ is a normal IPSF (DPSF). Each of the following functions assings a positive integer to a given assignment $\Phi$:
 \begin{gather}
 	l^{\alpha}_{sum}(\Phi) = \sum^{n}_{i=1} \alpha (pos_{i}(\Phi(i))),\\
@@ -46,6 +49,9 @@ We assume that $\alpha$ is a normal IPSF (DPSF). Each of the following functions
 	l^{\alpha}_{min}(\Phi) = min^{n}_{i=1} \alpha (pos_{i}(\Phi(i))).
 \end{gather}
 These functions combine dissatisfaction (satisfaction) of the agents to assess the quality of the assignment for the entire society. In the utilitarian framework (which is used in this thesis), the first function (which simply calculates the sum of individual agents dissatisfaction or satisfaction value) is used as the \textit{total dissatisfaction function} in the IPSF case and as the \textit{total satisfaction function} in the DPSF case. We use the second and the third functions, respectively, as the total dissatisfaction and satisfaction functions for IPSF and DPSF cases in the egalitarian framework, where the most dissatisfied (the least satisfied) agent is decisive.
+\\
+
+For each subset of the alternatives $S \subseteq A$ such that $\norm{S} \leq K$, $\Phi^{S}_{\alpha}$ denotes the partial (Monroe) K-assignment that assigns agents only to the alternatives from $S$ and such that $\Phi^{S}_{\alpha}$ maximizes the satisfaction $l^{\alpha}_{sum}(\Phi^{S}_{\alpha})$.
 
 \section{Monroe and Chamberlin-Courant rules}
 
@@ -64,15 +70,12 @@ In terms of optimal solutions, dissatisfaction-based problems and satisfaction-b
 \\
 
 These problems' intention is to find a (Monroe) K-assignment function which returns a set of $K$ alternatives, who are viewed as the winners of the given multiwinner election (e.g. elected members of a commitee).
-\\
-
-For each subset of the alternatives $S \subseteq A$ such that $\norm{S} \leq K$, $\Phi^{S}_{\alpha}$ denotes the partial (Monroe) K-assignment that assigns agents only to the alternatives from $S$ and such that $\Phi^{S}_{\alpha}$ maximizes the satisfaction $l^{\alpha}_{sum}(\Phi^{S}_{\alpha})$.
 
 \section{Approximate solutions}
 
-As for many normal IPSFs our problems are NP-hard \cite{2}, we seek approximate solutions.
+As for many normal IPSFs multiwinner election problems under both Monroe and Chamberlin-Courant rules are NP-hard \cite{2,3}, we seek approximate solutions.
 \\
 
 \noindent
-\textbf{Definition 3.} Let $r$ be a real number such that $r \geq 1 (0 < r \leq 1)$, let $\alpha$ be a normal IPSF (DPSF), and let $R$ be either Monroe or CC. An algorithm is an r-approximation algorithm for $\alpha$-R-DisWinner problem ($\alpha$-R-SatWinner problem) if on each instance $I$ it returns a feasible assignment $\Phi$ such that $l^{\alpha}_{sum}(\Phi) \leq r \cdot OPT$ (such that $l^{\alpha}_{sum}(\Phi) \geq r \cdot OPT$), where $OPT$ is the optimal total dissatisfaction (satisfaction) $l^{\alpha}_{sum}(\Phi_{OPT})$.
+\textbf{Approximation algorithms.} Let $r$ be a real number such that $r \geq 1 (0 < r \leq 1)$, let $\alpha$ be a normal IPSF (DPSF), and let $R$ be either Monroe or CC. An algorithm is an r-approximation algorithm for $\alpha$-R-DisWinner problem ($\alpha$-R-SatWinner problem) if on each instance $I$ it returns a feasible assignment $\Phi$ such that $l^{\alpha}_{sum}(\Phi) \leq r \cdot OPT$ (such that $l^{\alpha}_{sum}(\Phi) \geq r \cdot OPT$), where $OPT$ is the optimal total dissatisfaction (satisfaction) $l^{\alpha}_{sum}(\Phi_{OPT})$.
 \\

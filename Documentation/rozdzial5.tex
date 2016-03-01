@@ -5,7 +5,7 @@ In this chapter we present implemented algorithms for the utilitarian versions o
 \\
 
 \noindent
-\textbf{Proposition 1 (Implicit in the paper of Betzler et al. \cite{3}).} Let $\alpha$ be a normal DFSF, $N$ be a set of agents, $A$ be a set of alternatives, $V$ be a preference profile of $N$ over $A$, and $S$ a $K$-element subset of $A$ (where $K$ divides $\norm{N}$). Then there is a polynomial-time-algorithm that computes a (possibly partial) optimal K-assignment $\Phi^{S}_{\alpha}$ (Monroe K-assignment $\Phi^{S}_{\alpha}$) of the agents to the alternatives from $S$.
+\textbf{Proposition 1 (Implicit in the paper of Betzler et al. \cite{3}).} Let $\alpha$ be a normal DPSF, $N$ be a set of agents, $A$ be a set of alternatives, $V$ be a preference profile of $N$ over $A$, and $S$ a $K$-element subset of $A$ (where $K$ divides $\norm{N}$). Then there is a polynomial-time-algorithm that computes a (possibly partial) optimal K-assignment $\Phi^{S}_{\alpha}$ (Monroe K-assignment $\Phi^{S}_{\alpha}$) of the agents to the alternatives from $S$.
 \\
 
 \section{Algorithm A}
@@ -110,24 +110,22 @@ Algorithm R randomly picks $K$ alternatives and then, using Proposition 1, assig
 
 \section{Algorithm AR}
 
-Algorithm family A-C and algorithm R are naturally suitable for different cases. Therefore, Skowron et al. \cite{1} proposed to combine algorithms A and R. Pseudocode is presented in Algorithm 4.
-\\
-
-TODO: requires further description
+Algorithm family A-C and algorithm R are naturally suitable for different cases. Therefore, Skowron et al. \cite{1} proposed to combine algorithms A and R into Algorithm AR. They also showed that under linear satisfaction function, Algorithm AR can achieve approximation ratio of $0.715 - \epsilon$ with probability $\lambda$. Both $\epsilon$ and $\lambda$ are provided as algorithm parameters. Naturally, for different satisfaction functions approximation ratio may vary, but we decided to test the algorithm in an unchanged version for comparison. Pseudocode is presented in Algorithm 4.
 
 \begin{algorithm}
 \caption{Algorithm AR}\label{euclid}
 \begin{algorithmic}[1]
 	\Procedure{ComputeMonroeSatWinner}{}
-		\State $\lambda \gets$ required probability of achieving the approximation ratio equal $0.715 - e$
+		\State $H_{j}$ is the $j$'th $harmonic number$ $H_{j} = \sum_{i=1}^{j}(\frac{1}{i})$
+		\State $\lambda \gets$ probability of achieving the approximation ratio $0.715 - \epsilon$ under linear satisfaction function
 		\If{$\frac{H_{K}}{K} \geq \frac{e}{2}$}
 			\State compute the optimal solution using an algorithm of Betzler et al. \cite{3} and return
 		\EndIf
 		\If{$m \leq 1 + \frac{2}{e}$}
 			\State compute the optimal solution using a simple brute force algorithm and return
 		\EndIf
-		\State $\Phi_{1} \gets$ solution returned by Algorithm A
-		\State $\Phi_{2} \gets$ run the sampling-based algorithm - $\log (1 - \lambda) \cdot \frac{2 + e}{e}$ times; select the assignment of the best quality
+		\State $\Phi_{1} \gets$ solution computed by Algorithm A
+		\State $\Phi_{2} \gets$ solution computed by Algorithm R (sampled $\log (1 - \lambda) \cdot \frac{2 + e}{e}$ times)
 		\State \Return the better assignment among $\Phi_{1}$ and $\Phi_{2}$
 	\EndProcedure
 \end{algorithmic}
@@ -135,10 +133,13 @@ TODO: requires further description
 
 \section{Algorithm GM}
 
-Algorithm GM (greedy marginal improvement) was introduced by Lu and Boutilier \cite{4} for the Chamberlin-Courant rule. It was generalized by Skowron et al. \cite{1} to apply it to the Monroe rule as well, for which it can be viewed as an extension to Algorithm B.
+Algorithm GM (greedy marginal improvement) is an algorithm that was introduced by Lu and Boutilier \cite{4} for the Chamberlin-Courant rule only. However, it was later generalized by Skowron et al. \cite{1}, so it can be applied to the Monroe rule as well. In the Monroe case, it can be considered as the Algorithm B improvement.
 \\
 
-We start with an empty set $S$. Then we execute $K$ iterations. In each iteration we find an alternative $a$ that is not assigned to agents yet, and that maximizes the value $\Phi^{S \cup \{a\}}_{\alpha}$. It requires a large number of computations of $\Phi^{S}_{\alpha}$, which is a notable disadvantage for the Monroe case, as a computation is a slow process based on min-cost/max-flow algorithm \cite{3}. Pseudocode is presented in Algorithm 5.
+We start with an empty set $S$. In each iteration of the algorithm we find an alternative $a$ that is not assigned to agents yet, and that maximizes the value $\Phi^{S \cup \{a\}}_{\alpha}$. It requires a large number of computations of $\Phi^{S}_{\alpha}$, which is a notable disadvantage for the Monroe case, as a computation is a slow process based on min-cost/max-flow algorithm \cite{3}. Pseudocode is presented in Algorithm 5.
+\\
+
+TODO: NAPISAĆ O TYM ŻE SIĘ APROKSYMUJE
 
 \begin{algorithm}
 \caption{Algorithm GM}\label{euclid}

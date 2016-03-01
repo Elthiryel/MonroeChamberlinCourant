@@ -12,9 +12,9 @@
 \contentsline {section}{\numberline {5.3}Algorithm C}{12}
 \contentsline {section}{\numberline {5.4}Algorithm R}{15}
 \contentsline {section}{\numberline {5.5}Algorithm AR}{15}
-\contentsline {section}{\numberline {5.6}Algorithm GM}{15}
+\contentsline {section}{\numberline {5.6}Algorithm GM}{16}
 \contentsline {section}{\numberline {5.7}Algorithm P}{16}
-\contentsline {section}{\numberline {5.8}Genetic Algorithm}{16}
+\contentsline {section}{\numberline {5.8}Genetic Algorithm}{17}
 \contentsline {section}{\numberline {5.9}Simulated Annealing}{17}
 \contentsline {chapter}{\numberline {6}Evaluation Results}{19}
 \contentsline {chapter}{\numberline {7}Summary}{20}
