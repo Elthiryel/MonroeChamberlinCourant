@@ -1,7 +1,7 @@
 \begin{thebibliography}{1}
 
 \bibitem{2}
-Ariel~D. Procaccia, Jeffrey~S. Rosenschein, and Aviv Zohar.
+A.D. Procaccia, J.S. Rosenschein, and A.~Zohar.
 \newblock On the complexity of achieving proportional representation.
 \newblock {\em Social Choice and Welfare}, 30(3):353--362, apr 2008.
 
@@ -16,9 +16,25 @@ N.~Betzler, A.~Slinko, and J.~Uhlmann.
 \newblock {\em Journal on Artificial Intelligence Research}, 47:475--519, 2013.
 
 \bibitem{4}
-Tyler Lu and Craig Boutilier.
+T.~Lu and C.~Boutilier.
 \newblock Budgeted social choice: From consensus to personalized decision
   making.
-\newblock {\em IJCAI}, 11, 2011.
+\newblock {\em IJCAI}, 11:280--286, 2011.
+
+\bibitem{5}
+D.~Nemhauser, L.~Wolsey, and M.~Fisher.
+\newblock An analysis of approximations for maximizing submodular set
+  functions.
+\newblock {\em Mathematical Programming}, 14(1):265--294, dec 1978.
+
+\bibitem{6}
+S.~Łukasik and S.~Żak.
+\newblock Firefly algorithm for continuous constrained optimization.
+\newblock {\em Lecture Notes in Artificial Intelligence}, 5796:97--106, 2009.
+
+\bibitem{7}
+S.~Kirkpatrick, C.D. Gelatt, and M.~Vecchi.
+\newblock Optimization by simulated annealing.
+\newblock {\em Science}, 220:671–680, 1983.
 
 \end{thebibliography}
