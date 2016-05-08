@@ -3,7 +3,7 @@
 
 In the first part of the chapter we explain basic notions regarding multiwinner election problem. Next, we present definitions of winner determination problem under the Monroe and Chamberlin-Courant voting rules. Finally, we present some notions regarding approximate solutions to the problem.
 
-\section{Basic notions}
+\section{Basic Notions}
 
 \noindent
 \textbf{Preferences.} \hspace{.1in} For each $n \in \mathbb{N}$, by $[n]$ we mean $\left\{ 1, \ldots, n \right\}$. We assume that there is a set $N = [n]$ of \textit{agents} and a set $A = \left\{ a_{1}, \ldots a_{m} \right\}$ of \textit{alternatives}. Each agent $i$ has a strict linear order $\succ_{i}$ over $A$, called \textit{preference order} ($a_{\pi(1)} \succ_{i} a_{\pi(2)} \succ_{i} \ldots \succ_{i} a_{\pi(m)}$ for some permutation $\pi$ of $[m]$). For an alternative $a$, $pos_{i}(a)$ represents the position of $a$ in the preference order of agent $i$. For example, if $a$ is the most preferred alternative for $i$ then $pos_{i}(a) = 1$, and if $a$ is the least preferred one then $pos_{i}(a) = m$. A collection $V = (\succ_{1}, \ldots, \succ_{n})$ of agents' preference orders is called a \textit{preference profile}.
@@ -53,7 +53,7 @@ These functions combine dissatisfaction (satisfaction) of the agents to assess t
 
 For each subset of the alternatives $S \subseteq A$ such that $\norm{S} \leq K$, $\Phi^{S}_{\alpha}$ denotes the partial (Monroe) K-assignment that assigns agents only to the alternatives from $S$ and such that $\Phi^{S}_{\alpha}$ maximizes the satisfaction $l^{\alpha}_{sum}(\Phi^{S}_{\alpha})$.
 
-\section{Monroe and Chamberlin-Courant rules}
+\section{Monroe and Chamberlin-Courant Rules}
 
 We will now define the problems of winner determination under the Monroe and Chamberlin-Courant (abbreviated as CC) rules. The goal is to find an optimal assignment function, where by the optimal function we accept one that either maximizes the total satisfaction or minimizes the total dissatisfaction.
 \\
@@ -71,7 +71,7 @@ In terms of optimal solutions, dissatisfaction-based problems and satisfaction-b
 
 These problems' intention is to find a (Monroe) K-assignment function which returns a set of $K$ alternatives, who are viewed as the winners of the given multiwinner election (e.g. elected members of a commitee).
 
-\section{Approximate solutions}
+\section{Approximate Solutions}
 
 As for many normal IPSFs multiwinner election problems under both Monroe and Chamberlin-Courant rules are NP-hard \cite{2,3}, we seek approximate solutions.
 \\
