@@ -4,16 +4,16 @@ using System.Linq;
 using MonroeChamberlinCourant.Framework.Model;
 using MonroeChamberlinCourant.Framework.Utils;
 
-namespace MonroeChamberlinCourant.Algorithms.ChamberlinCourant
+namespace MonroeChamberlinCourant.Algorithms.Monroe
 {
-    public class SimulatedAnnealingCC : AbstractAlgorithm
+    public class SimulatedAnnealingMonroe : AbstractAlgorithm
     {
         private readonly double _coolingRate;
         private readonly Random _random;
 
         private double _temperature;
 
-        public SimulatedAnnealingCC(double temperature, double coolingRate)
+        public SimulatedAnnealingMonroe(double temperature, double coolingRate)
         {
             _temperature = temperature;
             _coolingRate = coolingRate;
@@ -22,7 +22,7 @@ namespace MonroeChamberlinCourant.Algorithms.ChamberlinCourant
 
         public override Results Run(Preferences preferences, int winnersCount, IList<int> satisfactionFunction)
         {
-            var maxEnergyValue = (UInt64) satisfactionFunction[0] * (UInt64) preferences.NumberOfVoters;
+            var maxEnergyValue = (UInt64)satisfactionFunction[0] * (UInt64)preferences.NumberOfVoters;
             var alternatives = new List<int>(preferences.Candidates.Keys);
 
             var currentSolution = AlgorithmUtils.GetRandomAlternatives(alternatives, winnersCount, _random);
@@ -35,7 +35,7 @@ namespace MonroeChamberlinCourant.Algorithms.ChamberlinCourant
             while (_temperature > 1)
             {
                 var newSolution = PerformRandomSwap(alternatives, currentSolution);
-                var newSolutionWinners = AlgorithmUtils.AssignBestForCC(newSolution, preferences.VotersPreferences);
+                var newSolutionWinners = AlgorithmUtils.AssignBestForMonroe(newSolution, preferences.VotersPreferences, satisfactionFunction);
                 var newEnergy = GetEnergy(newSolutionWinners, preferences, satisfactionFunction, maxEnergyValue);
                 if (AlgorithmUtils.AcceptanceProbability(currentEnergy, newEnergy, _temperature) > _random.NextDouble())
                 {
@@ -51,7 +51,7 @@ namespace MonroeChamberlinCourant.Algorithms.ChamberlinCourant
                 _temperature *= 1 - _coolingRate;
             }
 
-            var results = new Results(preferences, bestSolutionWinners, satisfactionFunction, RuleType.ChamberlinCourant);
+            var results = new Results(preferences, bestSolutionWinners, satisfactionFunction, RuleType.Monroe);
             return results;
         }
 
@@ -67,9 +67,9 @@ namespace MonroeChamberlinCourant.Algorithms.ChamberlinCourant
 
         private UInt64 GetEnergy(IList<int> winners, Preferences preferences, IList<int> satisfactionFunction, UInt64 maxEnergy)
         {
-            var results = new Results(preferences, winners, satisfactionFunction, RuleType.ChamberlinCourant);
+            var results = new Results(preferences, winners, satisfactionFunction, RuleType.Monroe);
             var score = ScoreCalculator.CalculateScore(results);
-            return maxEnergy - (UInt64) score;
+            return maxEnergy - (UInt64)score;
         }
     }
 }

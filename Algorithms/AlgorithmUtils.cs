@@ -177,13 +177,14 @@ namespace MonroeChamberlinCourant.Algorithms
         public static IList<int> AssignBestForCC(IList<int> candidates, IList<IList<int>> votersPreferences)
         {
             var votersCount = votersPreferences.Count;
+            var candidatesCount = candidates.Count;
             var winners = Enumerable.Repeat(candidates[0], votersCount).ToList();
-            foreach (var candidate in candidates)
+            for (var i = 1; i < candidatesCount; ++i)
             {
-                for (var i = 0; i < votersCount; ++i)
+                for (var j = 0; j < votersCount; ++j)
                 {
-                    if (votersPreferences[i].IndexOf(candidate) < votersPreferences[i].IndexOf(winners[i]))
-                        winners[i] = candidate;
+                    if (votersPreferences[j].IndexOf(candidates[i]) < votersPreferences[j].IndexOf(winners[j]))
+                        winners[j] = candidates[i];
                 }
             }
             return winners;

@@ -4,9 +4,9 @@ using System.Linq;
 using MonroeChamberlinCourant.Framework.Model;
 using MonroeChamberlinCourant.Framework.Utils;
 
-namespace MonroeChamberlinCourant.Algorithms.ChamberlinCourant
+namespace MonroeChamberlinCourant.Algorithms.Monroe
 {
-    public class GeneticAlgorithmCC : AbstractAlgorithm
+    public class GeneticAlgorithmMonroe : AbstractAlgorithm
     {
         private readonly int _numberOfIterations;
         private readonly int _numberOfCreatures;
@@ -14,9 +14,9 @@ namespace MonroeChamberlinCourant.Algorithms.ChamberlinCourant
 
         private Preferences _preferences;
         private int _winnersCount;
-        private IList<int> _satisfactionFunction; 
+        private IList<int> _satisfactionFunction;
 
-        public GeneticAlgorithmCC(int numberOfIterations, int numberOfCreatures)
+        public GeneticAlgorithmMonroe(int numberOfIterations, int numberOfCreatures)
         {
             _numberOfIterations = numberOfIterations;
             _numberOfCreatures = numberOfCreatures;
@@ -59,7 +59,7 @@ namespace MonroeChamberlinCourant.Algorithms.ChamberlinCourant
                 creatures.Add(results);
             }
             return creatures;
-        } 
+        }
 
         private IList<Results> PerformIteration(IEnumerable<Results> solutions, IList<int> available, out Results bestSolution)
         {
@@ -80,7 +80,7 @@ namespace MonroeChamberlinCourant.Algorithms.ChamberlinCourant
                 var results = GetResults(newDistinctWinners);
                 if (results.Score > bestScore)
                 {
-                    bestScore = results.Score != null ? (int) results.Score : -1;
+                    bestScore = results.Score != null ? (int)results.Score : -1;
                     bestSolution = results;
                 }
                 newSolutions.Add(results);
@@ -107,8 +107,8 @@ namespace MonroeChamberlinCourant.Algorithms.ChamberlinCourant
         {
             while (distinctWinners.Count < _winnersCount)
                 distinctWinners.Add(_preferences.Candidates.Keys.First());
-            var winners = AlgorithmUtils.AssignBestForCC(distinctWinners, _preferences.VotersPreferences);
-            var results = new Results(_preferences, winners, _satisfactionFunction, RuleType.ChamberlinCourant);
+            var winners = AlgorithmUtils.AssignBestForMonroe(distinctWinners, _preferences.VotersPreferences, _satisfactionFunction);
+            var results = new Results(_preferences, winners, _satisfactionFunction, RuleType.Monroe);
             results.Score = ScoreCalculator.CalculateScore(results);
             return results;
         }

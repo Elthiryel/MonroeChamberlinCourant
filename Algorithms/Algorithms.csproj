@@ -57,6 +57,8 @@
     <Compile Include="Monroe\AlgorithmRMonroe.cs" />
     <Compile Include="Monroe\BruteForceMonroe.cs" />
     <Compile Include="Monroe\BruteForceWithFlowMonroe.cs" />
+    <Compile Include="Monroe\GeneticAlgorithmMonroe.cs" />
+    <Compile Include="Monroe\SimulatedAnnealingMonroe.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
