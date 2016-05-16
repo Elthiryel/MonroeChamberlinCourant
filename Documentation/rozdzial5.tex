@@ -110,14 +110,14 @@ Algorithm R randomly picks $K$ alternatives and then, using Proposition 1, assig
 
 \section{Algorithm AR}
 
-Algorithm family A-C and algorithm R are naturally suitable for different cases. Therefore, Skowron et al. \cite{1} proposed to combine algorithms A and R into Algorithm AR. They also showed that under linear satisfaction function, Algorithm AR can achieve approximation ratio of $0.715 - \epsilon$ with probability $\lambda$. Both $\epsilon$ and $\lambda$ are provided as algorithm parameters. Naturally, for different satisfaction functions approximation ratio may vary, but we decided to test the algorithm in an unchanged version for comparison. Pseudocode is presented in Algorithm 4.
+Algorithm family A-C and Algorithm R are naturally suitable for different cases. Therefore, Skowron et al. \cite{1} proposed to combine algorithms A and R into Algorithm AR. They also showed that under linear satisfaction function, Algorithm AR can achieve approximation ratio of $0.715 - e$ with probability $\lambda$. Both $e$ and $\lambda$ are provided as algorithm parameters. Naturally, for different satisfaction functions approximation ratio may vary, but we decided to test the algorithm in an unchanged version for comparison. Pseudocode is presented in Algorithm 4.
 
 \begin{algorithm}
 \caption{Algorithm AR}\label{euclid}
 \begin{algorithmic}[1]
 	\Procedure{ComputeMonroeSatWinner}{}
-		\State $H_{j}$ is the $j$'th $harmonic number$ $H_{j} = \sum_{i=1}^{j}(\frac{1}{i})$
-		\State $\lambda \gets$ probability of achieving the approximation ratio $0.715 - \epsilon$ under linear satisfaction function
+		\State $H_{j}$ is the $j$'th harmonic number $H_{j} = \sum_{i=1}^{j}(\frac{1}{i})$
+		\State $\lambda \gets$ probability of achieving the approximation ratio $0.715 - e$ under linear satisfaction function
 		\If{$\frac{H_{K}}{K} \geq \frac{e}{2}$}
 			\State compute the optimal solution using an algorithm of Betzler et al. \cite{3} and return
 		\EndIf
@@ -193,10 +193,10 @@ $w(x)$ used in the algorithm is a Lambert's W-function, defined to be the soluti
 
 \section{Genetic Algorithm}
 
-The idea of our algorithm is loosely based on metaheuristic genetic algorithms, such as the firefly algorithm \cite{6}.
+The idea of our algorithm is loosely based on metaheuristic genetic algorithms, such as the Firefly Algorithm \cite{6}.
 \\
 
-Our Genetic Algorithm starts with an initial set of creatures (each of them presenting a possible solution under Chamberlin-Courant rule) which are later mutated and crossed over with each other. The best creatures (ones with the highest total satisfaction) are preferred for further mutation and crossover in order to better investigate the neighbourhood of local maxima, but on the other hand algorithm also produces new creatures by crossing over random existing ones to better explore entire solution space, not limiting to local extrema.
+Our Genetic Algorithm starts with an initial set of creatures (each of them presenting a possible solution under Chamberlin-Courant or Monroe rule) which are later mutated and crossed over with each other. The best creatures (ones with the highest total satisfaction) are preferred for further mutation and crossover in order to better investigate the neighbourhood of local maxima, but on the other hand algorithm also produces new creatures by crossing over random existing ones to better explore entire solution space, not limiting to local extrema.
 \\
 
 In each iteration of the algorithm creatures are evaluated (satisfaction is computed). Best creature in terms of total satisfaction is compared with currently best found creature and takes its place if it is better. Half of the evaluated creatures (the best ones) are chosen for further propagation. Each of them is then mutated randomly. Remaining creatures are created by crossing over random creatures from the "better" half with each other. Resulting set of creatures is used for the next iteration. Number of iterations and number of creatures are the algorithm parameters. Pseudocode is presented in Algorithm 7.
@@ -227,10 +227,10 @@ In each iteration of the algorithm creatures are evaluated (satisfaction is comp
 
 \section{Simulated Annealing}
 
-The Simulated Annealing algorithm is inspired by physical annealing process, used in metallurgy. It involves heating and cooling a material to make it attain specific physical properties. Using simulated annealing for optimization of a complex function depending on many parameters was proposed by Kirkpatrick et al. \cite{7}. We adapt it to the Chamberlin-Courant problem.
+The Simulated Annealing algorithm is inspired by physical annealing process, used in metallurgy. It involves heating and cooling a material to make it attain specific physical properties. Using simulated annealing for optimization of a complex function depending on many parameters was proposed by Kirkpatrick et al. \cite{7}. We adapt it to the Chamberlin-Courant and Monroe problems.
 \\
 
-In simulated annealing we use a temperature variable, which has a high value at the beginning and gets lower ('cools') during the execution. When the temperature is high, algorithm can accept solutions worse than the current one more frequently, so it is possible to leave a local optimum (the global one may be in totally different area of the search space). When the temperature gets lower, algorithm focuses on the area where solution close to the optimum may lie.
+In simulated annealing we use a temperature variable, which has a high value at the beginning and gets lower ('cools') during the execution. When the temperature is high, algorithm can accept solutions worse than the current one more frequently, so it is possible to leave a local optimum, as the global one may be in totally different area of the search space. When the temperature gets lower, algorithm focuses on the area where solution close to the optimum may lie.
 \\
 
 To decide if the new solution should be accepted, the \textit{acceptance function} is used. If the new solution is better, it is always accepted. If it is worse, acceptance function accepts the new solution with probability $p$, which is calculated as follows:
