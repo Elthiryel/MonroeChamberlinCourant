@@ -32,12 +32,6 @@ T.~Lu and C.~Boutilier.
   making.
 \newblock {\em IJCAI}, 11:280--286, 2011.
 
-\bibitem{5}
-D.~Nemhauser, L.~Wolsey, and M.~Fisher.
-\newblock An analysis of approximations for maximizing submodular set
-  functions.
-\newblock {\em Mathematical Programming}, 14(1):265--294, dec 1978.
-
 \bibitem{6}
 S.~Łukasik and S.~Żak.
 \newblock Firefly algorithm for continuous constrained optimization.

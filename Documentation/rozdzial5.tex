@@ -8,9 +8,14 @@ In this chapter we present implemented algorithms for the utilitarian versions o
 \textbf{Proposition 1 (Implicit in the paper of Betzler et al. \cite{3}).} Let $\alpha$ be a normal DPSF, $N$ be a set of agents, $A$ be a set of alternatives, $V$ be a preference profile of $N$ over $A$, and $S$ a $K$-element subset of $A$ (where $K$ divides $\norm{N}$). Then there is a polynomial-time-algorithm that computes a (possibly partial) optimal K-assignment $\Phi^{S}_{\alpha}$ (Monroe K-assignment $\Phi^{S}_{\alpha}$) of the agents to the alternatives from $S$.
 \\
 
-\section{Algorithm A}
+\section{Existing Algorithms}
+
+In this section we present algorithms that already exist, but have never been applied to nonlinear cases before.
+
+\subsection{Algorithms A, B and C}
 
 Algorithm A was first presented by Skowron et al. \cite{1} and tries to solve $\alpha$-Monroe-SatWinner. It builds a solution iteratively (greedily). In each step we pick some not-yet-assigned alternative $a_{i}$ and assign it to those $\frac{N}{K}$ agents that are not assigned to any other alternative yet and whose satisfaction of being matched with $a_{i}$ is maximal (criterion for picking an alternative in each step is a sum of satisfaction of agents selected this way). This algorithm runs in polynomial time \cite{1}. Pseudocode is presented in Algorithm 1.
+\\
 
 \begin{algorithm}
 \caption{Algorithm A}\label{euclid}
@@ -40,11 +45,8 @@ Algorithm A was first presented by Skowron et al. \cite{1} and tries to solve $\
 \end{algorithmic}
 \end{algorithm}
 
-\section{Algorithm B}
-
 Algorithm B is an extension to Algorithm A and was presented in the same paper. The idea is to run Algorithm A first and then optimally reassign the alternatives to the voters (using Proposition 1). It should noticeably improve the results of the algorithm and it still runs in polynomial time.
-
-\section{Algorithm C}
+\\
 
 Algorithm C is a further extension to Algorithm B, also presented by Skowron et al. \cite{1}. While Algorithm B only keeps one partial assignment function $\Phi$ that is extended in each step until it becomes a full assignment, Algorithm C stores a list of $d$ functions ($d$ is provided as an algorithm parameter). At each step, for each alternative $a$ with no agent assigned and for each $\Phi$ of the $d$ functions stored, we compute an extension to $\Phi$ that assigns $\frac{N}{K}$ agents (that are not assigned to any other alternative yet) to $a$ (the same way as in Algorithm A). For the next step, $d$ functions that give the highest satisfaction are kept. If we take $d = 1$, we obtain Algorithm B. Pseudocode is presented in Algorithm 3.
 \\
@@ -101,14 +103,14 @@ Unlike previous algorithms, Algorithm C can be used for both Monroe and Chamberl
 \end{algorithmic}
 \end{algorithm}
 
-\section{Algorithm R}
+\subsection{Algorithm R}
 
 As shown by Skowron et al. \cite{1}, algorithms A, B and C achieve very high approximations ratios under linear satisfaction function for the cases where $K$ is small relative to $m$. For the other cases, we can use a sampling-based randomized algorithm (called Algorithm R). We expect that under nonlinear satisfaction function algorithms should behave similarly in relation to each other as under a linear one.
 \\
 
 Algorithm R randomly picks $K$ alternatives and then, using Proposition 1, assigns them to agents optimally. As such an algorithm may be simply unlucky and pick alternatives that are ranked low, random assignment should be computed a given number of times (which is provided as a parameter), so there is a greater probability to attain a high quality solution. If $K$ is comparable to $m$ then it is likely that generated results would include a solution that is at least close to optimal. Algorithm can naturally be used for both Monroe and Chamberlin-Courant systems.
 
-\section{Algorithm AR}
+\subsection{Algorithm AR}
 
 Algorithm family A-C and Algorithm R are naturally suitable for different cases. Therefore, Skowron et al. \cite{1} proposed to combine algorithms A and R into Algorithm AR. They also showed that under linear satisfaction function, Algorithm AR can achieve approximation ratio of $0.715 - e$ with probability $\lambda$. Both $e$ and $\lambda$ are provided as algorithm parameters. Naturally, for different satisfaction functions approximation ratio may vary, but we decided to test the algorithm in an unchanged version for comparison. Pseudocode is presented in Algorithm 4.
 
@@ -131,15 +133,13 @@ Algorithm family A-C and Algorithm R are naturally suitable for different cases.
 \end{algorithmic}
 \end{algorithm}
 
-\section{Algorithm GM}
+\subsection{Algorithm GM}
 
 Algorithm GM (greedy marginal improvement) is an algorithm that was introduced by Lu and Boutilier \cite{4} for the Chamberlin-Courant rule only. However, it was later generalized by Skowron et al. \cite{1}, so it can be applied to the Monroe rule as well. In the Monroe case, it can be considered as the Algorithm B improvement.
 \\
 
 We start with an empty set $S$. In each iteration of the algorithm we select an alternative $a$ that is not assigned to agents yet, and that maximizes the satisfaction value $l_{sum}^{\alpha}(\Phi^{S \cup \{a\}}_{\alpha})$. Iterations are executed until a complete committee is selected, so $K$ iterations are required. For Monroe case, computing $\Phi^{S}_{\alpha}$ is slow (it is achieved by using min-cost/max-flow algorithm \cite{3}), which makes the algorithm execute for a relatively long time. Pseudocode is presented in Algorithm 5.
 \\
-
-Algorithm GM is an $1-\frac{1}{e}$-approximation algorithm for any normal IPSF \cite{1,5}.
 
 \begin{algorithm}
 \caption{Algorithm GM}\label{euclid}
@@ -156,7 +156,7 @@ Algorithm GM is an $1-\frac{1}{e}$-approximation algorithm for any normal IPSF \
 \end{algorithmic}
 \end{algorithm}
 
-\section{Algorithm P}
+\subsection{Algorithm P}
 
 Algorithm P can only be applied to Chamberlin-Courant problem. It was first introduced by Skowron et al. \cite{1}. In the beginning, it computes $x$ (a non-negative integer). Next, it computes an assignment that should maximize the number of agents that have an alternative from the first $x$ spots in their preferences assigned to them. This process is executed greedily. Afterwards, if there are still agents with no alternative assigned, the best alternative is picked from the ones already selected for at least one other agent.
 \\
@@ -191,7 +191,11 @@ $w(x)$ used in the algorithm is a Lambert's W-function, defined to be the soluti
 \end{algorithmic}
 \end{algorithm}
 
-\section{Genetic Algorithm}
+\section{New Algorithms}
+
+In this section we present algorithms that have been invented and implemented specifically for the purpose of this thesis.
+
+\subsection{Genetic Algorithm}
 
 The idea of our algorithm is loosely based on metaheuristic genetic algorithms, such as the Firefly Algorithm \cite{6}.
 \\
@@ -225,7 +229,7 @@ In each iteration of the algorithm creatures are evaluated (satisfaction is comp
 \end{algorithmic}
 \end{algorithm}
 
-\section{Simulated Annealing}
+\subsection{Simulated Annealing}
 
 The Simulated Annealing algorithm is inspired by physical annealing process, used in metallurgy. It involves heating and cooling a material to make it attain specific physical properties. Using simulated annealing for optimization of a complex function depending on many parameters was proposed by Kirkpatrick et al. \cite{7}. We adapt it to the Chamberlin-Courant and Monroe problems.
 \\
