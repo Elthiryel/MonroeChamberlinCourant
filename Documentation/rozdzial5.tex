@@ -14,7 +14,7 @@ In this section we present algorithms that already exist, but have never been ap
 
 \subsection{Algorithms A, B and C}
 
-Algorithm A was first presented by Skowron et al. \cite{1} and tries to solve $\alpha$-Monroe-SatWinner. It builds a solution iteratively (greedily). In each step we pick some not-yet-assigned alternative $a_{i}$ and assign it to those $\frac{N}{K}$ agents that are not assigned to any other alternative yet and whose satisfaction of being matched with $a_{i}$ is maximal (criterion for picking an alternative in each step is a sum of satisfaction of agents selected this way). This algorithm runs in polynomial time \cite{1}. Pseudocode is presented in Algorithm 1.
+Algorithm A was first presented by Skowron et al. \cite{1} and tries to solve $\alpha$-Monroe-SatWinner. It builds a solution iteratively (greedily). In every iteration we pick an alternative $a_{i}$ that has not been assigned yet and we assign it to $\frac{N}{K}$ agents who have not been assigned to any other alternative yet and whose satisfaction of being assigned to $a_{i}$ is maximal (criterion for picking an alternative in each step is a sum of satisfaction of $\frac{N}{K}$ agents selected this way). This algorithm runs in polynomial time \cite{1}. Pseudocode is presented in Algorithm 1.
 \\
 
 \begin{algorithm}
@@ -45,13 +45,13 @@ Algorithm A was first presented by Skowron et al. \cite{1} and tries to solve $\
 \end{algorithmic}
 \end{algorithm}
 
-Algorithm B is an extension to Algorithm A and was presented in the same paper. The idea is to run Algorithm A first and then optimally reassign the alternatives to the voters (using Proposition 1). It should noticeably improve the results of the algorithm and it still runs in polynomial time.
+Algorithm B is an extension to Algorithm A and was presented in the same paper. \cite{1} The idea is to run Algorithm A first and then optimally reassign the alternatives to the agents (using Proposition 1). It should noticeably improve the results of the algorithm and it still runs in polynomial time.
 \\
 
-Algorithm C is a further extension to Algorithm B, also presented by Skowron et al. \cite{1}. While Algorithm B only keeps one partial assignment function $\Phi$ that is extended in each step until it becomes a full assignment, Algorithm C stores a list of $d$ functions ($d$ is provided as an algorithm parameter). At each step, for each alternative $a$ with no agent assigned and for each $\Phi$ of the $d$ functions stored, we compute an extension to $\Phi$ that assigns $\frac{N}{K}$ agents (that are not assigned to any other alternative yet) to $a$ (the same way as in Algorithm A). For the next step, $d$ functions that give the highest satisfaction are kept. If we take $d = 1$, we obtain Algorithm B. Pseudocode is presented in Algorithm 3.
+Algorithm C is a further extension to Algorithm B, also presented by Skowron et al. \cite{1}. While Algorithm B only keeps one partial assignment function $\Phi$ that is extended in each step until it becomes a complete solution, Algorithm C stores a list of $d$ functions ($d$ is provided as an algorithm parameter). At each step, for each alternative $a$ with no agent assigned and for each $\Phi$ of the $d$ functions stored, we compute an extension to $\Phi$ that assigns $\frac{N}{K}$ agents (that are not assigned to any other alternative yet) to $a$ (the same way as in Algorithm A). For the next step, $d$ functions that return the highest satisfaction are used. If $d = 1$, Algorithm C is identical with Algorithm B. Pseudocode is presented in Algorithm 3.
 \\
 
-Unlike previous algorithms, Algorithm C can be used for both Monroe and Chamberlin-Courant rules. To adapt it to the Chamberlin-Courant rule, we have to replace the contents of the first for all loop with the appropriate code, presented in Algorithm 2.
+Unlike previous algorithms, Algorithm C can be used for both Monroe and Chamberlin-Courant rules. To adapt it to the Chamberlin-Courant rule, we have to replace the entire first for all loop with the appropriate code, presented in Algorithm 2.
 
 \begin{algorithm}
 \caption{Algorithm C - CC for all code replacement}\label{euclid}
