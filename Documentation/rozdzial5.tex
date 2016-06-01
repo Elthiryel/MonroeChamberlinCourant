@@ -14,7 +14,7 @@ In this section we present algorithms that already exist, but have never been ap
 
 \subsection{Algorithms A, B and C}
 
-Algorithm A was first presented by Skowron et al. \cite{1} and tries to solve $\alpha$-Monroe-SatWinner. It builds a solution iteratively (greedily). In every iteration we pick an alternative $a_{i}$ that has not been assigned yet and we assign it to $\frac{N}{K}$ agents who have not been assigned to any other alternative yet and whose satisfaction of being assigned to $a_{i}$ is maximal (criterion for picking an alternative in each step is a sum of satisfaction of $\frac{N}{K}$ agents selected this way). This algorithm runs in polynomial time \cite{1}. Pseudocode is presented in Algorithm 1.
+Algorithm A was first presented by Skowron et al. \cite{1} and tries to solve $\alpha$-Monroe-SatWinner. It builds a solution iteratively (greedily). In every iteration algorithm picks an alternative $a_{i}$ that has not been assigned yet and assigns it to $\frac{N}{K}$ agents who have not been assigned to any other alternative yet and whose satisfaction of being assigned to $a_{i}$ is maximal (criterion for picking an alternative in each step is a sum of satisfaction of $\frac{N}{K}$ agents selected this way). This algorithm runs in polynomial time \cite{1}. Pseudocode is presented in Algorithm 1.
 \\
 
 \begin{algorithm}
@@ -48,7 +48,7 @@ Algorithm A was first presented by Skowron et al. \cite{1} and tries to solve $\
 Algorithm B is an extension to Algorithm A and was presented in the same paper. \cite{1} The idea is to run Algorithm A first and then optimally reassign the alternatives to the agents (using Proposition 1). It should noticeably improve the results of the algorithm and it still runs in polynomial time.
 \\
 
-Algorithm C is a further extension to Algorithm B, also presented by Skowron et al. \cite{1}. While Algorithm B only keeps one partial assignment function $\Phi$ that is extended in each step until it becomes a complete solution, Algorithm C stores a list of $d$ functions ($d$ is provided as an algorithm parameter). At each step, for each alternative $a$ with no agent assigned and for each $\Phi$ of the $d$ functions stored, we compute an extension to $\Phi$ that assigns $\frac{N}{K}$ agents (that are not assigned to any other alternative yet) to $a$ (the same way as in Algorithm A). For the next step, $d$ functions that return the highest satisfaction are used. If $d = 1$, Algorithm C is identical with Algorithm B. Pseudocode is presented in Algorithm 3.
+Algorithm C is a further extension to Algorithm B, also presented by Skowron et al. \cite{1}. While Algorithm B only keeps one partial assignment function $\Phi$ that is extended in each step until it becomes a complete solution, Algorithm C stores a list of $d$ functions ($d$ is provided as an algorithm parameter). At each step, for each alternative $a$ with no agent assigned and for each $\Phi$ of the $d$ functions stored, algorithm computes an extension to $\Phi$ that assigns $\frac{N}{K}$ agents (that are not assigned to any other alternative yet) to $a$ (the same way as in Algorithm A). For the next step, $d$ functions that return the highest satisfaction are used. If $d = 1$, Algorithm C is identical with Algorithm B. Pseudocode is presented in Algorithm 3.
 \\
 
 Unlike previous algorithms, Algorithm C can be used for both Monroe and Chamberlin-Courant rules. To adapt it to the Chamberlin-Courant rule, we have to replace the entire first for all loop with the appropriate code, presented in Algorithm 2.
@@ -105,10 +105,10 @@ Unlike previous algorithms, Algorithm C can be used for both Monroe and Chamberl
 
 \subsection{Algorithm R}
 
-As shown by Skowron et al. \cite{1}, algorithms A, B and C achieve very high approximations ratios under linear satisfaction function for the cases where $K$ is small relative to $m$. For the other cases, we can use a sampling-based randomized algorithm (called Algorithm R). We expect that under nonlinear satisfaction function algorithms should behave similarly in relation to each other as under a linear one.
+As shown by Skowron et al. \cite{1}, algorithms A, B and C are potentially very useful when size of the committee is much lower than the number of alternatives ($K$ is small compared to $m$), as under this condition they produce results with very high approximation ratio under linear satisfaction function. For the other cases (relatively large committee), a sampling-based randomized algorithm may be used. We call it Algorithm R. We expect that under nonlinear satisfaction function algorithms should behave similarly in relation to each other as under a linear one.
 \\
 
-Algorithm R randomly picks $K$ alternatives and then, using Proposition 1, assigns them to agents optimally. As such an algorithm may be simply unlucky and pick alternatives that are ranked low, random assignment should be computed a given number of times (which is provided as a parameter), so there is a greater probability to attain a high quality solution. If $K$ is comparable to $m$ then it is likely that generated results would include a solution that is at least close to optimal. Algorithm can naturally be used for both Monroe and Chamberlin-Courant systems.
+Algorithm R randomly picks $K$ alternatives and then, using Proposition 1, assigns them to agents optimally. As a single execution of such an algorithm may simply pick only alternatives that are ranked low, random assignment should be computed a given number of times (which is provided as an algorithm parameter), so there is a greater probability to attain a high quality solution. If size of the committee is only slightly lower than the number of alternatives ($K$ is comparable to $m$) then the probability of finding a solution that is at least close to optimal is high \cite{1}. Algorithm can naturally be used for both Monroe and Chamberlin-Courant systems.
 
 \subsection{Algorithm AR}
 
@@ -138,7 +138,7 @@ Algorithm family A-C and Algorithm R are naturally suitable for different cases.
 Algorithm GM (greedy marginal improvement) is an algorithm that was introduced by Lu and Boutilier \cite{4} for the Chamberlin-Courant rule only. However, it was later generalized by Skowron et al. \cite{1}, so it can be applied to the Monroe rule as well. In the Monroe case, it can be considered as the Algorithm B improvement.
 \\
 
-We start with an empty set $S$. In each iteration of the algorithm we select an alternative $a$ that is not assigned to agents yet, and that maximizes the satisfaction value $l_{sum}^{\alpha}(\Phi^{S \cup \{a\}}_{\alpha})$. Iterations are executed until a complete committee is selected, so $K$ iterations are required. For Monroe case, computing $\Phi^{S}_{\alpha}$ is slow (it is achieved by using min-cost/max-flow algorithm \cite{3}), which makes the algorithm execute for a relatively long time. Pseudocode is presented in Algorithm 5.
+Algorithm starts with an empty set $S$. In each iteration of the algorithm an alternative $a$ ($a \notin S$) is selected and added to $S$. Selected $a$ maximizes the satisfaction value $l_{sum}^{\alpha}(\Phi^{S \cup \{a\}}_{\alpha})$. Iterations are executed until a complete committee is selected, so $K$ iterations are required. For Monroe case, computing $\Phi^{S}_{\alpha}$ is slow (it is achieved by using min-cost/max-flow algorithm \cite{3}), which makes the algorithm execute for a relatively long time, as many computations are required. Pseudocode is presented in Algorithm 5.
 \\
 
 \begin{algorithm}
@@ -200,7 +200,7 @@ In this section we present algorithms that have been invented and implemented sp
 The idea of our algorithm is loosely based on metaheuristic genetic algorithms, such as the Firefly Algorithm \cite{6}.
 \\
 
-Our Genetic Algorithm starts with an initial set of creatures (each of them presenting a possible solution under Chamberlin-Courant or Monroe rule) which are later mutated and crossed over with each other. The best creatures (ones with the highest total satisfaction) are preferred for further mutation and crossover in order to better investigate the neighbourhood of local maxima, but on the other hand algorithm also produces new creatures by crossing over random existing ones to better explore entire solution space, not limiting to local extrema.
+Our Genetic Algorithm starts with an initial set of creatures (each of them presenting a possible solution under Chamberlin-Courant or Monroe rule) which are later mutated and crossed over with each other. The best creatures (ones with the highest total satisfaction) are preferred for further mutation and crossover in order to better investigate the neighbourhood of local maxima, but on the other hand algorithm also produces new creatures by crossing over random existing ones to better explore the entire solution space, not limiting to local extrema.
 \\
 
 In each iteration of the algorithm creatures are evaluated (satisfaction is computed). Best creature in terms of total satisfaction is compared with currently best found creature and takes its place if it is better. Half of the evaluated creatures (the best ones) are chosen for further propagation. Each of them is then mutated randomly. Remaining creatures are created by crossing over random creatures from the "better" half with each other. Resulting set of creatures is used for the next iteration. Number of iterations and number of creatures are the algorithm parameters. Pseudocode is presented in Algorithm 7.
@@ -248,7 +248,7 @@ The algorithm proceeds as follows. First, it generates a random initial solution
 \begin{gather}
 	T \gets T \cdot (1 - c)
 \end{gather}
-$c$ is the cooling rate, provided as a parameter. The algorithm stops when $T \leq 1$. Pseudocode is presented in Algorithm 8.
+$c$ is the cooling rate, provided as an algorithm parameter. The algorithm stops when $T \leq 1$. Pseudocode is presented in Algorithm 8.
 
 \begin{algorithm}
 \caption{Simulated Annealing}\label{euclid}
