@@ -1,3 +1,8 @@
 \chapter{State of the Art}
 \label{cha:stateArt}
 
+The Chamberlin-Courant and Monroe multiwinner voting rules were introduced by Chamberlin and Courant \cite{9} and Monroe \cite{8} respectively. Despite having desired properties of multiwinner rules when we want to achieve a proportional representation \cite{10}, there has not been much research regarding these systems.
+
+Complexity of both the systems was studied in the several papers and the conclusion is that they are both NP-hard in general case. Procaccia et al. \cite{2} showed that these systems are NP-hard in the dissatisfaction-based framework in case of approval dissatisfaction function, Lu and Boutilier \cite{4} presented Chamberlin-Courant rule hardness under linear satisfaction function, while Betzler et al. \cite{3} studied the parameterized complexity of the rules. There were also papers that studied the complexity for some specific cases where preferences are either single-peaked (Yu et al. \cite{11}) or single-crossing (Skowron et al. \cite{12}).
+
+Lu and Boutilier \cite{4} were the first to study the approximability of the Chamberlin-Courant rule under linear satisfaction function, they presented an approximation algorithm for this case. Skowron et al. \cite{1} gave more approximation algorithms for both the Monroe and Chamberlin-Courant rules (for the linear satisfaction function) and assessed their effectiveness against various data sets, but there is no work showing results for any nonlinear satisfaction function.
