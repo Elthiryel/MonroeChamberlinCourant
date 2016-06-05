@@ -1,19 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8C5D836A-8634-4ECC-97C5-F40D357E3E78}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{FE0287C0-A1A0-45C2-80C3-62C0A4D54B0D}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MonroeChamberlinCourant.Test</RootNamespace>
-    <AssemblyName>MonroeChamberlinCourant.Test</AssemblyName>
+    <RootNamespace>Execution</RootNamespace>
+    <AssemblyName>Execution</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -41,23 +39,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Test.cs" />
+    <Compile Include="Executor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Algorithms\Algorithms.csproj">
       <Project>{3C9F8D98-64DC-4BB3-AA50-18FA0BE2A572}</Project>
       <Name>Algorithms</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Execution\Execution.csproj">
-      <Project>{fe0287c0-a1a0-45c2-80c3-62c0a4d54b0d}</Project>
-      <Name>Execution</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Framework\Framework.csproj">
-      <Project>{03134f8c-677c-4d97-a3d6-e2e7435b3f11}</Project>
+      <Project>{03134F8C-677C-4D97-A3D6-E2E7435B3F11}</Project>
       <Name>Framework</Name>
     </ProjectReference>
   </ItemGroup>

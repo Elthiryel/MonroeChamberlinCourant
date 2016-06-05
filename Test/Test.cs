@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
+using Execution;
 using MonroeChamberlinCourant.Algorithms;
 using MonroeChamberlinCourant.Algorithms.ChamberlinCourant;
 using MonroeChamberlinCourant.Algorithms.Monroe;
@@ -17,7 +18,7 @@ namespace MonroeChamberlinCourant.Test
     {
         public static void Main(string[] args)
         {
-            var preferences = GenerationHelper.GenerateAndPersistData(new PolyaStrictGenerator(), 20, 100, "test.txt");
+//            var preferences = GenerationHelper.GenerateAndPersistData(new PolyaStrictGenerator(), 20, 100, "test.txt");
 //
 ////            var preferences = DataLoader.LoadPreferences("test.txt");
 //            
@@ -44,8 +45,8 @@ namespace MonroeChamberlinCourant.Test
 //            //RunAlgorithm(new AlgorithmAR(0.015, 0.75), preferences, "Algorithm AR (0.114, 0.5)");
 //            RunAlgorithm(new AlgorithmGMMonroe(), preferences, "Algorithm GM");
 //            RunAlgorithm(new BruteForceWithFlowMonroe(), preferences, "Brute Force with Flow");
-            RunAlgorithm(new SimulatedAnnealingCC(20000000, 0.02), preferences, "Simulated annealing");
-            RunAlgorithm(new BruteForceCC(), preferences, "Brute Force");
+//            RunAlgorithm(new SimulatedAnnealingCC(20000000, 0.02), preferences, "Simulated annealing");
+//            RunAlgorithm(new BruteForceCC(), preferences, "Brute Force");
 
 //
 //            Console.WriteLine("DONE...");
@@ -54,6 +55,13 @@ namespace MonroeChamberlinCourant.Test
 //            RunAlgorithm(new BruteForceMonroe(), preferences, "Brute-force (Monroe)");
 //            var x = AlgorithmUtils.LambertsFunction(100);
 //            Console.WriteLine(x);
+            var algorithm1 = new AlgorithmA();
+            var algorithm2 = new AlgorithmB();
+            var algorithms = new IAlgorithm[] {algorithm1, algorithm2};
+            var satisfactionFunction = new[] {81, 64, 49, 36, 25, 16, 9, 4, 1, 0};
+            Executor.RunAlgorithms(algorithms, "D:\\Programowanie\\TestData\\thesis_data_10_30_polya.txt_{0}", 0, 9,
+                satisfactionFunction, 3, "D:\\Programowanie\\TestData\\log1.txt", "TEST1", 120);
+            Console.WriteLine("Finished");
             Console.ReadLine();
 
             //TestMinCost();
@@ -112,3 +120,4 @@ namespace MonroeChamberlinCourant.Test
         }
     }
 }
+
