@@ -14,7 +14,7 @@ In this section we present algorithms that already exist, but have never been ap
 
 \subsection{Algorithms A, B and C}
 
-Algorithm A was first presented by Skowron et al. \cite{1} and tries to solve $\alpha$-Monroe-SatWinner. It builds a solution iteratively (greedily). In every iteration algorithm picks an alternative $a_{i}$ that has not been assigned yet and assigns it to $\frac{N}{K}$ agents who have not been assigned to any other alternative yet and whose satisfaction of being assigned to $a_{i}$ is maximal (criterion for picking an alternative in each step is a sum of satisfaction of $\frac{N}{K}$ agents selected this way). This algorithm runs in polynomial time \cite{1}. Pseudocode is presented in Algorithm 1.
+Algorithm A was first presented by Skowron et al. \cite{1} and tries to solve Monroe problem. It is a greedy algorithm that executes $K$ iterations (where $K$ is a size of the elected committee). In every iteration algorithm selects an alternative $a_{i}$ that has not been assigned yet and assigns it to $\frac{N}{K}$ of the remaining agents whose satisfaction of being assigned to $a_{i}$ is maximal (criterion for picking an alternative in each step is a sum of satisfaction of $\frac{N}{K}$ agents selected this way). This algorithm runs in polynomial time \cite{1}. Pseudocode is presented in Algorithm 1.
 \\
 
 \begin{algorithm}
@@ -23,10 +23,7 @@ Algorithm A was first presented by Skowron et al. \cite{1} and tries to solve $\
 	\Procedure{ComputeMonroeSatWinner}{}
 		\State $\Phi \gets$ a map defining a partial assignment, iteratively built by the algorithm
 		\State $\Phi^{\leftarrow} \gets$ the set of agents for which the assignment is already defined
-		\State $\Phi^{\rightarrow} \gets$ the set of alternatives already used in the assignment
-		\If {$K \leq 2$}
-			\State compute the optimal solution using an algorithm of Betzler et al. \cite{1} and return
-		\EndIf
+		\State $\Phi^{\rightarrow} \gets$ the set of alternatives already used in the assignment%
 		\State $\Phi$ = $\{\}$
 		\For{$i \gets 1$ to $K$}
 			\State $score \gets \{\}$
@@ -45,10 +42,10 @@ Algorithm A was first presented by Skowron et al. \cite{1} and tries to solve $\
 \end{algorithmic}
 \end{algorithm}
 
-Algorithm B is an extension to Algorithm A and was presented in the same paper. \cite{1} The idea is to run Algorithm A first and then optimally reassign the alternatives to the agents (using Proposition 1). It should noticeably improve the results of the algorithm and it still runs in polynomial time.
+Algorithm B is an extension to Algorithm A and was presented in the same paper. \cite{1} In the first step, Algorithm B simply executes Algorithm A. Next, it uses algorithm from Proposition 1 to optimally assign alternatives from the winners set to the agents. As both the utilized algorithms run in polynomial time, so does Algorithm B.
 \\
 
-Algorithm C is a further extension to Algorithm B, also presented by Skowron et al. \cite{1}. While Algorithm B only keeps one partial assignment function $\Phi$ that is extended in each step until it becomes a complete solution, Algorithm C stores a list of $d$ functions ($d$ is provided as an algorithm parameter). At each step, for each alternative $a$ with no agent assigned and for each $\Phi$ of the $d$ functions stored, algorithm computes an extension to $\Phi$ that assigns $\frac{N}{K}$ agents (that are not assigned to any other alternative yet) to $a$ (the same way as in Algorithm A). For the next step, $d$ functions that return the highest satisfaction are used. If $d = 1$, Algorithm C is identical with Algorithm B. Pseudocode is presented in Algorithm 3.
+Algorithm C is a further extension to Algorithm B, also presented by Skowron et al. \cite{1}. While Algorithm B only keeps one partial assignment function $\Phi$ that is extended in each step until it becomes a complete solution, Algorithm C stores a list of $d$ functions ($d$ is provided as an algorithm parameter). In each step, for each alternative $a$ with no agent assigned and for each $\Phi$ of the $d$ functions stored, algorithm computes a greedy extension to $\Phi$ that assigns $\frac{N}{K}$ agents (that are not assigned to any other alternative yet) to $a$ (the same way as in Algorithm A). For the next step, $d$ functions that return the highest satisfaction are used. Finally, after the last iteration, winners are reassigned using algorithm from Preposition 1 in each of the stored functions. Function that gives the highest satisfaction is selected. If $d = 1$, Algorithm C is identical with Algorithm B. Pseudocode is presented in Algorithm 3.
 \\
 
 Unlike previous algorithms, Algorithm C can be used for both Monroe and Chamberlin-Courant rules. To adapt it to the Chamberlin-Courant rule, we have to replace the entire first for all loop with the appropriate code, presented in Algorithm 2.
@@ -197,7 +194,7 @@ In this section we present algorithms that have been invented and implemented sp
 
 \subsection{Genetic Algorithm}
 
-The idea of our algorithm is loosely based on metaheuristic genetic algorithms, such as the Firefly Algorithm \cite{6}.
+The idea of our algorithm is loosely based on metaheuristic genetic algorithms \cite{13}, such as the Firefly Algorithm \cite{13, 6}.
 \\
 
 Our Genetic Algorithm starts with an initial set of creatures (each of them presenting a possible solution under Chamberlin-Courant or Monroe rule) which are later mutated and crossed over with each other. The best creatures (ones with the highest total satisfaction) are preferred for further mutation and crossover in order to better investigate the neighbourhood of local maxima, but on the other hand algorithm also produces new creatures by crossing over random existing ones to better explore the entire solution space, not limiting to local extrema.

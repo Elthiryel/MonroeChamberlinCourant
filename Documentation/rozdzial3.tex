@@ -1,9 +1,13 @@
 \chapter{Preliminaries}
 \label{cha:preliminaries}
 
-In the first part of the chapter we explain basic notions regarding multiwinner election problem. Next, we present definitions of winner determination problem under the Monroe and Chamberlin-Courant voting rules. Finally, we present some notions regarding approximate solutions to the problem.
+In the first part of this chapter we explain basic notions regarding multiwinner elections. Next, we present definitions of winner determination problems under Monroe and Chamberlin-Courant (abbreviated as CC) voting rules. Finally, we present some notions regarding approximation algorithms for these tasks.
 
 \section{Basic Notions}
+
+In these section we present essential definitions and notions concerning multiwinner elections.
+\\
+
 \noindent
 \textbf{Definition 1: Preferences. \cite{1}} \hspace{.1in} Let's assume we have $n$ agents (representing voters in the elections) and $m$ alternatives (representing candidates in the elections). For each agent $i$, her \textit{preference order} is a strict linear order $\succ_{i}$ over all the alternatives that ranks them from the most to the least desirable one. Collection $V$ of the preference orders of all the agents is called a \textit{preference profile}.
 \\
@@ -12,7 +16,7 @@ If $A$ is the set of all the alternatives and $B$ is a nonempty strict subset of
 \\
 
 \noindent
-\textbf{Definition 2: Positional scoring function. \cite{1}} \hspace{.1in} Let's assume we have $m$ alternatives. A function $\alpha^{m}: \{1,...,m\} \rightarrow \mathbb{N}$ that assigns an integer value to each position in the agent's preference order is called a \textit{positional scoring function} (PFS). 
+\textbf{Definition 2: Positional scoring function. \cite{1}} \hspace{.1in} Let's assume we have $m$ alternatives. A function $\alpha^{m}: \{1,...,m\} \rightarrow \mathbb{N}$ that assigns an integer value to each position in the agent's preference order is called a \textit{positional scoring function} (PSF). 
 \\
 
 If $\alpha^{m}$ is a decreasing function (for each $i, j \in \{1,...,m\}$, $i > j \implies \alpha^{m}(i) < \alpha^{m}(j)$), it is called a \textit{decreasing positional scoring function} (DPSF) and it can represent an agent's satisfaction when an alternative from a particular position in her preference order is elected. For every DPSF $\alpha^{m}(m) = 0$, so an agent is not satisfied at all with her worst alternative. In some cases, we will write $\alpha$ instead of $\alpha^{m}$ to simplify notation.
@@ -28,38 +32,38 @@ We define a family $\alpha$ of DPSFs as $\alpha = (\alpha^{m})_{m \in \mathbb{N}
 \textbf{Definition 3: Assignment functions. \cite{1}} \hspace{.1in} Let's assume we have $n$ agents and $m$ alternatives. Let $B$ be a set of all the agents ($B = \{1,...,n\}$). A \textit{K-assignment function} $\Phi: B \rightarrow \{a_{1},...,a_{m}\}$ is a function that assigns a single alternative to every agent in such way, that no more than $K$ alternatives are selected ($\norm{\Phi(B)} \leq K$). It is called a \textit{Monroe K-assignment function} if it additionally satisfies the following constraint: For each alternative $a$ we have that either $\left\lfloor \frac{\norm{B}}{K} \right\rfloor \leq \norm{\Phi^{-1}(a)} \leq \left\lceil \frac{\norm{B}}{K} \right\rceil$ or $\norm{\Phi^{-1}(a)} = 0$. It means that for Monroe K-assignment function, agents are assigned to exactly $K$ alternatives and each of the alternatives has about $\frac{\norm{B}}{K}$ agents assigned. If we have an assignment function $\Phi$, alternative $\Phi(i)$ is called the \textit{representative} of agent $i$.
 \\
 
-Additionally, if we allow the K-assignment function to assign an empty alternative ($\bot$) to the agents, it is called a \textit{partial K-assignment function}. It is also a \textit{partial Monroe K-assignment function} if it can be extended to a regular Monroe K-assignment function by replacing all the empty alternatives with the ordinary alternatives.
+Additionally, if we allow the K-assignment function to assign an empty alternative ($\bot$) to the agents, it is called a \textit{partial K-assignment function}. It is also a \textit{partial Monroe K-assignment function} if it can be extended to a regular Monroe K-assignment function by replacing all the empty alternatives with the regular alternatives ($\{a_{1},...,a_{m}\}$).
 \\
 
-Let $S$ be a set of alternatives. By $\Phi^{S}$ we mean a (possibly partial) K-assignment function that assigns agents only to alternatives from $S$.
+Let $S$ be a set of alternatives. By $\Phi^{S}$ we mean a K-assignment function (or a partial K-assignment function) that assigns agents only to alternatives from $S$.
 \\
 
 \noindent
-\textbf{Definition 4: Total satisfaction function. \cite{1}} \hspace{.1in} We assume that $\alpha$ is a normal DPSF. Following function assigns a positive integer to a given assignment $\Phi$:
+\textbf{Definition 4: Total satisfaction function. \cite{1}} \hspace{.1in} We assume that $\alpha$ is a normal DPSF and $pos_{i}(x)$ represents position of alternative $x$ in the $i$'th agent's preference order. Following function assigns a positive integer to a given assignment $\Phi$:
 \begin{gather}
 	l^{\alpha}_{sum}(\Phi) = \sum^{n}_{i=1} \alpha (pos_{i}(\Phi(i)))
 \end{gather}
 This function combines satisfaction of the agents to assess the quality of the assignment for the entire society. It simply calculates the sum of the individual agents' satisfaction value and is used as the \textit{total satisfaction function}.
 \\
 
-For each subset of the alternatives $S \subseteq A$ that satisfies $\norm{S} \leq K$, $\Phi^{S}_{\alpha}$ denotes the partial (Monroe) K-assignment that assigns agents only to the alternatives from $S$ and such that $\Phi^{S}_{\alpha}$ maximizes the total satisfaction $l^{\alpha}_{sum}(\Phi^{S}_{\alpha})$.
+For each subset of the alternatives $S \subseteq A$ that satisfies $\norm{S} \leq K$, by $\Phi^{S}_{\alpha}$ we mean the partial K-assignment (or the partial Monroe K-assignment) that assigns agents only to the alternatives from $S$ and such that $\Phi^{S}_{\alpha}$ maximizes the total satisfaction $l^{\alpha}_{sum}(\Phi^{S}_{\alpha})$.
 
 \section{Monroe and Chamberlin-Courant Rules}
 
-We will now define the problems of winner determination under the Monroe and Chamberlin-Courant (abbreviated as CC) rules. The goal is to find an optimal assignment function, where by the optimal function we accept one that maximizes the total satisfaction.
+We will now define the problems of winner determination under the Monroe and CC rules. The goal is to find an optimal assignment function, where by the optimal function we accept one that maximizes the total satisfaction.
 \\
 
 \noindent
-\textbf{Definition 5: Chamberlin-Courant and Monroe problems. \cite{1}} \hspace{.1in}  Let's assume we have $n$ agents, $m$ alternatives, preference profile $V$, $K \in \mathbb{N}$ representing committee size and a normal DPSF $\alpha$. The goal of the \textit{Chamberlin-Courant problem} is to find a K-assignment function $\Phi$ for which the total satisfaction $l^{\alpha}_{sum}(\Phi)$ is maximal. The goal of the \textit{Monroe problem} is similar, but it searches for a Monroe K-assignment function instead.
+\textbf{Definition 5: Chamberlin-Courant and Monroe problems. \cite{1}} \hspace{.1in}  Let's assume we have $n$ agents, $m$ alternatives, preference profile $V$, $K \in \mathbb{N}$ ($K < m$) representing committee size and a normal DPSF $\alpha$. The goal of the \textit{Chamberlin-Courant problem} is to find a K-assignment function $\Phi$ for which the total satisfaction $l^{\alpha}_{sum}(\Phi)$ is maximal under preference profile $V$. The goal of the \textit{Monroe problem} is similar, but it searches for a Monroe K-assignment function instead.
 \\
 
 Intention of solving these problems is to find a (Monroe) K-assignment function which returns a set of $K$ alternatives, who are viewed as the winners of the given multiwinner election (e.g. elected members of a committee).
 
 \section{Approximate Solutions}
 
-As for many normal DPSFs multiwinner election problems under both Monroe and Chamberlin-Courant rules are NP-hard \cite{2,3}, we are looking for approximate solutions.
+As for many normal DPSFs multiwinner election problems under both Monroe and CC rules are NP-hard \cite{3, 4, 2}, we are looking for approximate solutions.
 \\
 
 \noindent
-\textbf{Definition 6: Approximation algorithms. \cite{1}} \hspace{.1in} Let $r$ be a real number such that $0 < r \leq 1$, let $\alpha$ be a normal DPSF. An algorithm is an \textit{r-approximation algorithm} for Chamberlin-Courant or Monroe problem if on each instance it returns a feasible assignment $\Phi$ such that $l^{\alpha}_{sum}(\Phi) \geq r \cdot OPT$, where $OPT$ is the optimal total satisfaction $l^{\alpha}_{sum}(\Phi_{OPT})$.
+\textbf{Definition 6: Approximation algorithms. \cite{1}} \hspace{.1in} Let $r$ be a real number such that $0 < r \leq 1$, let $\alpha$ be a normal DPSF. An algorithm is an \textit{r-approximation algorithm} for CC or Monroe problem if for every correct input it returns an assignment $\Phi$ such that $l^{\alpha}_{sum}(\Phi) \geq r \cdot s_{max}$, where $s_{max}$ is the optimal total satisfaction $l^{\alpha}_{sum}(\Phi_{max})$.
 \\

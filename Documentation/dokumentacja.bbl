@@ -11,6 +11,17 @@ B.~Chamberlin and P.~Courant.
   Proportional representation and the borda rule.
 \newblock {\em American Political Science Review}, 77(3):718--733, 1983.
 
+\bibitem{4}
+T.~Lu and C.~Boutilier.
+\newblock Budgeted social choice: From consensus to personalized decision
+  making.
+\newblock {\em IJCAI}, 11:280--286, 2011.
+
+\bibitem{3}
+N.~Betzler, A.~Slinko, and J.~Uhlmann.
+\newblock On the computation of fully proportional representation.
+\newblock {\em Journal on Artificial Intelligence Research}, 47:475--519, 2013.
+
 \bibitem{2}
 A.D. Procaccia, J.S. Rosenschein, and A.~Zohar.
 \newblock On the complexity of achieving proportional representation.
@@ -21,22 +32,11 @@ P.~Skowron, P.~Faliszewski, and A.~Slinko.
 \newblock Achieving fully proportional representation, approximability results.
 \newblock {\em Artificial Intelligence}, 222:67--103, May 2015.
 
-\bibitem{3}
-N.~Betzler, A.~Slinko, and J.~Uhlmann.
-\newblock On the computation of fully proportional representation.
-\newblock {\em Journal on Artificial Intelligence Research}, 47:475--519, 2013.
-
 \bibitem{10}
 E.~Elkind, P.~Faliszewski, P.~Skowron, and A.~Slinko.
 \newblock Properties of multiwinner voting rules.
 \newblock {\em Proceedings of the 13th International Conference on Autonomous
   Agents and Multiagent Systems}, pages 53--60, May 2014.
-
-\bibitem{4}
-T.~Lu and C.~Boutilier.
-\newblock Budgeted social choice: From consensus to personalized decision
-  making.
-\newblock {\em IJCAI}, 11:280--286, 2011.
 
 \bibitem{11}
 L.~Yu, H.~Chan, and E.~Elkind.
@@ -50,6 +50,11 @@ P.~Skowron, L.~Yu, P.~Faliszewski, and E.~Elkind.
   single-crossing electorates.
 \newblock {\em Proceedings of the 6th International Symposium on Algorithmic
   Game Theory}, pages 1--12, October 2013.
+
+\bibitem{13}
+X.S. Yang.
+\newblock {\em Nature-inspired Metaheuristic Algorithms}.
+\newblock Luniver Press, 2010.
 
 \bibitem{6}
 S.~Łukasik and S.~Żak.

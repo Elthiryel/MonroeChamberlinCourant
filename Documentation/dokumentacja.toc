@@ -1,10 +1,9 @@
 \select@language {english}
 \contentsline {chapter}{\numberline {1}Introduction}{4}
-\contentsline {section}{\numberline {1.1}Motivation and Goals}{5}
-\contentsline {section}{\numberline {1.2}Results}{5}
+\contentsline {section}{\numberline {1.1}Results}{5}
 \contentsline {chapter}{\numberline {2}Preliminaries}{6}
 \contentsline {section}{\numberline {2.1}Basic Notions}{6}
-\contentsline {section}{\numberline {2.2}Monroe and Chamberlin-Courant Rules}{7}
+\contentsline {section}{\numberline {2.2}Monroe and Chamberlin-Courant Rules}{8}
 \contentsline {section}{\numberline {2.3}Approximate Solutions}{8}
 \contentsline {chapter}{\numberline {3}State of the Art}{9}
 \contentsline {chapter}{\numberline {4}Implemented Algorithms}{10}
