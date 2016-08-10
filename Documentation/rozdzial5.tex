@@ -20,7 +20,7 @@ Algorithm A was first presented by Skowron et al. \cite{1} and tries to solve Mo
 \begin{algorithm}
 \caption{Algorithm A}\label{euclid}
 \begin{algorithmic}[1]
-	\Procedure{ComputeMonroeSatWinner}{}
+	\Procedure{ComputeMonroeProblemSolution}{}
 		\State $\Phi \gets$ a map defining a partial assignment, iteratively built by the algorithm
 		\State $\Phi^{\leftarrow} \gets$ the set of agents for which the assignment is already defined
 		\State $\Phi^{\rightarrow} \gets$ the set of alternatives already used in the assignment%
@@ -68,7 +68,7 @@ Unlike previous algorithms, Algorithm C can be used for both Monroe and Chamberl
 \begin{algorithm}
 \caption{Algorithm C}\label{euclid}
 \begin{algorithmic}[1]
-	\Procedure{ComputeMonroeSatWinner}{}
+	\Procedure{ComputeMonroeProblemSolution}{}
 		\State $\Phi \gets$ a map defining a partial assignment, iteratively built by the algorithm
 		\State $\Phi^{\leftarrow} \gets$ the set of agents for which the assignment is already defined
 		\State $\Phi^{\rightarrow} \gets$ the set of alternatives already used in the assignment
@@ -114,7 +114,7 @@ Algorithm family A-C and Algorithm R are naturally suitable for different cases.
 \begin{algorithm}
 \caption{Algorithm AR}\label{euclid}
 \begin{algorithmic}[1]
-	\Procedure{ComputeMonroeSatWinner}{}
+	\Procedure{ComputeMonroeProblemSolution}{}
 		\State $H_{j}$ is the $j$'th harmonic number $H_{j} = \sum_{i=1}^{j}(\frac{1}{i})$
 		\State $\lambda \gets$ probability of achieving the approximation ratio $0.715 - e$ under linear satisfaction function
 		\If{$\frac{H_{K}}{K} \geq \frac{e}{2}$}
@@ -141,7 +141,7 @@ Algorithm starts with an empty set $S$. In each iteration of the algorithm an al
 \begin{algorithm}
 \caption{Algorithm GM}\label{euclid}
 \begin{algorithmic}[1]
-	\Procedure{ComputeSatWinner}{}
+	\Procedure{ComputeCCOrMonroeProblemSolution}{}
 		\State $\Phi^{S}_{\alpha}$ - the partial assignment that assigns a single alternative to at most $\frac{n}{K}$ agents, that assigns to the agents only the alternatives from $S$, and that maximizes the utilitarian satisfaction $l^{\alpha}_{sum}(\Phi^{S}_{\alpha})$
 		\State $S \gets \emptyset$
 		\For{$i \gets 1$ to $K$}
@@ -163,7 +163,7 @@ $w(x)$ used in the algorithm is a Lambert's W-function, defined to be the soluti
 \begin{algorithm}
 \caption{Algorithm P}\label{euclid}
 \begin{algorithmic}[1]
-	\Procedure{ComputeCCSatWinner}{}
+	\Procedure{ComputeCCProblemSolution}{}
 		\State $\Phi \gets$ a map defining a partial assignment, iteratively built by the algorithm
 		\State $\Phi^{\leftarrow} \gets$ the set of agents for which the assignment is already defined
 		\State $\Phi^{\rightarrow} \gets$ the set of alternatives already used in the assignment
@@ -197,15 +197,15 @@ In this section we present algorithms that have been invented and implemented sp
 The idea of our algorithm is loosely based on metaheuristic genetic algorithms \cite{13}, such as the Firefly Algorithm \cite{13, 6}.
 \\
 
-Our Genetic Algorithm starts with an initial set of creatures (each of them presenting a possible solution under Chamberlin-Courant or Monroe rule) which are later mutated and crossed over with each other. The best creatures (ones with the highest total satisfaction) are preferred for further mutation and crossover in order to better investigate the neighbourhood of local maxima, but on the other hand algorithm also produces new creatures by crossing over random existing ones to better explore the entire solution space, not limiting to local extrema.
+Our Genetic Algorithm starts with an initial set of creatures (each of them presenting a set of possible winners under Chamberlin-Courant or Monroe rule) which are later mutated and crossed over with each other. The best creatures (ones with the highest total satisfaction) are preferred for further mutation and crossover in order to better investigate the neighbourhood of local maxima, but on the other hand algorithm also produces new creatures by crossing over random existing ones to better explore the entire solution space, not limiting to local extrema.
 \\
 
-In each iteration of the algorithm creatures are evaluated (satisfaction is computed). Best creature in terms of total satisfaction is compared with currently best found creature and takes its place if it is better. Half of the evaluated creatures (the best ones) are chosen for further propagation. Each of them is then mutated randomly. Remaining creatures are created by crossing over random creatures from the "better" half with each other. Resulting set of creatures is used for the next iteration. Number of iterations and number of creatures are the algorithm parameters. Pseudocode is presented in Algorithm 7.
+In each iteration of the algorithm creatures are evaluated (winners are assigned to agents using algorithm from Preposition 1 and satisfaction is computed). Best creature in terms of total satisfaction is compared with currently best found creature and takes its place if it is better. Half of the evaluated creatures (the best ones) are chosen for further propagation. Each of them is then mutated randomly. Remaining creatures are created by crossing over random creatures from the "better" half with each other. Resulting set of creatures is used for the next iteration. Number of iterations and number of creatures are the algorithm parameters. Pseudocode is presented in Algorithm 7.
 
 \begin{algorithm}
 \caption{Genetic Algorithm}\label{euclid}
 \begin{algorithmic}[1]
-	\Procedure{ComputeCCSatWinner}{}
+	\Procedure{ComputeCCOrMonroeProblemSolution}{}
 		\State $I$ - number of iterations
 		\State $c$ - number of creatures
 		\State $\Phi_{best}$ - best creature (preference profile)
@@ -241,7 +241,7 @@ To decide if the new solution should be accepted, the \textit{acceptance functio
 $E_{c}$ is the current solution energy, $E_{n}$ is the new solution energy and $T$ is the temperature. Energy represents quality of the solution and, in our case, is proportional to the total satisfaction value of the solution.
 \\
 
-The algorithm proceeds as follows. First, it generates a random initial solution. Initial temperature is given as a parameter. Then, in each iteration, a new solution is generated by replacing one of the winners in the current solution with a random alternative that is not a winner in the current solution. The newly created solution is then evaluated by the acceptance function. If it is accepted, it replaces the current solution. Otherwise, the current solution is kept. For the next iteration, temperature is decreased:
+The algorithm proceeds as follows. First, it generates a random initial set of winners. Initial temperature is given as a parameter. Then, in each iteration, a new solution is generated by replacing one of the winners in the current solution with a random alternative that is not a winner in the current solution (every time winners are assigned to agents using algorithm from Preposition 1). The newly created solution is then evaluated by the acceptance function. If it is accepted, it replaces the current solution. Otherwise, the current solution is kept. For the next iteration, temperature is decreased:
 \begin{gather}
 	T \gets T \cdot (1 - c)
 \end{gather}
@@ -250,7 +250,7 @@ $c$ is the cooling rate, provided as an algorithm parameter. The algorithm stops
 \begin{algorithm}
 \caption{Simulated Annealing}\label{euclid}
 \begin{algorithmic}[1]
-	\Procedure{ComputeCCSatWinner}{}
+	\Procedure{ComputeCCOrMonroeProblemSolution}{}
 		\State $T_{start}$ - initial temperature
 		\State $c$ - cooling rate
 		\State $\Phi_{curr}$ - current solution
