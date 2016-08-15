@@ -7,8 +7,3 @@ A level-1 auxiliary file: rozdzial6.aux
 A level-1 auxiliary file: rozdzial7.aux
 The style file: unsrt.bst
 Database file #1: bibliography.bib
-I was expecting a `,' or a `}'---line 107 of file bibliography.bib
- :     year    = "2010"
- :                     .
-I'm skipping whatever remains of this entry
-(There was 1 error message)

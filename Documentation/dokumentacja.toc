@@ -17,5 +17,11 @@
 \contentsline {subsection}{\numberline {4.2.1}Genetic Algorithm}{15}
 \contentsline {subsection}{\numberline {4.2.2}Simulated Annealing}{16}
 \contentsline {chapter}{\numberline {5}Evaluation Results}{18}
-\contentsline {chapter}{\numberline {6}Summary}{19}
-\contentsline {chapter}{List of Tables}{20}
+\contentsline {section}{\numberline {5.1}Testing rig}{18}
+\contentsline {section}{\numberline {5.2}Test data}{18}
+\contentsline {subsection}{\numberline {5.2.1}Problem size}{18}
+\contentsline {subsection}{\numberline {5.2.2}Number of winners}{18}
+\contentsline {subsection}{\numberline {5.2.3}Data generation model}{19}
+\contentsline {subsection}{\numberline {5.2.4}Satisfaction function}{19}
+\contentsline {chapter}{\numberline {6}Summary}{20}
+\contentsline {chapter}{List of Tables}{21}

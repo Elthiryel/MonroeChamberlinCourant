@@ -1,4 +1,64 @@
 \chapter{Evaluation Results}
-\label{cha:testy}
+\label{cha:evaluationResults}
 
+In this chapter we present algorithm evaluation results and conclusions.
+
+\section{Testing rig}
+
+All algorithms were run on Lenovo W530 laptop with the following hardware and software:
+
+\begin{itemize}
+	\item CPU: Intel Core i7-3740QM (2.7 GHz)
+	\item RAM size: 16 GB
+	\item Operating system: Windows 7 Enterprise 64-bit
+\end{itemize}
+
+All tests were performed under "Maximum Performance" setting.
+
+\section{Test data}
+
+Numerous test cases were prepared, varying in problem size, number of winners, generation model and satisfaction function.
+
+\subsection{Problem size}
+
+Problem size is defined by number of agents ($n$) and number of alternatives ($m$). We selected three problem sizes for testing:
+
+\begin{itemize}
+	\item Small instance: $n = 30$ $m = 10$
+	\item Medium instance: $n = 400$ $m = 50$
+	\item Large instance: $n = 400$ $m = 300$
+\end{itemize}
+
+\subsection{Number of winners}
+
+For each problem size, we selected two different number of winners ($K$) - first one to take a small part of alternatives as winners (around 15-20\%) and the second one to take about half of alternatives as winners:
+\begin{itemize}
+	\item Small instance: $K = 2$ or $K = 5$
+	\item Medium instance: $K = 10$ or $K = 25$
+	\item Large instance: $K = 50$ or $K = 200$
+\end{itemize}
+
+\subsection{Data generation model}
+
+Test data was generated using two different models.
+\\
+
+\noindent
+\textbf{Polya urn model} (Polya) \hspace{.1in} This model assumes we have an urn with $m$ balls in $m$ colors, each representing an alternative. We generate preferences by drawing random balls from the urn. First, we draw alternatives for first rank in each agent's preference order, then for second ranks, and so on, until the entire preference profile is drawn. After the ball is drawn, it is returned to the urn and another ball of the same color is added to the urn too, so a probability of drawing the same color in the future is increased ("strong becomes stronger"). The only constraint is that an alternative cannot be drawn for an agent for which it has been already drawn before. This model generates preference profile where some relatively small number of alternatives is preferred to all the others by most agents.
+\\
+
+\noindent
+\textbf{Impartial culture model} (IC) \hspace{.1in} In this model, for each agent we generate preference order independently. For each agent, every preference order (every permutation of alternatives) has equal probability of being drawn. This model generated preference profile with no clearly dominating alternatives.
+
+\subsection{Satisfaction function}
+
+Two different satisfaction functions were used, each of them trying to model real preferences of the voters.
+\\
+
+\noindent
+\textbf{Square function} \hspace{.1in} This is simply a square function and it assumes that difference between voters in the first positions of the preference order should be higher than between the last positions (voter is more concerned with his favourite candidates, not the ones in the end of the list). The function is given as follows:
+
+\begin{gather}
+	\alpha(i) = (m - i)^{2}
+\end{gather}
 
