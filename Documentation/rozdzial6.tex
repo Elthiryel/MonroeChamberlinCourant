@@ -17,7 +17,7 @@ All tests were performed under "Maximum Performance" setting.
 
 \section{Test data}
 
-Numerous test cases were prepared, varying in problem size, number of winners, generation model and satisfaction function.
+Numerous test cases were generated, varying in problem size, number of winners, generation model and satisfaction function.
 
 \subsection{Problem size}
 
@@ -61,4 +61,75 @@ Two different satisfaction functions were used, each of them trying to model rea
 \begin{gather}
 	\alpha(i) = (m - i)^{2}
 \end{gather}
+\\
 
+Example of function for $m = 20$:
+
+\begin{center}
+	\includegraphics[scale=0.7]{satfun1}
+\end{center}
+
+\noindent
+\textbf{Strange function} \hspace{.1in} This function assumes that for the voter the difference between two candidates from the top is the same as the difference between two candidates from the bottom, while differences between candidates from the middle of the preference order are much less significant. The function is given as follows:
+
+\begin{gather}
+	f(x) = \frac{n^{2}+n}{2} \\
+	h = \frac{m}{2} \\
+	d = f(h) \\
+	\alpha(i) = \begin{cases} f(h-i+1)+d-1 : i<h \\ -f(i-h)+d : i \geq h \end{cases}
+\end{gather}
+\\
+
+Example of function for $m = 20$:
+
+\begin{center}
+	\includegraphics[scale=0.7]{satfun2}
+\end{center}
+
+\subsection{Summary}
+
+Table below presents all generated test cases.
+
+\begin{tabular}{r | c | c | c | c | c |}
+	\# & alternatives count & agents count & winners count & genration model & satisfaction function \\
+	\hline
+	1 & \multirow{8}{*}{10} & \multirow{8}{*}{30} & \multirow{4}{*}{2} & \multirow{2}{*}{Polya} & Square \\
+	2 & & & & & Strange \\
+	\cline{5-6}
+	3 & & & & \multirow{2}{*}{IC} & Square \\
+	4 & & & & & Strange \\
+	\cline{4-6}
+	5 & & & \multirow{4}{*}{5} & \multirow{2}{*}{Polya} & Square \\
+	6 & & & & & Strange \\
+	\cline{5-6}
+	7 & & & & \multirow{2}{*}{IC} & Square \\
+	8 & & & & & Strange \\
+	\hline
+	9 & \multirow{8}{*}{50} & \multirow{8}{*}{400} & \multirow{4}{*}{10} & \multirow{2}{*}{Polya} & Square \\
+	10 & & & & & Strange \\
+	\cline{5-6}
+	11 & & & & \multirow{2}{*}{IC} & Square \\
+	12 & & & & & Strange \\
+	\cline{4-6}
+	13 & & & \multirow{4}{*}{25} & \multirow{2}{*}{Polya} & Square \\
+	14 & & & & & Strange \\
+	\cline{5-6}
+	15 & & & & \multirow{2}{*}{IC} & Square \\
+	16 & & & & & Strange \\
+	\hline
+	17 & \multirow{8}{*}{300} & \multirow{8}{*}{400} & \multirow{4}{*}{50} & \multirow{2}{*}{Polya} & Square \\
+	18 & & & & & Strange \\
+	\cline{5-6}
+	19 & & & & \multirow{2}{*}{IC} & Square \\
+	20 & & & & & Strange \\
+	\cline{4-6}
+	21 & & & \multirow{4}{*}{200} & \multirow{2}{*}{Polya} & Square \\
+	22 & & & & & Strange \\
+	\cline{5-6}
+	23 & & & & \multirow{2}{*}{IC} & Square \\
+	24 & & & & & Strange \\
+	\hline
+\end{tabular}
+\\
+
+All test cases were used for both Chamberlin-Courant and Monroe problems. For each combination of problem size and generation model 100 files were generated independently and algorithms were evaluated against all test files.

@@ -23,5 +23,6 @@
 \contentsline {subsection}{\numberline {5.2.2}Number of winners}{18}
 \contentsline {subsection}{\numberline {5.2.3}Data generation model}{19}
 \contentsline {subsection}{\numberline {5.2.4}Satisfaction function}{19}
-\contentsline {chapter}{\numberline {6}Summary}{20}
-\contentsline {chapter}{List of Tables}{21}
+\contentsline {subsection}{\numberline {5.2.5}Summary}{20}
+\contentsline {chapter}{\numberline {6}Summary}{22}
+\contentsline {chapter}{List of Tables}{23}
