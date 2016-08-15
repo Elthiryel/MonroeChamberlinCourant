@@ -24,9 +24,9 @@ Numerous test cases were generated, varying in problem size, number of winners, 
 Problem size is defined by number of agents ($n$) and number of alternatives ($m$). We selected three problem sizes for testing:
 
 \begin{itemize}
-	\item Small instance: $n = 30$ $m = 10$
-	\item Medium instance: $n = 400$ $m = 50$
-	\item Large instance: $n = 400$ $m = 300$
+	\item Small instance: $n = 30$, $m = 10$
+	\item Medium instance: $n = 400$, $m = 50$
+	\item Large instance: $n = 400$, $m = 300$
 \end{itemize}
 
 \subsection{Number of winners}
@@ -132,4 +132,30 @@ Table below presents all generated test cases.
 \end{tabular}
 \\
 
-All test cases were used for both Chamberlin-Courant and Monroe problems. For each combination of problem size and generation model 100 files were generated independently and algorithms were evaluated against all test files.
+\section{Test Methodology}
+
+For each combination of problem size and generation model 100 files were generated independently. Algorithms were evaluated against all test files for each test case. We measured execution time and solution quality (total satisfaction) which was compared with brute-force (optimal) result for small instances and upper bound (total satisfaction if every agent has his top alternative assigned) for medium and large instances. Execution time and solution quality comparison with brute-force result or upper bound are presented as an average of 100 results (with standard deviation).
+\\
+
+All test cases were used for both Chamberlin-Courant and Monroe problems.
+
+\section{Chamberlin-Courant Problem Evaluation}
+
+In this section we present evaluation results for Chamberlin-Courant problem.
+
+\subsection{Small instance}
+
+Results for small instance ($n = 10$, $m = 30$). Results are compared to optimal results.
+
+Evaluated algorithms:
+
+\begin{itemize}
+	\item Algorithm C ($d = 10$)
+	\item Algorithm C ($d = 15$)
+\end{itemize}
+
+
+
+
+
+

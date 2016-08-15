@@ -1,28 +1,31 @@
 \select@language {english}
-\contentsline {chapter}{\numberline {1}Introduction}{4}
-\contentsline {section}{\numberline {1.1}Results}{5}
-\contentsline {chapter}{\numberline {2}Preliminaries}{6}
-\contentsline {section}{\numberline {2.1}Basic Notions}{6}
-\contentsline {section}{\numberline {2.2}Monroe and Chamberlin-Courant Rules}{8}
-\contentsline {section}{\numberline {2.3}Approximate Solutions}{8}
-\contentsline {chapter}{\numberline {3}State of the Art}{9}
-\contentsline {chapter}{\numberline {4}Implemented Algorithms}{10}
-\contentsline {section}{\numberline {4.1}Existing Algorithms}{10}
-\contentsline {subsection}{\numberline {4.1.1}Algorithms A, B and C}{10}
-\contentsline {subsection}{\numberline {4.1.2}Algorithm R}{13}
-\contentsline {subsection}{\numberline {4.1.3}Algorithm AR}{13}
-\contentsline {subsection}{\numberline {4.1.4}Algorithm GM}{14}
-\contentsline {subsection}{\numberline {4.1.5}Algorithm P}{14}
-\contentsline {section}{\numberline {4.2}New Algorithms}{15}
-\contentsline {subsection}{\numberline {4.2.1}Genetic Algorithm}{15}
-\contentsline {subsection}{\numberline {4.2.2}Simulated Annealing}{16}
-\contentsline {chapter}{\numberline {5}Evaluation Results}{18}
-\contentsline {section}{\numberline {5.1}Testing rig}{18}
-\contentsline {section}{\numberline {5.2}Test data}{18}
-\contentsline {subsection}{\numberline {5.2.1}Problem size}{18}
-\contentsline {subsection}{\numberline {5.2.2}Number of winners}{18}
-\contentsline {subsection}{\numberline {5.2.3}Data generation model}{19}
-\contentsline {subsection}{\numberline {5.2.4}Satisfaction function}{19}
-\contentsline {subsection}{\numberline {5.2.5}Summary}{20}
-\contentsline {chapter}{\numberline {6}Summary}{22}
-\contentsline {chapter}{List of Tables}{23}
+\contentsline {chapter}{\numberline {1}Introduction}{5}
+\contentsline {section}{\numberline {1.1}Results}{6}
+\contentsline {chapter}{\numberline {2}Preliminaries}{7}
+\contentsline {section}{\numberline {2.1}Basic Notions}{7}
+\contentsline {section}{\numberline {2.2}Monroe and Chamberlin-Courant Rules}{9}
+\contentsline {section}{\numberline {2.3}Approximate Solutions}{9}
+\contentsline {chapter}{\numberline {3}State of the Art}{10}
+\contentsline {chapter}{\numberline {4}Implemented Algorithms}{11}
+\contentsline {section}{\numberline {4.1}Existing Algorithms}{11}
+\contentsline {subsection}{\numberline {4.1.1}Algorithms A, B and C}{11}
+\contentsline {subsection}{\numberline {4.1.2}Algorithm R}{14}
+\contentsline {subsection}{\numberline {4.1.3}Algorithm AR}{14}
+\contentsline {subsection}{\numberline {4.1.4}Algorithm GM}{15}
+\contentsline {subsection}{\numberline {4.1.5}Algorithm P}{15}
+\contentsline {section}{\numberline {4.2}New Algorithms}{16}
+\contentsline {subsection}{\numberline {4.2.1}Genetic Algorithm}{16}
+\contentsline {subsection}{\numberline {4.2.2}Simulated Annealing}{17}
+\contentsline {chapter}{\numberline {5}Evaluation Results}{19}
+\contentsline {section}{\numberline {5.1}Testing rig}{19}
+\contentsline {section}{\numberline {5.2}Test data}{19}
+\contentsline {subsection}{\numberline {5.2.1}Problem size}{19}
+\contentsline {subsection}{\numberline {5.2.2}Number of winners}{19}
+\contentsline {subsection}{\numberline {5.2.3}Data generation model}{20}
+\contentsline {subsection}{\numberline {5.2.4}Satisfaction function}{20}
+\contentsline {subsection}{\numberline {5.2.5}Summary}{21}
+\contentsline {section}{\numberline {5.3}Test methodology}{22}
+\contentsline {section}{\numberline {5.4}Chamberlin-Courant Problem Evaluation}{23}
+\contentsline {subsection}{\numberline {5.4.1}Small instance}{23}
+\contentsline {chapter}{\numberline {6}Summary}{24}
+\contentsline {chapter}{List of Tables}{25}
