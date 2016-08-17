@@ -29,7 +29,7 @@ Problem size is defined by number of agents ($n$) and number of alternatives ($m
 
 \subsection{Number of winners}
 
-For each problem size, we selected two different number of winners ($K$) - first one to take a small part of alternatives as winners (around 15-20\%) and the second one to take about half of alternatives as winners:
+For each problem size, we selected two different number of winners ($K$) - the first one to take a small part of alternatives as winners (around 15-20\%) and the second one to take about half of alternatives as winners:
 \begin{itemize}
 	\item Small instance: $K = 2$ or $K = 5$
 	\item Medium instance: $K = 10$ or $K = 25$
@@ -143,7 +143,7 @@ In this section we present evaluation results for Chamberlin-Courant problem.
 
 \subsection{Small instance}
 
-Results for small instance ($n = 10$, $m = 30$). Results are compared to optimal results.
+Results for small instance ($n = 30$, $m = 10$). Results are compared to optimal results.
 \\
 
 Evaluated algorithms:
@@ -162,7 +162,7 @@ Results for 2 winners:
 
 \begin{tabular}{| l | r | r | r | r |}
 	\hline
-	\multicolumn{5}{| c |}{$n = 10$, $m = 30$, $K = 2$, Square function} \\
+	\multicolumn{5}{| c |}{$n = 30$, $m = 10$, $K = 2$, Square function} \\
 	\hline
 	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{Polya} & \multicolumn{2}{c |}{IC} \\
 	\cline{2-5}
@@ -188,7 +188,7 @@ Results for 2 winners:
 
 \begin{tabular}{| l | r | r | r | r |}
 	\hline
-	\multicolumn{5}{| c |}{$n = 10$, $m = 30$, $K = 2$, Strange function} \\
+	\multicolumn{5}{| c |}{$n = 30$, $m = 10$, $K = 2$, Strange function} \\
 	\hline
 	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{Polya} & \multicolumn{2}{c |}{IC} \\
 	\cline{2-5}
@@ -217,7 +217,7 @@ Results for 5 winners:
 
 \begin{tabular}{| l | r | r | r | r |}
 	\hline
-	\multicolumn{5}{| c |}{$n = 10$, $m = 30$, $K = 5$, Square function} \\
+	\multicolumn{5}{| c |}{$n = 30$, $m = 10$, $K = 5$, Square function} \\
 	\hline
 	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{Polya} & \multicolumn{2}{c |}{IC} \\
 	\cline{2-5}
@@ -243,7 +243,7 @@ Results for 5 winners:
 
 \begin{tabular}{| l | r | r | r | r |}
 	\hline
-	\multicolumn{5}{| c |}{$n = 10$, $m = 30$, $K = 5$, Strange function} \\
+	\multicolumn{5}{| c |}{$n = 30$, $m = 10$, $K = 5$, Strange function} \\
 	\hline
 	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{Polya} & \multicolumn{2}{c |}{IC} \\
 	\cline{2-5}
@@ -280,7 +280,7 @@ Conclusions from small instance results:
 
 \subsection{Medium instance}
 
-Results for medium instance ($n = 50$, $m = 400$). Results are compared to upper bound.
+Results for medium instance ($n = 400$, $m = 50$). Results are compared to upper bound.
 \\
 
 Evaluated algorithms:
@@ -301,7 +301,7 @@ Results for 10 winners:
 
 \begin{tabular}{| l | r | r | r | r |}
 	\hline
-	\multicolumn{5}{| c |}{$n = 50$, $m = 400$, $K = 10$, Square function} \\
+	\multicolumn{5}{| c |}{$n = 400$, $m = 50$, $K = 10$, Square function} \\
 	\hline
 	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{Polya} & \multicolumn{2}{c |}{IC} \\
 	\cline{2-5}
@@ -331,7 +331,7 @@ Results for 10 winners:
 
 \begin{tabular}{| l | r | r | r | r |}
 	\hline
-	\multicolumn{5}{| c |}{$n = 50$, $m = 400$, $K = 10$, Strange function} \\
+	\multicolumn{5}{| c |}{$n = 400$, $m = 50$, $K = 10$, Strange function} \\
 	\hline
 	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{Polya} & \multicolumn{2}{c |}{IC} \\
 	\cline{2-5}
@@ -364,7 +364,7 @@ Results for 25 winners:
 
 \begin{tabular}{| l | r | r | r | r |}
 	\hline
-	\multicolumn{5}{| c |}{$n = 50$, $m = 400$, $K = 25$, Square function} \\
+	\multicolumn{5}{| c |}{$n = 400$, $m = 50$, $K = 25$, Square function} \\
 	\hline
 	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{Polya} & \multicolumn{2}{c |}{IC} \\
 	\cline{2-5}
@@ -394,7 +394,7 @@ Results for 25 winners:
 
 \begin{tabular}{| l | r | r | r | r |}
 	\hline
-	\multicolumn{5}{| c |}{$n = 50$, $m = 400$, $K = 25$, Strange function} \\
+	\multicolumn{5}{| c |}{$n = 400$, $m = 50$, $K = 25$, Strange function} \\
 	\hline
 	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{Polya} & \multicolumn{2}{c |}{IC} \\
 	\cline{2-5}
@@ -424,7 +424,10 @@ Results for 25 winners:
 
 Conclusions from medium instance results:
 \begin{enumerate}
-	\item Solution quality compared to upper bound is generally a bit better for Strange satisfaction function. TODO tell why (chart?)
+	\item Solution quality compared to upper bound is generally a bit better for Strange satisfaction function. This is because for top alternatives Square function decreases faster compared to the first alternative (see chart below), so algorithms score is relatively worse when selecting second or third alternative in the preference order.
+	\begin{center}
+		\includegraphics[scale=0.75]{satfuncomp1}
+	\end{center}
 	\item The difference between Polya and IC is clearly visible now (Polya could still be too random for smaller instance to see the diference). It is much easier to find a solution close to an upper bound for a Polya generation model, as there is a group of alternatives that are ranked high by most agents, while IC is totally random.
 	\item Algorithm C is still the best algorithm in terms of solution quality. For Polya, it finds solutions very close to an upper bound, especially with $K = 25$, which means that most agents have their favourite alternative assigned. For IC using $d = 15$ instead of $d = 10$ slightly improves the solution quality, so if we seek the best solution possible, setting higher $d$ is reasonable.
 	\item Algorithm GM performs excellently, attaining only slightly lower solution quality than Algorithm C in most cases, while executing much faster.
@@ -435,7 +438,7 @@ Conclusions from medium instance results:
 
 \subsection{Large instance}
 
-Results for large instance ($n = 300$, $m = 400$). Results are compared to upper bound.
+Results for large instance ($n = 400$, $m = 300$). Results are compared to upper bound.
 \\
 
 Evaluated algorithms:
@@ -456,7 +459,7 @@ Results for 50 winners:
 
 \begin{tabular}{| l | r | r | r | r |}
 	\hline
-	\multicolumn{5}{| c |}{$n = 300$, $m = 400$, $K = 50$, Square function} \\
+	\multicolumn{5}{| c |}{$n = 400$, $m = 300$, $K = 50$, Square function} \\
 	\hline
 	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{Polya} & \multicolumn{2}{c |}{IC} \\
 	\cline{2-5}
@@ -484,14 +487,115 @@ Results for 50 winners:
 
 \vspace{16pt}
 
-
+\begin{tabular}{| l | r | r | r | r |}
+	\hline
+	\multicolumn{5}{| c |}{$n = 400$, $m = 300$, $K = 50$, Strange function} \\
+	\hline
+	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{Polya} & \multicolumn{2}{c |}{IC} \\
+	\cline{2-5}
+	& \multicolumn{1}{c |}{time [s]} & \multicolumn{1}{c |}{quality} & \multicolumn{1}{c |}{time [s]} & \multicolumn{1}{c |}{quality} \\
+	\hline
+	C (10) & $15.68 \pm 0.16$ & $99.425 \pm 0.050 \%$ & $16.32 \pm 0.10$ & $98.495 \pm 0.059 \%$ \\
+	\hline
+	C (15) & $24.07 \pm 0.14$ & $99.426 \pm 0.050 \%$ & $25.05 \pm 0.13$ & $98.502 \pm 0.060 \%$ \\
+	\hline
+	R (100) & $0.329 \pm 0.002$ & $97.838 \pm 0.129 \%$ & $0.329 \pm 0.002$ & $97.264 \pm 0.073 \%$ \\
+	\hline
+	GM & $1.42 \pm 0.01$ & $99.419 \pm 0.052 \%$ & $1.49 \pm 0.01$ & $98.438 \pm 0.075 \%$ \\
+	\hline
+	P & $0.0575 \pm 0.0006$ & $97.098 \pm 0.400 \%$ & $0.0583 \pm 0.005$ & $96.881 \pm 0.148 \%$ \\
+	\hline
+	GA (100, 20) & $6.79 \pm 0.10$ & $99.054 \pm 0.081 \%$ & $8.25 \pm 0.03$ & $97.872 \pm 0.069 \%$ \\
+	\hline
+	GA (200, 25) & $16.61 \pm 0.23$ & $99.131 \pm 0.073 \%$ & $20.50 \pm 0.42$ & $97.952 \pm 0.059 \%$ \\
+	\hline
+	SA (100, 0.01) & $1.89 \pm 0.03$ & $97.741 \pm 0.197 \%$ & $1.89 \pm 0.01$ & $97.239 \pm 0.092 \%$ \\
+	\hline
+	SA (100, 0.005) & $3.77 \pm 0.04$ & $97.840 \pm 0.175 \%$ & $3.78 \pm 0.01$ & $97.286 \pm 0.072 \%$ \\
+	\hline
+\end{tabular}
 
 \vspace{16pt}
 
-Results for 25 winners:
+Results for 200 winners:
 \\
 
-
+\begin{tabular}{| l | r | r | r | r |}
+	\hline
+	\multicolumn{5}{| c |}{$n = 400$, $m = 300$, $K = 200$, Square function} \\
+	\hline
+	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{Polya} & \multicolumn{2}{c |}{IC} \\
+	\cline{2-5}
+	& \multicolumn{1}{c |}{time [s]} & \multicolumn{1}{c |}{quality} & \multicolumn{1}{c |}{time [s]} & \multicolumn{1}{c |}{quality} \\
+	\hline
+	C (10) & $50.19 \pm 0.38$ & $100.000 \pm 0.000 \%$ & $50.54 \pm 0.27$ & $99.9536 \pm 0.0099 \%$ \\
+	\hline
+	C (15) & $79.44 \pm 0.60$ & $100.000 \pm 0.000 \%$ & $81.67 \pm 0.62$ & $99.9537 \pm 0.0097 \%$ \\
+	\hline
+	R (100) & $1.29 \pm 0.01$ & $99.776 \pm 0.016 \%$ & $1.29 \pm 0.00$ & $99.737 \pm 0.011 \%$ \\
+	\hline
+	GM & $4.04 \pm 0.02$ & $100.000 \pm 0.000 \%$ & $4.00 \pm 0.01$ & $99.952 \pm 0.010 \%$ \\
+	\hline
+	P & $0.134 \pm 0.002$ & $99.669 \pm 0.044 \%$ & $0.134 \pm 0.002$ & $99.672 \pm 0.031 \%$ \\
+	\hline
+	GA (100, 20) & $27.20 \pm 0.97$ & $100.000 \pm 0.000 \%$ & $30.67 \pm 0.08$ & $99.950 \pm 0.015 \%$ \\
+	\hline
+	GA (200, 25) & $67.72 \pm 2.41$ & $100.000 \pm 0.000 \%$ & $76.45 \pm 0.21$ & $99.953 \pm 0.014 \%$ \\
+	\hline
+	SA (100, 0.01) & $7.08 \pm 0.04$ & $99.757 \pm 0.021 \%$ & $7.05 \pm 0.02$ & $99.724 \pm 0.017 \%$ \\
+	\hline
+	SA (100, 0.005) & $14.16 \pm 0.06$ & $99.773 \pm 0.024 \%$ & $14.10 \pm 0.03$ & $99.736 \pm 0.014 \%$ \\
+	\hline
+\end{tabular}
 
 \vspace{16pt}
 
+\begin{tabular}{| l | r | r | r | r |}
+	\hline
+	\multicolumn{5}{| c |}{$n = 400$, $m = 300$, $K = 200$, Strange function} \\
+	\hline
+	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{Polya} & \multicolumn{2}{c |}{IC} \\
+	\cline{2-5}
+	& \multicolumn{1}{c |}{time [s]} & \multicolumn{1}{c |}{quality} & \multicolumn{1}{c |}{time [s]} & \multicolumn{1}{c |}{quality} \\
+	\hline
+	C (10) & $49.33 \pm 0.35$ & $100.000 \pm 0.000 \%$ & $50.04 \pm 0.20$ & $99.9538 \pm 0.0091 \%$ \\
+	\hline
+	C (15) & $78.57 \pm 0.50$ & $100.000 \pm 0.000 \%$ & $80.79 \pm 0.33$ & $99.9542 \pm 0.0097 \%$ \\
+	\hline
+	R (100) & $1.30 \pm 0.00$ & $99.776 \pm 0.014 \%$ & $1.30 \pm 0.00$ & $99.741 \pm 0.011 \%$ \\
+	\hline
+	GM & $4.05 \pm 0.01$ & $100.000 \pm 0.000 \%$ & $4.00 \pm 0.01$ & $99.953 \pm 0.010 \%$ \\
+	\hline
+	P & $0.134 \pm 0.001$ & $99.672 \pm 0.043 \%$ & $0.134 \pm 0.001$ & $99.676 \pm 0.031 \%$ \\
+	\hline
+	GA (100, 20) & $27.29 \pm 0.97$ & $100.000 \pm 0.000 \%$ & $30.77 \pm 0.05$ & $99.950 \pm 0.015 \%$ \\
+	\hline
+	GA (200, 25) & $67.79 \pm 2.41$ & $100.000 \pm 0.000 \%$ & $77.74 \pm 0.41$ & $99.954 \pm 0.014 \%$ \\
+	\hline
+	SA (100, 0.01) & $7.11 \pm 0.04$ & $99.755 \pm 0.026 \%$ & $7.24 \pm 0.05$ & $99.727 \pm 0.017 \%$ \\
+	\hline
+	SA (100, 0.005) & $14.22 \pm 0.07$ & $99.773 \pm 0.022 \%$ & $14.32 \pm 0.11$ & $99.736 \pm 0.016 \%$ \\
+	\hline
+\end{tabular}
+
+\subsubsection{Conclusions}
+
+Conclusions from large instance results:
+\begin{enumerate}
+	\item These test cases turned out to be very easy for tested algorithms - all solutions are of very high quality compared to upper bound. The reason of this is very high number of winners, which allows many agents to have their favourite alternative assigned, even for data generated with IC model. For Polya and 200 winners, many algorithms always return an optimal solution which has the same total satisfaction as upper bound - allowing 200 out of 300 candidates to win and using Polya model allows for every agent to be maximally satisfied in virtually every case.
+	\item Relation between Algorithm C, Algorithm GM and Algorithm P remains the same as for the middle instance.
+	\item For such large data sets, Algorithm R may become an option, as it runs relatively fast (not as fast as Algorithm P though) and returns solution of quality between Algorithm GM and Algorithm R. It is possible that this algorithm gets relatively better for even larger data sets.
+	\item Genetic Algorithm and Simulated Annealing are not a viable option for small number of winners ($K = 50$), as they both return worse results than Algorithm GM and they run slower. However, Genetic Algorithm may be useful for large data sets where there is a lot of winners. For $K = 200$, it becomes similar to Algorithm GM in means of both execution time and solution quality.
+\end{enumerate}
+
+\subsection{Conclusions summary}
+
+These are final conclusions regarding evaluation of algorithms for Chamberlin-Courant Problem based on all executed test cases.
+
+\begin{enumerate}
+	\item There is no significant difference between results for Square and Strange satisfaction functions. It seems that the most important part of the satisfaction function is near the top of the preference order, because middle and bottom alternatives are rarely selected and differences between them are not very important, and both Square and Strange functions are similar for the top alternatives. Results could be much different for some kind of exponential function.
+	\item Algorithm C and Algorithm GM are viable for every tested case. One should use Algorithm C to get solution with the best quality possible (potentially increasing input parameter $d$ for a chance to find an even better solution). Algorithm GM always returns slightly weaker result than Algorithm C, but it runs much faster, so it may be used as a compromise between execution time and solution quality.
+	\item Algorithm P returns substantially weaker solutions than Algorithm GM, but it runs extremely fast. It may be used if solution does not have to be good but not necessarily close to optimal (e.g., in recommendation systems), but there is a need to obtain it as fast as possible. This algorithm should not be used for small data sets, because the solution may be of very low quality, but this should not be a problem, because for small instances Algorithms GM runs very fast too.
+	\item For large cases, Algorithm R can provide good results with moderate execution time. However, due to high level of randomization, this algorithm should only be used to supplement another one, so it can possibly find a better solution.
+	\item It is possible that Genetic Algorithm may be a good option for large cases with high winner count, but it requires further research.
+\end{enumerate}
