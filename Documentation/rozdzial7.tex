@@ -1,4 +1,16 @@
 \chapter{Summary}
 \label{cha:testy}
 
+We have found that for both Chamberlin-Courant and Monroe problems there are algorithms that perform very well under nonlinear satisfaction function. Algorithm C is especially interesting (for both problems), because it attains solutions of very good quality for every tested data set (very often close to optimal or upper bound) and at the same time it can be tuned (by changing its input parameter) to try to find even better solution if we can afford longer execution time.
 
+At the same time, there are excellent algorithms that can be used if we want good but not necessarily best possible solution, but we have limited time. This may be the case for some software systems.
+
+We have shown that heuristic algorithms (Genetic Algorithm and Simulated Annealing) do not fit CC and Monroe problems well. They can provide solutions of good quality, but execution time is too long.
+
+\section{Further Research}
+
+These are main areas of potential further research:
+\begin{enumerate}
+	\item Using different satisfaction function could change the results. We have not tested algorithms against any function where differences between top alternatives would be much greater (e.g., exponential function). It would surely make quality of solutions much lower compared to upper bound and could potentially favour different algorithms.
+	\item Testing algorithms against different combinations of number of alternatives, number of agents and number of winner could also provide some interesting data. As we have seen for the largest tested instance, results vary a lot when ratio between these three parameters is adjusted.
+\end{enumerate}

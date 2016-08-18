@@ -61,6 +61,8 @@ Two different satisfaction functions were used, each of them trying to model rea
 \end{gather}
 \\
 
+\newpage
+
 Example of function for $m = 20$:
 
 \begin{center}
@@ -359,6 +361,8 @@ Results for 10 winners:
 
 \vspace{16pt}
 
+\newpage
+
 Results for 25 winners:
 \\
 
@@ -420,6 +424,8 @@ Results for 25 winners:
 	\hline
 \end{tabular}
 
+\newpage
+
 \subsubsection{Conclusions}
 
 Conclusions from medium instance results:
@@ -453,6 +459,8 @@ Evaluated algorithms:
 	\item Simulated Annealing ($T_{start} = 100, c = 0.01$)
 	\item Simulated Annealing ($T_{start} = 100, c = 0.005$)
 \end{itemize}
+
+\newpage
 
 Results for 50 winners:
 \\
@@ -516,6 +524,8 @@ Results for 50 winners:
 \end{tabular}
 
 \vspace{16pt}
+
+\newpage
 
 Results for 200 winners:
 \\
@@ -598,4 +608,457 @@ These are final conclusions regarding evaluation of algorithms for Chamberlin-Co
 	\item Algorithm P returns substantially weaker solutions than Algorithm GM, but it runs extremely fast. It may be used if solution does not have to be good but not necessarily close to optimal (e.g., in recommendation systems), but there is a need to obtain it as fast as possible. This algorithm should not be used for small data sets, because the solution may be of very low quality, but this should not be a problem, because for small instances Algorithms GM runs very fast too.
 	\item For large cases, Algorithm R can provide good results with moderate execution time. However, due to high level of randomization, this algorithm should only be used to supplement another one, so it can possibly find a better solution.
 	\item It is possible that Genetic Algorithm may be a good option for large cases with high winner count, but it requires further research.
+\end{enumerate}
+
+\section{Monroe Problem Evaluation}
+
+In this section we present evaluation results for Monroe problem.
+
+\subsection{Small instance}
+
+Results for small instance ($n = 30$, $m = 10$). Results are compared to optimal results.
+\\
+
+Evaluated algorithms:
+\begin{itemize}
+	\item Algorithm A
+	\item Algorithm B
+	\item Algorithm C ($d = 10$)
+	\item Algorithm C ($d = 15$)
+	\item Algorithm R ($k = 100$)
+	\item Algorithm AR ($e = 0.215$, $\lambda = 0.75$)
+	\item Algorithm AR ($e = 0.015$, $\lambda = 0.9$)
+	\item Algorithm GM
+	\item Genetic Algorithm ($I = 15, c = 5$)
+	\item Simulated Annealing ($T_{start} = 100, c = 0.1$)
+\end{itemize}
+
+\newpage
+
+Results for 2 winners:
+\\
+
+\begin{tabular}{| l | r | r | r | r |}
+	\hline
+	\multicolumn{5}{| c |}{$n = 30$, $m = 10$, $K = 2$, Square function} \\
+	\hline
+	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{Polya} & \multicolumn{2}{c |}{IC} \\
+	\cline{2-5}
+	& \multicolumn{1}{c |}{time [ms]} & \multicolumn{1}{c |}{quality} & \multicolumn{1}{c |}{time [ms]} & \multicolumn{1}{c |}{quality} \\
+	\hline
+	A & $0.18 \pm 0.03$ & $95.320 \pm 2.247 \%$ & $0.18 \pm 0.02$ & $94.738 \pm 2.321 \%$ \\
+	\hline
+	B & $0.61 \pm 0.08$ & $99.457 \pm 1.296 \%$ & $0.77 \pm 0.75$ & $99.046 \pm 1.710 \%$ \\
+	\hline
+	C (10) & $5.26 \pm 0.57$ & $100.000 \pm 0.000 \%$ & $5.36 \pm 0.88$ & $99.9967 \pm 0.0271 \%$ \\
+	\hline
+	C (15) & $7.39 \pm 0.57$ & $100.000 \pm 0.000 \%$ & $7.56 \pm 0.83$ & $99.9994 \pm 0.0063 \%$ \\
+	\hline
+	R (100) & $44.60 \pm 6.59$ & $99.376 \pm 2.374 \%$ & $43.26 \pm 4.16$ & $99.522 \pm 1.428 \%$ \\
+	\hline
+	AR (0.215, 0.75) & $20.75 \pm 2.29$ & $100.000 \pm 0.000 \%$ & $18.90 \pm 0.23$ & $100.000 \pm 0.000 \%$ \\
+	\hline
+	AR (0.015, 0.9) & $24.18 \pm 4.62$ & $100.000 \pm 0.000 \%$ & $21.90 \pm 5.97$ & $100.000 \pm 0.000 \%$ \\
+	\hline
+	GM & $6.46 \pm 1.22$ & $100.000 \pm 0.000 \%$ & $6.13 \pm 0.91$ & $99.833 \pm 0.640 \%$ \\
+	\hline
+	GA (15, 5) & $34.84 \pm 3.87$ & $99.352 \pm 2.259 \%$ & $34.97 \pm 4.21$ & $99.153 \pm 2.040 \%$ \\
+	\hline
+	SA (100, 0.1) & $19.11 \pm 0.68$ & $98.053 \pm 3.442 \%$ & $19.07 \pm 0.71$ & $98.482 \pm 2.579 \%$ \\
+	\hline
+\end{tabular}
+
+\vspace{16pt}
+
+\begin{tabular}{| l | r | r | r | r |}
+	\hline
+	\multicolumn{5}{| c |}{$n = 30$, $m = 10$, $K = 2$, Strange function} \\
+	\hline
+	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{Polya} & \multicolumn{2}{c |}{IC} \\
+	\cline{2-5}
+	& \multicolumn{1}{c |}{time [ms]} & \multicolumn{1}{c |}{quality} & \multicolumn{1}{c |}{time [ms]} & \multicolumn{1}{c |}{quality} \\
+	\hline
+	A & $0.26 \pm 0.62$ & $96.872 \pm 1.604 \%$ & $0.19 \pm 0.04$ & $95.500 \pm 1.679 \%$ \\
+	\hline
+	B & $0.61 \pm 0.08$ & $99.581 \pm 1.019 \%$ & $0.61 \pm 0.08$ & $99.214 \pm 1.176 \%$ \\
+	\hline
+	C (10) & $5.41 \pm 0.77$ & $100.000 \pm 0.000 \%$ & $5.27 \pm 0.39$ & $99.980 \pm 0.152 \%$ \\
+	\hline
+	C (15) & $7.50 \pm 0.97$ & $100.000 \pm 0.000 \%$ & $7.63 \pm 1.42$ & $99.994 \pm 0.0062 \%$ \\
+	\hline
+	R (100) & $42.71 \pm 3.24$ & $99.545 \pm 2.078 \%$ & $43.32 \pm 1.69$ & $99.830 \pm 0.625 \%$ \\
+	\hline
+	AR (0.215, 0.75) & $22.14 \pm 5.08$ & $100.000 \pm 0.000 \%$ & $22.55 \pm 5.37$ & $100.000 \pm 0.000 \%$ \\
+	\hline
+	AR (0.015, 0.9) & $21.90 \pm 4.91$ & $100.000 \pm 0.000 \%$ & $22.62 \pm 5.53$ & $100.000 \pm 0.000 \%$ \\
+	\hline
+	GM & $5.94 \pm 0.62$ & $100.000 \pm 0.000 \%$ & $5.96 \pm 0.39$ & $99.847 \pm 0.524 \%$ \\
+	\hline
+	GA (15, 5) & $34.90 \pm 2.59$ & $99.662 \pm 1.274 \%$ & $35.40 \pm 4.34$ & $99.546 \pm 1.256 \%$ \\
+	\hline
+	SA (100, 0.1) & $19.97 \pm 2.94$ & $98.416 \pm 2.649 \%$ & $19.57 \pm 1.23$ & $99.161 \pm 1.692 \%$ \\
+	\hline
+\end{tabular}
+
+\vspace{16pt}
+
+\newpage
+
+Results for 5 winners:
+\\
+
+\begin{tabular}{| l | r | r | r | r |}
+	\hline
+	\multicolumn{5}{| c |}{$n = 30$, $m = 10$, $K = 5$, Square function} \\
+	\hline
+	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{Polya} & \multicolumn{2}{c |}{IC} \\
+	\cline{2-5}
+	& \multicolumn{1}{c |}{time [ms]} & \multicolumn{1}{c |}{quality} & \multicolumn{1}{c |}{time [ms]} & \multicolumn{1}{c |}{quality} \\
+	\hline
+	A & $0.25 \pm 0.02$ & $94.065 \pm 2.307 \%$ & $0.28 \pm 0.09$ & $95.567 \pm 2.081 \%$ \\
+	\hline
+	B & $0.91 \pm 0.30$ & $99.296 \pm 1.231 \%$ & $0.81 \pm 0.06$ & $99.017 \pm 1.443 \%$ \\
+	\hline
+	C (10) & $7.78 \pm 1.64$ & $99.991 \pm 0.070 \%$ & $7.77 \pm 1.01$ & $99.918 \pm 0.366 \%$ \\
+	\hline
+	C (15) & $11.43 \pm 1.97$ & $100.000 \pm 0.000 \%$ & $11.56 \pm 1.56$ & $99.974 \pm 0.112 \%$ \\
+	\hline
+	R (100) & $55.91 \pm 5.30$ & $97.678 \pm 2.753 \%$ & $55.28 \pm 4.34$ & $99.014 \pm 1.201 \%$ \\
+	\hline
+	AR (0.215, 0.75) & $137.13 \pm 5.69$ & $100.000 \pm 0.000 \%$ & $136.24 \pm 6.32$ & $100.000 \pm 0.000 \%$ \\
+	\hline
+	AR (0.015, 0.9) & $154.83 \pm 25.07$ & $100.000 \pm 0.000 \%$ & $153.26 \pm 23.78$ & $100.000 \pm 0.000 \%$ \\
+	\hline
+	GM & $11.20 \pm 1.23$ & $99.946 \pm 0.240 \%$ & $11.41 \pm 1.94$ & $99.841 \pm 0.392 \%$ \\
+	\hline
+	GA (15, 5) & $44.28 \pm 4.15$ & $99.110 \pm 1.819 \%$ & $45.07 \pm 6.11$ & $99.276 \pm 1.158 \%$ \\
+	\hline
+	SA (100, 0.1) & $24.49 \pm 1.76$ & $95.158 \pm 3.961 \%$ & $24.62 \pm 2.86$ & $98.022 \pm 1.707 \%$ \\
+	\hline
+\end{tabular}
+
+\vspace{16pt}
+
+\begin{tabular}{| l | r | r | r | r |}
+	\hline
+	\multicolumn{5}{| c |}{$n = 30$, $m = 10$, $K = 5$, Strange function} \\
+	\hline
+	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{Polya} & \multicolumn{2}{c |}{IC} \\
+	\cline{2-5}
+	& \multicolumn{1}{c |}{time [ms]} & \multicolumn{1}{c |}{quality} & \multicolumn{1}{c |}{time [ms]} & \multicolumn{1}{c |}{quality} \\
+	\hline
+	A & $0.26 \pm 0.01$ & $96.012 \pm 0.163 \%$ & $0.27 \pm 0.03$ & $96.864 \pm 1.589 \%$ \\
+	\hline
+	B & $0.79 \pm 0.07$ & $99.390 \pm 1.017 \%$ & $0.80 \pm 0.09$ & $99.251 \pm 0.997 \%$ \\
+	\hline
+	C (10) & $8.18 \pm 1.87$ & $99.994 \pm 0.063 \%$ & $7.83 \pm 1.06$ & $99.939 \pm 0.237 \%$ \\
+	\hline
+	C (15) & $11.37 \pm 2.00$ & $99.989 \pm 0.080 \%$ & $11.04 \pm 0.48$ & $99.955 \pm 0.209 \%$ \\
+	\hline
+	R (100) & $55.31 \pm 4.24$ & $98.508 \pm 1.602 \%$ & $54.57 \pm 4.17$ & $99.217 \pm 0.849 \%$ \\
+	\hline
+	AR (0.215, 0.75) & $160.17 \pm 28.16$ & $100.000 \pm 0.000 \%$ & $156.45 \pm 26.68$ & $100.000 \pm 0.000 \%$ \\
+	\hline
+	AR (0.015, 0.9) & $157.34 \pm 26.41$ & $100.000 \pm 0.000 \%$ & $159.08 \pm 29.08$ & $100.000 \pm 0.000 \%$ \\
+	\hline
+	GM & $10.96 \pm 1.07$ & $99.971 \pm 0.158 \%$ & $11.15 \pm 1.74$ & $99.921 \pm 0.200 \%$ \\
+	\hline
+	GA (15, 5) & $44.08 \pm 4.53$ & $99.458 \pm 1.048 \%$ & $44.45 \pm 4.90$ & $99.601 \pm 0.715 \%$ \\
+	\hline
+	SA (100, 0.1) & $24.84 \pm 3.14$ & $96.261 \pm 2.710 \%$ & $24.70 \pm 2.93$ & $98.591 \pm 1.111 \%$ \\
+	\hline
+\end{tabular}
+
+\subsubsection{Conclusions}
+
+Conclusions from small instance results:
+\begin{enumerate}
+	\item For most cases algorithms generally return a bit higher satisfaction for the Strange function than for the Square function. It is caused by the fact that Square function is decreasing relatively faster for top alternatives (as described in section 5.4.2.1).
+	\item Algorithm AR gives the best quality of solution among tested algorithms for every case (it always returns an optimal solution), but it is very slow (extremely slow for 5 winners case). It remains to be seen it is viable for use with larger problem instances.
+	\item Algorithm C returns almost as good quality of solution as Algorithm AR and is much faster. For this problem size, it often returns an optimal solution, or the one very close to optimal. Increasing number of stored functions ($d$) can improve the result slightly.
+	\item Execution times for Algorithm GM are very similar to Algorithm C and they are only of slightly lower quality. However, execution times are expected to rise fast when problem size is increased, because this algorithm requires many min-flow/max-cost function calls, which are very time-consuming.
+	\item Quality of solution generated by Algorithm B is always significantly lower than the one generated by Algorithm C, but the algorithm itself is much faster (by one order of magnitude).
+	\item For this problem size, Algorithm A is the fastest algorithm, but its quality of solution is very low.
+	\item Algorithm R is not a good choice for this problem size, because it runs much longer than Algorithm C and returns worse results.
+	\item Genetic Algorithm and Simulated Annealing perform really poorly. It was expected, as they require many calls of min-cost/max-flow function and are much better suited for CC problem.
+	\item Results seem to be very similar for Polya and IC for such small instance. This problem size seems to be too small to make Polya results less random.
+\end{enumerate}
+
+\subsection{Medium instance}
+
+Results for medium instance ($n = 400$, $m = 50$). Results are compared to upper bound.
+\\
+
+Evaluated algorithms:
+\begin{itemize}
+	\item Algorithm A
+	\item Algorithm B
+	\item Algorithm C ($d = 10$)
+	\item Algorithm C ($d = 15$)
+	\item Algorithm R ($k = 100$)
+	\item Algorithm AR ($e = 0.215$, $\lambda = 0.75$)
+\end{itemize}
+
+\newpage
+
+Algorithm GM, Genetic Algorithm and Simulated Annealing have been omitted from results for this case, as their execution time is too long. These are example results for one execution of each algorithm (10 winners, Polya, Square function):
+\\
+
+\begin{tabular}{| l | c | c |}
+	\hline
+	algorithm & time [s] & quality \\
+	\hline
+	GM & $207.70$ & $95.467 \%$ \\
+	\hline
+	GA (100, 20) & $>300$ (timeout) & - \\
+	\hline
+	SA (100, 0.01) & $>300$ (timeout) & - \\
+	\hline
+\end{tabular}
+
+\vspace{16pt}
+
+Results for 10 winners:
+\\
+
+\begin{tabular}{| l | r | r | r | r |}
+	\hline
+	\multicolumn{5}{| c |}{$n = 400$, $m = 50$, $K = 10$, Square function} \\
+	\hline
+	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{Polya} & \multicolumn{2}{c |}{IC} \\
+	\cline{2-5}
+	& \multicolumn{1}{c |}{time [s]} & \multicolumn{1}{c |}{quality} & \multicolumn{1}{c |}{time [s]} & \multicolumn{1}{c |}{quality} \\
+	\hline
+	A & $0.0827 \pm 0.0065$ & $90.515 \pm 0.843 \%$ & $0.0814 \pm 0.0041$ & $83.825 \pm 0.417 \%$ \\
+	\hline
+	B & $0.860 \pm 0.023$ & $95.529 \pm 0.526 \%$ & $0.848 \pm 0.014$ & $88.975 \pm 0.400 \%$ \\
+	\hline
+	C (10) & $9.91 \pm 0.44$ & $95.684 \pm 0.504 \%$ & $9.76 \pm 0.42$ & $89.390 \pm 0.317 \%$ \\
+	\hline
+	C (15) & $14.83 \pm 0.62$ & $95.692 \pm 0.505 \%$ & $14.55 \pm 0.53$ & $89.442 \pm 0.305 \%$ \\
+	\hline
+	R (100) & $7.88 \pm 0.07$ & $84.923 \pm 2.476 \%$ & $7.68 \pm 0.06$ & $87.006 \pm 0.400 \%$ \\
+	\hline
+	AR (0.215, 0.75) & $11.87 \pm 0.07$ & $90.536 \pm 0.834 \%$ & $11.52 \pm 0.07$ & $87.011 \pm 0.406 \%$ \\
+	\hline
+\end{tabular}
+
+\vspace{16pt}
+
+\begin{tabular}{| l | r | r | r | r |}
+	\hline
+	\multicolumn{5}{| c |}{$n = 400$, $m = 50$, $K = 10$, Strange function} \\
+	\hline
+	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{Polya} & \multicolumn{2}{c |}{IC} \\
+	\cline{2-5}
+	& \multicolumn{1}{c |}{time [s]} & \multicolumn{1}{c |}{quality} & \multicolumn{1}{c |}{time [s]} & \multicolumn{1}{c |}{quality} \\
+	\hline
+	A & $0.0796 \pm 0.0035$ & $92.016 \pm 0.696 \%$ & $0.0840 \pm 0.0077$ & $86.296 \pm 0.324 \%$ \\
+	\hline
+	B & $0.849 \pm 0.016$ & $95.823 \pm 0.498 \%$ & $0.854 \pm 0.017$ & $90.070 \pm 0.343 \%$ \\
+	\hline
+	C (10) & $9.86 \pm 0.42$ & $95.966 \pm 0.457 \%$ & $9.70 \pm 0.43$ & $90.402 \pm 0.271 \%$ \\
+	\hline
+	C (15) & $14.75 \pm 0.51$ & $95.975 \pm 0.466 \%$ & $14.57 \pm 0.55$ & $90.449 \pm 0.271 \%$ \\
+	\hline
+	R (100) & $7.86 \pm 0.06$ & $87.006 \pm 2.160 \%$ & $7.71 \pm 0.07$ & $88.384 \pm 0.325 \%$ \\
+	\hline
+	AR (0.215, 0.75) & $11.85 \pm 0.07$ & $92.023 \pm 0.694 \%$ & $11.66 \pm 0.09$ & $88.483 \pm 0.316 \%$ \\
+	\hline
+\end{tabular}
+
+\vspace{16pt}
+
+\newpage
+
+Results for 25 winners:
+\\
+
+\begin{tabular}{| l | r | r | r | r |}
+	\hline
+	\multicolumn{5}{| c |}{$n = 400$, $m = 50$, $K = 25$, Square function} \\
+	\hline
+	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{Polya} & \multicolumn{2}{c |}{IC} \\
+	\cline{2-5}
+	& \multicolumn{1}{c |}{time [s]} & \multicolumn{1}{c |}{quality} & \multicolumn{1}{c |}{time [s]} & \multicolumn{1}{c |}{quality} \\
+	\hline
+	A & $0.171 \pm 0.005$ & $93.475 \pm 0.721 \%$ & $0.169 \pm 0.006$ & $93.920 \pm 0.296 \%$ \\
+	\hline
+	B & $1.03 \pm 0.02$ & $97.814 \pm 0.363 \%$ & $1.03 \pm 0.02$ & $97.023 \pm 0.139 \%$ \\
+	\hline
+	C (10) & $12.00 \pm 0.56$ & $97.957 \pm 0.325 \%$ & $12.04 \pm 0.53$ & $97.165 \pm 0.131 \%$ \\
+	\hline
+	C (15) & $18.04 \pm 0.72$ & $97.966 \pm 0.324 \%$ & $18.11 \pm 0.69$ & $97.181 \pm 0.127 \%$ \\
+	\hline
+	R (100) & $8.81 \pm 0.08$ & $91.197 \pm 1.900 \%$ & $8.56 \pm 0.05$ & $96.111 \pm 0.150 \%$ \\
+	\hline
+	AR (0.215, 0.75) & $13.81 \pm 0.72$ & $93.572 \pm 0.705 \%$ & $13.02 \pm 0.08$ & $96.144 \pm 0.133 \%$ \\
+	\hline
+\end{tabular}
+
+\vspace{16pt}
+
+\begin{tabular}{| l | r | r | r | r |}
+	\hline
+	\multicolumn{5}{| c |}{$n = 400$, $m = 50$, $K = 25$, Strange function} \\
+	\hline
+	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{Polya} & \multicolumn{2}{c |}{IC} \\
+	\cline{2-5}
+	& \multicolumn{1}{c |}{time [s]} & \multicolumn{1}{c |}{quality} & \multicolumn{1}{c |}{time [s]} & \multicolumn{1}{c |}{quality} \\
+	\hline
+	A & $0.171 \pm 0.008$ & $94.525 \pm 0.597 \%$ & $0.169 \pm 0.006$ & $94.754 \pm 0.225 \%$ \\
+	\hline
+	B & $1.04 \pm 0.02$ & $97.936 \pm 0.345 \%$ & $1.04 \pm 0.02$ & $97.200 \pm 0.141 \%$ \\
+	\hline
+	C (10) & $12.04 \pm 0.56$ & $98.068 \pm 0.306 \%$ & $12.11 \pm 0.55$ & $97.334 \pm 0.126 \%$ \\
+	\hline
+	C (15) & $18.04 \pm 0.66$ & $98.080 \pm 0.306 \%$ & $18.08 \pm 0.67$ & $97.349 \pm 0.121 \%$ \\
+	\hline
+	R (100) & $8.82 \pm 0.07$ & $92.322 \pm 1.405 \%$ & $8.58 \pm 0.09$ & $96.345 \pm 0.144 \%$ \\
+	\hline
+	AR (0.215, 0.75) & $13.48 \pm 0.13$ & $94.542 \pm 0.583 \%$ & $13.06 \pm 0.09$ & $96.393 \pm 0.141 \%$ \\
+	\hline
+\end{tabular}
+
+\subsubsection{Conclusions}
+
+Conclusions from medium instance results:
+\begin{enumerate}
+	\item Generally, algorithms achieve much higher solution quality for data generated with Polya (especially with 10 winners). This is an expected behaviour, as with Polya it is easier to include more candidates from the top in the solution. The only exception to this rule is Algorithm R. It may be caused by high randomization of IC data, which causes random solutions to be relatively better.
+	\item For this problem size, Algorithm C generated the best quality solutions. Increasing $d$ improves the solution slightly, so it may be possible to increase it even more to get the better solution.
+	\item Algorithm B results are not far from Algorithm C results in terms of solution quality, but Algorithm B runs faster by an order of magnitude.
+	\item Algorithm A returns much weaker solutions than other algorithms, but it is very fast. Such solution could still be viable for some applications if execution time is more important than optimal result.
+	\item Algorithm AR seems useless in this configuration - other algorithms give better solutions faster. Maybe changing parameters could help, but it would further increase execution time.
+	\item Solution quality is generally much higher compared to upper bound when there are more winners - results for $K = 25$ are surprisingly good.
+\end{enumerate}
+
+\subsection{Large instance}
+
+Results for large instance ($n = 400$, $m = 300$). Results are compared to upper bound.
+\\
+
+Evaluated algorithms:
+\begin{itemize}
+	\item Algorithm A
+	\item Algorithm B
+	\item Algorithm C ($d = 5$)
+	\item Algorithm R ($k = 10$)
+	\item Algorithm AR ($e = 0.215$, $\lambda = 0.75$)
+\end{itemize}
+
+Parameters of algorithms C and R were adjusted to maintain reasonable execution time.
+\\
+
+Results for 50 winners:
+\\
+
+\begin{tabular}{| l | r | r | r | r |}
+	\hline
+	\multicolumn{5}{| c |}{$n = 400$, $m = 300$, $K = 50$, Square function} \\
+	\hline
+	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{Polya} & \multicolumn{2}{c |}{IC} \\
+	\cline{2-5}
+	& \multicolumn{1}{c |}{time [s]} & \multicolumn{1}{c |}{quality} & \multicolumn{1}{c |}{time [s]} & \multicolumn{1}{c |}{quality} \\
+	\hline
+	A & $7.77 \pm 0.04$ & $97.894 \pm 0.120 \%$ & $7.66 \pm 0.03$ & $96.944 \pm 0.127 \%$ \\
+	\hline
+	B & $8.81 \pm 0.06$ & $99.103 \pm 0.062 \%$ & $8.67 \pm 0.04$ & $98.170 \pm 0.077 \%$ \\
+	\hline
+	C (5) & $45.65 \pm 0.50$ & $99.131 \pm 0.059 \%$ & $45.17 \pm 0.40$ & $98.224 \pm 0.063 \%$ \\
+	\hline
+	R (10) & $10.41 \pm 0.10$ & $93.630 \pm 0.915 \%$ & $10.11 \pm 0.09$ & $96.724 \pm 0.089 \%$ \\
+	\hline
+	AR (0.215, 0.75) & $23.41 \pm 0.14$ & $97.894 \pm 0.120 \%$ & $22.84 \pm 0.19$ & $96.954 \pm 0.120 \%$ \\
+	\hline
+\end{tabular}
+
+\vspace{16pt}
+
+\begin{tabular}{| l | r | r | r | r |}
+	\hline
+	\multicolumn{5}{| c |}{$n = 400$, $m = 300$, $K = 50$, Strange function} \\
+	\hline
+	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{Polya} & \multicolumn{2}{c |}{IC} \\
+	\cline{2-5}
+	& \multicolumn{1}{c |}{time [s]} & \multicolumn{1}{c |}{quality} & \multicolumn{1}{c |}{time [s]} & \multicolumn{1}{c |}{quality} \\
+	\hline
+	A & $7.74 \pm 0.04$ & $98.048 \pm 0.104 \%$ & $7.60 \pm 0.04$ & $97.175 \pm 0.106 \%$ \\
+	\hline
+	B & $8.78 \pm 0.05$ & $99.118 \pm 0.060 \%$ & $8.58 \pm 0.02$ & $98.205 \pm 0.074 \%$ \\
+	\hline
+	C (5) & $45.95 \pm 0.58$ & $99.141 \pm 0.058 \%$ & $45.47 \pm 0.57$ & $98.258 \pm 0.063 \%$ \\
+	\hline
+	R (10) & $10.58 \pm 0.09$ & $93.955 \pm 0.670 \%$ & $10.01 \pm 0.10$ & $96.806 \pm 0.087 \%$ \\
+	\hline
+	AR (0.215, 0.75) & $23.87 \pm 0.19$ & $98.048 \pm 0.104 \%$ & $22.56 \pm 0.13$ & $97.175 \pm 0.106 \%$ \\
+	\hline
+\end{tabular}
+
+\vspace{16pt}
+
+\newpage
+
+Results for 200 winners:
+\\
+
+\begin{tabular}{| l | r | r | r | r |}
+	\hline
+	\multicolumn{5}{| c |}{$n = 400$, $m = 300$, $K = 200$, Square function} \\
+	\hline
+	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{Polya} & \multicolumn{2}{c |}{IC} \\
+	\cline{2-5}
+	& \multicolumn{1}{c |}{time [s]} & \multicolumn{1}{c |}{quality} & \multicolumn{1}{c |}{time [s]} & \multicolumn{1}{c |}{quality} \\
+	\hline
+	A & $26.23 \pm 0.11$ & $98.417 \pm 0.156 \%$ & $25.19 \pm 0.08$ & $99.423 \pm 0.053 \%$ \\
+	\hline
+	B & $28.71 \pm 0.15$ & $99.380 \pm 0.056 \%$ & $27.67 \pm 0.10$ & $99.683 \pm 0.019 \%$ \\
+	\hline
+	C (5) & $145.10 \pm 10.83$ & $99.395 \pm 0.056 \%$ & $138.29 \pm 11.62$ & $99.693 \pm 0.017 \%$ \\
+	\hline
+	R (10) & $26.06 \pm 0.25$ & $97.284 \pm 0.397 \%$ & $26.25 \pm 0.41$ & $99.320 \pm 0.028 \%$ \\
+	\hline
+	AR (0.215, 0.75) & $65.38 \pm 0.40$ & $98.417 \pm 0.155 \%$ & $65.00 \pm 0.41$ & $99.425 \pm 0.050 \%$ \\
+	\hline
+\end{tabular}
+
+\vspace{16pt}
+
+\begin{tabular}{| l | r | r | r | r |}
+	\hline
+	\multicolumn{5}{| c |}{$n = 400$, $m = 300$, $K = 200$, Square function} \\
+	\hline
+	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{Polya} & \multicolumn{2}{c |}{IC} \\
+	\cline{2-5}
+	& \multicolumn{1}{c |}{time [s]} & \multicolumn{1}{c |}{quality} & \multicolumn{1}{c |}{time [s]} & \multicolumn{1}{c |}{quality} \\
+	\hline
+	A & $25.86 \pm 0.11$ & $98.497 \pm 0.140 \%$ & $24.81 \pm 0.06$ & $99.438 \pm 0.049 \%$ \\
+	\hline
+	B & $28.30 \pm 0.12$ & $99.387 \pm 0.057 \%$ & $27.21 \pm 0.08$ & $99.686 \pm 0.019 \%$ \\
+	\hline
+	C (5) & $144.59 \pm 10.79$ & $99.402 \pm 0.055 \%$ & $138.02 \pm 11.48$ & $99.696 \pm 0.017 \%$ \\
+	\hline
+	R (10) & $25.69 \pm 0.26$ & $97.423 \pm 0.308 \%$ & $25.55 \pm 0.21$ & $99.328 \pm 0.027 \%$ \\
+	\hline
+	AR (0.215, 0.75) & $64.05 \pm 0.43$ & $98.497 \pm 0.140 \%$ & $63.16 \pm 0.51$ & $99.439 \pm 0.048 \%$ \\
+	\hline
+\end{tabular}
+
+\subsubsection{Conclusions}
+
+Conclusions from medium instance results:
+\begin{enumerate}
+	\item Quality of solution returned by algorithms for this test cases is extremely high compared to upper bound. The reason is that number of winners is very high compared to number of agents ($50/400$, $200/400$) and to the number of alternatives ($50/300$, $200/300$). Such situation allows to assign favourite alternatives to most agents, especially with data generated by Polya.
+	\item Relation between algorithms A, B and C is similar as for previous data sets, but difference between execution times of A and B is much lower, because for larger cases reassignment of agents, which is the only difference between the algorithms, becomes less significant.
+	\item There seems to be no reason to use Algorithm R or Algorithm AR for these cases.
+\end{enumerate}
+
+\subsection{Conclusions summary}
+
+These are final conclusions regarding evaluation of algorithms for Monroe Problem based on all executed test cases.
+
+\begin{enumerate}
+	\item There is no significant difference between results for Square and Strange satisfaction functions, the same as for Chamberlin-Courant problem. Using much different function, e.g. an exponential one, could potentially change the results.
+	\item Algorithm C seems to be the best and universal option to attain a very high quality solution. It can be also adjusted to one's needs by modifying number of stored functions (parameter $d$).
+	\item Algorithm B always returns significantly weaker results than Algorithm C (it is in fact Algorithm C with $d = 1$), but it is faster by an order of magnitude, so it may be seen as a trade-off between solution quality and execution time.
+	\item For small and medium cases, Algorithm A may be a good option for some appliances, as it returns result very fast. Its quality is far from optimal, but there may be some systems where it is not as important as execution time. For larger instances, it is better to use Algorithm B instead, as difference in execution time becomes relatively lower when we increase problem size.
 \end{enumerate}

@@ -1,6 +1,5 @@
 \select@language {english}
 \contentsline {chapter}{\numberline {1}Introduction}{5}
-\contentsline {section}{\numberline {1.1}Results}{6}
 \contentsline {chapter}{\numberline {2}Preliminaries}{7}
 \contentsline {section}{\numberline {2.1}Basic Notions}{7}
 \contentsline {section}{\numberline {2.2}Monroe and Chamberlin-Courant Rules}{9}
@@ -23,15 +22,24 @@
 \contentsline {subsection}{\numberline {5.2.2}Number of winners}{19}
 \contentsline {subsection}{\numberline {5.2.3}Data generation model}{20}
 \contentsline {subsection}{\numberline {5.2.4}Satisfaction function}{20}
-\contentsline {subsection}{\numberline {5.2.5}Summary}{21}
+\contentsline {subsection}{\numberline {5.2.5}Summary}{22}
 \contentsline {section}{\numberline {5.3}Test Methodology}{22}
 \contentsline {section}{\numberline {5.4}Chamberlin-Courant Problem Evaluation}{23}
 \contentsline {subsection}{\numberline {5.4.1}Small instance}{23}
 \contentsline {subsubsection}{\numberline {5.4.1.1}Conclusions}{24}
 \contentsline {subsection}{\numberline {5.4.2}Medium instance}{25}
-\contentsline {subsubsection}{\numberline {5.4.2.1}Conclusions}{27}
-\contentsline {subsection}{\numberline {5.4.3}Large instance}{28}
-\contentsline {subsubsection}{\numberline {5.4.3.1}Conclusions}{30}
-\contentsline {subsection}{\numberline {5.4.4}Conclusions summary}{31}
-\contentsline {chapter}{\numberline {6}Summary}{32}
-\contentsline {chapter}{List of Tables}{33}
+\contentsline {subsubsection}{\numberline {5.4.2.1}Conclusions}{28}
+\contentsline {subsection}{\numberline {5.4.3}Large instance}{29}
+\contentsline {subsubsection}{\numberline {5.4.3.1}Conclusions}{31}
+\contentsline {subsection}{\numberline {5.4.4}Conclusions summary}{32}
+\contentsline {section}{\numberline {5.5}Monroe Problem Evaluation}{33}
+\contentsline {subsection}{\numberline {5.5.1}Small instance}{33}
+\contentsline {subsubsection}{\numberline {5.5.1.1}Conclusions}{35}
+\contentsline {subsection}{\numberline {5.5.2}Medium instance}{36}
+\contentsline {subsubsection}{\numberline {5.5.2.1}Conclusions}{38}
+\contentsline {subsection}{\numberline {5.5.3}Large instance}{39}
+\contentsline {subsubsection}{\numberline {5.5.3.1}Conclusions}{40}
+\contentsline {subsection}{\numberline {5.5.4}Conclusions summary}{40}
+\contentsline {chapter}{\numberline {6}Summary}{42}
+\contentsline {section}{\numberline {6.1}Further Research}{42}
+\contentsline {chapter}{List of Tables}{43}
