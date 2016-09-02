@@ -3,58 +3,49 @@
 
 In this chapter we present algorithm evaluation results and conclusions.
 
-\section{Testing rig}
+\section{Testing Rig}
 
-All algorithms were run on Lenovo W530 notebook with the following hardware and software:
-\begin{itemize}
-	\item CPU: Intel Core i7-3740QM (2.7 GHz)
-	\item RAM size: 16 GB
-	\item Operating system: Windows 7 Enterprise 64-bit
-\end{itemize}
+All algorithms were run on Lenovo W530 notebook with the Intel Core i7-3740QM (2.7 GHz) CPU, 16 GB of RAM and Windows 7 Enterprise 64-bit operating system. All tests were performed under "Maximum Performance" setting.
 
-All tests were performed under "Maximum Performance" setting.
-
-\section{Test data}
+\section{Test Data}
 
 Numerous test cases were generated, varying in problem size, number of winners, generation model and satisfaction function.
 
-\subsection{Problem size}
+\subsection{Problem Size and Number of Winners}
 
-Problem size is defined by number of agents ($n$) and number of alternatives ($m$). We selected three problem sizes for testing:
+Problem size is defined by the number of agents ($n$) and the number of alternatives ($m$). We selected three problem sizes for testing:
 \begin{itemize}
-	\item Small instance: $n = 30$, $m = 10$
-	\item Medium instance: $n = 400$, $m = 50$
-	\item Large instance: $n = 400$, $m = 300$
+	\item Small instances: $n = 30$, $m = 10$
+	\item Medium instances: $n = 400$, $m = 50$
+	\item Large instances: $n = 400$, $m = 300$
 \end{itemize}
 
-\subsection{Number of winners}
-
-For each problem size, we selected two different number of winners ($K$) - the first one to take a small part of alternatives as winners (around 15-20\%) and the second one to take about half of alternatives as winners:
+For each problem size, we selected two different numbers of winners ($K$) - the first one to take a small part of alternatives as winners (around 15-20\%) and the second one to take about half of alternatives as winners:
 \begin{itemize}
-	\item Small instance: $K = 2$ or $K = 5$
-	\item Medium instance: $K = 10$ or $K = 25$
-	\item Large instance: $K = 50$ or $K = 200$
+	\item Small instances: $K = 2$ or $K = 5$
+	\item Medium instances: $K = 10$ or $K = 25$
+	\item Large instances: $K = 50$ or $K = 200$
 \end{itemize}
 
-\subsection{Data generation model}
+\subsection{Data Generation Model}
 
 Test data was generated using two different models.
 \\
 
 \noindent
-\textbf{Polya urn model} (Polya) \hspace{.1in} This model assumes we have an urn with $m$ balls in $m$ colors, each representing an alternative. We generate preferences by drawing random balls from the urn. First, we draw alternatives for first rank in each agent's preference order, then for second ranks, and so on, until the entire preference profile is drawn. After the ball is drawn, it is returned to the urn and another ball of the same color is added to the urn too, so a probability of drawing the same color in the future is increased ("strong becomes stronger"). The only constraint is that an alternative cannot be drawn for an agent for which it has been already drawn before. This model generates preference profile where some relatively small number of alternatives is preferred to all the others by most agents.
+\textbf{Modified Polya urn model (MPolya)} \hspace{.1in} This model assumes that we have an urn with $m$ balls in $m$ colors, each representing an alternative. We generate preferences by drawing random balls from the urn. First, we draw alternatives for first rank in each agent's preference order, then for second ranks, and so on, until the entire preference profile is drawn. After the ball is drawn, it is returned to the urn and another ball of the same color is added to the urn too, so a probability of drawing the same color in the future is increased ("strong becomes stronger"). The only constraint is that an alternative cannot be drawn for an agent for which it has been already drawn before. This model generates preference profile where some relatively small number of alternatives is preferred to all the others by most agents.
 \\
 
 \noindent
-\textbf{Impartial culture model} (IC) \hspace{.1in} In this model, for each agent we generate preference order independently. For each agent, every preference order (every permutation of alternatives) has equal probability of being drawn. This model generates preference profile with no clearly dominating alternatives.
+\textbf{Impartial culture model (IC)} \hspace{.1in} In this model, for each agent we generate preference order independently. For each agent, every preference order (every permutation of alternatives) has equal probability of being drawn. This model generates preference profile with no clearly dominating alternatives.
 
-\subsection{Satisfaction function}
+\subsection{Satisfaction Function}
 
 Two different satisfaction functions were used, each of them trying to model real preferences of the voters.
 \\
 
 \noindent
-\textbf{Square function} \hspace{.1in} This is simply a square function and it assumes that difference between voters in the first positions of the preference order should be higher than between the last positions (voter is more concerned with his favourite candidates, not the ones at the end of the list). The function is given as follows:
+\textbf{Square function} \hspace{.1in} This is simply a square function and it assumes that difference between voters in the first positions of the preference order should be higher than between the last positions (voter is more concerned with his favourite candidates, not the ones at the end of the list). The function is given as follows, where $m$ is the number of alternatives and $i$ is position of the alternative in the agent's preference order:
 
 \begin{gather}
 	\alpha(i) = (m - i)^{2}
@@ -63,14 +54,14 @@ Two different satisfaction functions were used, each of them trying to model rea
 
 \newpage
 
-Example of function for $m = 20$:
+Example of the function for $m = 20$:
 
 \begin{center}
 	\includegraphics[scale=0.75]{satfun1}
 \end{center}
 
 \noindent
-\textbf{Strange function} \hspace{.1in} This function assumes that for the voter the difference between two candidates from the top is the same as the difference between two candidates from the bottom, while differences between candidates from the middle of the preference order are much less significant. The function is given as follows:
+\textbf{Best-and-Worst function} \hspace{.1in} This function assumes that for the voter the difference between two candidates from the top is the same as the difference between two candidates from the bottom, while differences between candidates from the middle of the preference order are much less significant. The function is given as follows, where $m$ is the number of alternatives and $i$ is position of the alternative in the agent's preference order:
 
 \begin{gather}
 	f(x) = \frac{x^{2}+x}{2} \\
@@ -80,61 +71,61 @@ Example of function for $m = 20$:
 \end{gather}
 \\
 
-Example of function for $m = 20$:
+Example of the function for $m = 20$:
 
 \begin{center}
 	\includegraphics[scale=0.75]{satfun2}
 \end{center}
 
-\subsection{Summary}
+\subsection{Summary of Generated Election}
 
 Table below presents all generated test cases.
 
 \begin{tabular}{r | c | c | c | c | c |}
 	\# & alternatives count & agents count & winners count & generation model & satisfaction function \\
 	\hline
-	1 & \multirow{8}{*}{10} & \multirow{8}{*}{30} & \multirow{4}{*}{2} & \multirow{2}{*}{Polya} & Square \\
-	2 & & & & & Strange \\
+	1 & \multirow{8}{*}{10} & \multirow{8}{*}{30} & \multirow{4}{*}{2} & \multirow{2}{*}{MPolya} & Square \\
+	2 & & & & & Best-and-Worst \\
 	\cline{5-6}
 	3 & & & & \multirow{2}{*}{IC} & Square \\
-	4 & & & & & Strange \\
+	4 & & & & & Best-and-Worst \\
 	\cline{4-6}
-	5 & & & \multirow{4}{*}{5} & \multirow{2}{*}{Polya} & Square \\
-	6 & & & & & Strange \\
+	5 & & & \multirow{4}{*}{5} & \multirow{2}{*}{MPolya} & Square \\
+	6 & & & & & Best-and-Worst \\
 	\cline{5-6}
 	7 & & & & \multirow{2}{*}{IC} & Square \\
-	8 & & & & & Strange \\
+	8 & & & & & Best-and-Worst \\
 	\hline
-	9 & \multirow{8}{*}{50} & \multirow{8}{*}{400} & \multirow{4}{*}{10} & \multirow{2}{*}{Polya} & Square \\
-	10 & & & & & Strange \\
+	9 & \multirow{8}{*}{50} & \multirow{8}{*}{400} & \multirow{4}{*}{10} & \multirow{2}{*}{MPolya} & Square \\
+	10 & & & & & Best-and-Worst \\
 	\cline{5-6}
 	11 & & & & \multirow{2}{*}{IC} & Square \\
-	12 & & & & & Strange \\
+	12 & & & & & Best-and-Worst \\
 	\cline{4-6}
-	13 & & & \multirow{4}{*}{25} & \multirow{2}{*}{Polya} & Square \\
-	14 & & & & & Strange \\
+	13 & & & \multirow{4}{*}{25} & \multirow{2}{*}{MPolya} & Square \\
+	14 & & & & & Best-and-Worst \\
 	\cline{5-6}
 	15 & & & & \multirow{2}{*}{IC} & Square \\
-	16 & & & & & Strange \\
+	16 & & & & & Best-and-Worst \\
 	\hline
-	17 & \multirow{8}{*}{300} & \multirow{8}{*}{400} & \multirow{4}{*}{50} & \multirow{2}{*}{Polya} & Square \\
-	18 & & & & & Strange \\
+	17 & \multirow{8}{*}{300} & \multirow{8}{*}{400} & \multirow{4}{*}{50} & \multirow{2}{*}{MPolya} & Square \\
+	18 & & & & & Best-and-Worst \\
 	\cline{5-6}
 	19 & & & & \multirow{2}{*}{IC} & Square \\
-	20 & & & & & Strange \\
+	20 & & & & & Best-and-Worst \\
 	\cline{4-6}
-	21 & & & \multirow{4}{*}{200} & \multirow{2}{*}{Polya} & Square \\
-	22 & & & & & Strange \\
+	21 & & & \multirow{4}{*}{200} & \multirow{2}{*}{MPolya} & Square \\
+	22 & & & & & Best-and-Worst \\
 	\cline{5-6}
 	23 & & & & \multirow{2}{*}{IC} & Square \\
-	24 & & & & & Strange \\
+	24 & & & & & Best-and-Worst \\
 	\hline
 \end{tabular}
 \\
 
 \section{Test Methodology}
 
-For each combination of problem size and generation model 100 files were generated independently. Algorithms were evaluated against all test files for each test case. We measured execution time and solution quality (total satisfaction) which was compared with brute-force (optimal) result for small instances and upper bound (total satisfaction if every agent has his top alternative assigned) for medium and large instances. Execution time and solution quality comparison with brute-force result or upper bound are presented as an average of 100 results (with standard deviation).
+For each combination of problem size and generation model 100 elections were generated independently. Algorithms were evaluated against all the test files for each test case. We measured execution time and solution quality (total satisfaction) which was compared with brute-force (optimal) result for small instances and the upper bound (total satisfaction if every agent has his top alternative assigned) for medium and large instances. Execution time and solution quality are presented as an average of 100 results (with standard deviation).
 \\
 
 All test cases were used for both Chamberlin-Courant and Monroe problems.
@@ -148,16 +139,8 @@ In this section we present evaluation results for Chamberlin-Courant problem.
 Results for small instance ($n = 30$, $m = 10$). Results are compared to optimal results.
 \\
 
-Evaluated algorithms:
-\begin{itemize}
-	\item Algorithm C ($d = 10$)
-	\item Algorithm C ($d = 15$)
-	\item Algorithm R ($k = 100$)
-	\item Algorithm GM
-	\item Algorithm P
-	\item Genetic Algorithm ($I = 15, c = 5$)
-	\item Simulated Annealing ($T_{start} = 100, c = 0.1$)
-\end{itemize}
+Algorithms evaluated for small instance are Algorithm C (in two versions, with $d = 10$ and $d = 15$, where $d$ is the number of functions stored), Algorithm R (with $k = 100$ computations of a random assignment), Algorithm GM, Algorithm P, Genetic Algorithm (with $I = 15$ iterations and $c = 5$ creatures) and Simulated Annealing (with initial temperature $T_{start} = 100$ and cooling rate $c = 0.1$).
+\\
 
 Results for 2 winners:
 \\
@@ -166,7 +149,7 @@ Results for 2 winners:
 	\hline
 	\multicolumn{5}{| c |}{$n = 30$, $m = 10$, $K = 2$, Square function} \\
 	\hline
-	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{Polya} & \multicolumn{2}{c |}{IC} \\
+	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{MPolya} & \multicolumn{2}{c |}{IC} \\
 	\cline{2-5}
 	& \multicolumn{1}{c |}{time [ms]} & \multicolumn{1}{c |}{quality} & \multicolumn{1}{c |}{time [ms]} & \multicolumn{1}{c |}{quality} \\
 	\hline
@@ -190,9 +173,9 @@ Results for 2 winners:
 
 \begin{tabular}{| l | r | r | r | r |}
 	\hline
-	\multicolumn{5}{| c |}{$n = 30$, $m = 10$, $K = 2$, Strange function} \\
+	\multicolumn{5}{| c |}{$n = 30$, $m = 10$, $K = 2$, Best-and-Worst function} \\
 	\hline
-	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{Polya} & \multicolumn{2}{c |}{IC} \\
+	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{MPolya} & \multicolumn{2}{c |}{IC} \\
 	\cline{2-5}
 	& \multicolumn{1}{c |}{time [ms]} & \multicolumn{1}{c |}{quality} & \multicolumn{1}{c |}{time [ms]} & \multicolumn{1}{c |}{quality} \\
 	\hline
@@ -221,7 +204,7 @@ Results for 5 winners:
 	\hline
 	\multicolumn{5}{| c |}{$n = 30$, $m = 10$, $K = 5$, Square function} \\
 	\hline
-	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{Polya} & \multicolumn{2}{c |}{IC} \\
+	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{MPolya} & \multicolumn{2}{c |}{IC} \\
 	\cline{2-5}
 	& \multicolumn{1}{c |}{time [ms]} & \multicolumn{1}{c |}{quality} & \multicolumn{1}{c |}{time [ms]} & \multicolumn{1}{c |}{quality} \\
 	\hline
@@ -245,9 +228,9 @@ Results for 5 winners:
 
 \begin{tabular}{| l | r | r | r | r |}
 	\hline
-	\multicolumn{5}{| c |}{$n = 30$, $m = 10$, $K = 5$, Strange function} \\
+	\multicolumn{5}{| c |}{$n = 30$, $m = 10$, $K = 5$, Best-and-Worst function} \\
 	\hline
-	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{Polya} & \multicolumn{2}{c |}{IC} \\
+	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{MPolya} & \multicolumn{2}{c |}{IC} \\
 	\cline{2-5}
 	& \multicolumn{1}{c |}{time [ms]} & \multicolumn{1}{c |}{quality} & \multicolumn{1}{c |}{time [ms]} & \multicolumn{1}{c |}{quality} \\
 	\hline
@@ -267,36 +250,15 @@ Results for 5 winners:
 	\hline
 \end{tabular}
 
-\subsubsection{Conclusions}
-
-Conclusions from small instance results:
-\begin{enumerate}
-	\item Results show no significant differences between Square and Strange satisfaction functions.
-	\item Algorithm C seems to be the best one in the terms of solution quality. It returned an optimal solution for all cases except one, in which increasing number of stored functions ($d$) from 10 to 15 allowed it to return an optimal solution anyway.
-	\item Algorithm GM is also returning very good results, although not optimal, while being much faster than Algorithm C. It remains to be seen how these algorithms behave in relation to each other for larger instances.
-	\item Algorithm R performs surprisingly well, but for every case either Algorithm C or Algorithm GM is faster and gives better results.
-	\item Algorithm P is the fastest one, but it also returns the worst results. It has very large standard deviation, which means that for some instances it returns much better result than average, but for some much worse.
-	\item Genetic Algorithm and Simulated Annealing do not perform well, as they are both significantly slower than Algorithm GM, while returning worse results. For larger instances, we tried different input parameters to see if it makes these algorithms perform better.
-	\item Results seem to be very similar for Polya and IC for such small instance. Only algorithm P performs better under IC, which is rather counter-intuitive. However, it may be caused by high standard deviation and therefore too small number of test files for this result to be representative.
-\end{enumerate}
-
 \subsection{Medium instance}
 
-Results for medium instance ($n = 400$, $m = 50$). Results are compared to upper bound.
+Results for medium instance ($n = 400$, $m = 50$). Results are compared to the upper bound.
 \\
 
-Evaluated algorithms:
-\begin{itemize}
-	\item Algorithm C ($d = 10$)
-	\item Algorithm C ($d = 15$)
-	\item Algorithm R ($k = 100$)
-	\item Algorithm GM
-	\item Algorithm P
-	\item Genetic Algorithm ($I = 100, c = 20$)
-	\item Genetic Algorithm ($I = 200, c = 25$)
-	\item Simulated Annealing ($T_{start} = 100, c = 0.01$)
-	\item Simulated Annealing ($T_{start} = 100, c = 0.005$)
-\end{itemize}
+Algorithms evaluated for medium instance are Algorithm C (in two versions, with $d = 10$ and $d = 15$), Algorithm R (with $k = 100$), Algorithm GM, Algorithm P, Genetic Algorithm (in two versions, with $I = 100, c = 20$ and $I = 200, c = 25$) and Simulated Annealing (in two versions, with $T_{start} = 100, c = 0.01$ and $T_{start} = 100, c = 0.005$).
+\\
+
+\newpage
 
 Results for 10 winners:
 \\
@@ -305,7 +267,7 @@ Results for 10 winners:
 	\hline
 	\multicolumn{5}{| c |}{$n = 400$, $m = 50$, $K = 10$, Square function} \\
 	\hline
-	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{Polya} & \multicolumn{2}{c |}{IC} \\
+	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{MPolya} & \multicolumn{2}{c |}{IC} \\
 	\cline{2-5}
 	& \multicolumn{1}{c |}{time [ms]} & \multicolumn{1}{c |}{quality} & \multicolumn{1}{c |}{time [ms]} & \multicolumn{1}{c |}{quality} \\
 	\hline
@@ -333,9 +295,9 @@ Results for 10 winners:
 
 \begin{tabular}{| l | r | r | r | r |}
 	\hline
-	\multicolumn{5}{| c |}{$n = 400$, $m = 50$, $K = 10$, Strange function} \\
+	\multicolumn{5}{| c |}{$n = 400$, $m = 50$, $K = 10$, Best-and-Worst function} \\
 	\hline
-	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{Polya} & \multicolumn{2}{c |}{IC} \\
+	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{MPolya} & \multicolumn{2}{c |}{IC} \\
 	\cline{2-5}
 	& \multicolumn{1}{c |}{time [ms]} & \multicolumn{1}{c |}{quality} & \multicolumn{1}{c |}{time [ms]} & \multicolumn{1}{c |}{quality} \\
 	\hline
@@ -370,7 +332,7 @@ Results for 25 winners:
 	\hline
 	\multicolumn{5}{| c |}{$n = 400$, $m = 50$, $K = 25$, Square function} \\
 	\hline
-	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{Polya} & \multicolumn{2}{c |}{IC} \\
+	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{MPolya} & \multicolumn{2}{c |}{IC} \\
 	\cline{2-5}
 	& \multicolumn{1}{c |}{time [ms]} & \multicolumn{1}{c |}{quality} & \multicolumn{1}{c |}{time [ms]} & \multicolumn{1}{c |}{quality} \\
 	\hline
@@ -398,9 +360,9 @@ Results for 25 winners:
 
 \begin{tabular}{| l | r | r | r | r |}
 	\hline
-	\multicolumn{5}{| c |}{$n = 400$, $m = 50$, $K = 25$, Strange function} \\
+	\multicolumn{5}{| c |}{$n = 400$, $m = 50$, $K = 25$, Best-and-Worst function} \\
 	\hline
-	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{Polya} & \multicolumn{2}{c |}{IC} \\
+	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{MPolya} & \multicolumn{2}{c |}{IC} \\
 	\cline{2-5}
 	& \multicolumn{1}{c |}{time [ms]} & \multicolumn{1}{c |}{quality} & \multicolumn{1}{c |}{time [ms]} & \multicolumn{1}{c |}{quality} \\
 	\hline
@@ -424,41 +386,13 @@ Results for 25 winners:
 	\hline
 \end{tabular}
 
-\newpage
-
-\subsubsection{Conclusions}
-
-Conclusions from medium instance results:
-\begin{enumerate}
-	\item Solution quality compared to upper bound is generally a bit better for Strange satisfaction function. This is because for top alternatives Square function decreases faster compared to the first alternative (see chart below), so algorithms score is relatively worse when selecting second or third alternative in the preference order.
-	\begin{center}
-		\includegraphics[scale=0.75]{satfuncomp1}
-	\end{center}
-	\item The difference between Polya and IC is clearly visible now (Polya could still be too random for smaller instance to see the diference). It is much easier to find a solution close to an upper bound for a Polya generation model, as there is a group of alternatives that are ranked high by most agents, while IC is totally random.
-	\item Algorithm C is still the best algorithm in terms of solution quality. For Polya, it finds solutions very close to an upper bound, especially with $K = 25$, which means that most agents have their favourite alternative assigned. For IC using $d = 15$ instead of $d = 10$ slightly improves the solution quality, so if we seek the best solution possible, setting higher $d$ is reasonable.
-	\item Algorithm GM performs excellently, attaining only slightly lower solution quality than Algorithm C in most cases, while executing much faster.
-	\item Algorithm P is still very fast, and additionally standard deviation of its quality is acceptable for this problem size (there should be no instances for which the solution quality is much worse than average). Quality is much lower than for Algorithms C or GM, but if we need a decent solution that does not have to be optimal and we want to calculate it fast, this algorithm may be used.
-	\item Algorithm R does not seem to be useful for this problem size. It executes longer than Algorithm C and returns much worse results.
-	\item Genetic Algorithm generates solutions of very good quality (comparable to Algorithm GM), but executes much too long to be useful in both tested configurations. Simulated Annealing also seems to be useless, as Algorithm GM executes much faster and gives better results.
-\end{enumerate}
-
 \subsection{Large instance}
 
-Results for large instance ($n = 400$, $m = 300$). Results are compared to upper bound.
+Results for large instance ($n = 400$, $m = 300$). Results are compared to the upper bound.
 \\
 
-Evaluated algorithms:
-\begin{itemize}
-	\item Algorithm C ($d = 10$)
-	\item Algorithm C ($d = 15$)
-	\item Algorithm R ($k = 100$)
-	\item Algorithm GM
-	\item Algorithm P
-	\item Genetic Algorithm ($I = 100, c = 20$)
-	\item Genetic Algorithm ($I = 200, c = 25$)
-	\item Simulated Annealing ($T_{start} = 100, c = 0.01$)
-	\item Simulated Annealing ($T_{start} = 100, c = 0.005$)
-\end{itemize}
+Algorithms evaluated for large instance are Algorithm C (in two versions, with $d = 10$ and $d = 15$), Algorithm R (with $k = 100$), Algorithm GM, Algorithm P, Genetic Algorithm (in two versions, with $I = 100, c = 20$ and $I = 200, c = 25$) and Simulated Annealing (in two versions, with $T_{start} = 100, c = 0.01$ and $T_{start} = 100, c = 0.005$).
+\\
 
 \newpage
 
@@ -469,7 +403,7 @@ Results for 50 winners:
 	\hline
 	\multicolumn{5}{| c |}{$n = 400$, $m = 300$, $K = 50$, Square function} \\
 	\hline
-	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{Polya} & \multicolumn{2}{c |}{IC} \\
+	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{MPolya} & \multicolumn{2}{c |}{IC} \\
 	\cline{2-5}
 	& \multicolumn{1}{c |}{time [s]} & \multicolumn{1}{c |}{quality} & \multicolumn{1}{c |}{time [s]} & \multicolumn{1}{c |}{quality} \\
 	\hline
@@ -497,9 +431,9 @@ Results for 50 winners:
 
 \begin{tabular}{| l | r | r | r | r |}
 	\hline
-	\multicolumn{5}{| c |}{$n = 400$, $m = 300$, $K = 50$, Strange function} \\
+	\multicolumn{5}{| c |}{$n = 400$, $m = 300$, $K = 50$, Best-and-Worst function} \\
 	\hline
-	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{Polya} & \multicolumn{2}{c |}{IC} \\
+	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{MPolya} & \multicolumn{2}{c |}{IC} \\
 	\cline{2-5}
 	& \multicolumn{1}{c |}{time [s]} & \multicolumn{1}{c |}{quality} & \multicolumn{1}{c |}{time [s]} & \multicolumn{1}{c |}{quality} \\
 	\hline
@@ -534,7 +468,7 @@ Results for 200 winners:
 	\hline
 	\multicolumn{5}{| c |}{$n = 400$, $m = 300$, $K = 200$, Square function} \\
 	\hline
-	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{Polya} & \multicolumn{2}{c |}{IC} \\
+	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{MPolya} & \multicolumn{2}{c |}{IC} \\
 	\cline{2-5}
 	& \multicolumn{1}{c |}{time [s]} & \multicolumn{1}{c |}{quality} & \multicolumn{1}{c |}{time [s]} & \multicolumn{1}{c |}{quality} \\
 	\hline
@@ -562,9 +496,9 @@ Results for 200 winners:
 
 \begin{tabular}{| l | r | r | r | r |}
 	\hline
-	\multicolumn{5}{| c |}{$n = 400$, $m = 300$, $K = 200$, Strange function} \\
+	\multicolumn{5}{| c |}{$n = 400$, $m = 300$, $K = 200$, Best-and-Worst function} \\
 	\hline
-	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{Polya} & \multicolumn{2}{c |}{IC} \\
+	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{MPolya} & \multicolumn{2}{c |}{IC} \\
 	\cline{2-5}
 	& \multicolumn{1}{c |}{time [s]} & \multicolumn{1}{c |}{quality} & \multicolumn{1}{c |}{time [s]} & \multicolumn{1}{c |}{quality} \\
 	\hline
@@ -588,26 +522,22 @@ Results for 200 winners:
 	\hline
 \end{tabular}
 
-\subsubsection{Conclusions}
-
-Conclusions from large instance results:
-\begin{enumerate}
-	\item These test cases turned out to be very easy for tested algorithms - all solutions are of very high quality compared to upper bound. The reason of this is very high number of winners, which allows many agents to have their favourite alternative assigned, even for data generated with IC model. For Polya and 200 winners, many algorithms always return an optimal solution which has the same total satisfaction as upper bound - allowing 200 out of 300 candidates to win and using Polya model allows for every agent to be maximally satisfied in virtually every case.
-	\item Relation between Algorithm C, Algorithm GM and Algorithm P remains the same as for the middle instance.
-	\item For such large data sets, Algorithm R may become an option, as it runs relatively fast (not as fast as Algorithm P though) and returns solution of quality between Algorithm GM and Algorithm R. It is possible that this algorithm gets relatively better for even larger data sets.
-	\item Genetic Algorithm and Simulated Annealing are not a viable option for small number of winners ($K = 50$), as they both return worse results than Algorithm GM and they run slower. However, Genetic Algorithm may be useful for large data sets where there is a lot of winners. For $K = 200$, it becomes similar to Algorithm GM in means of both execution time and solution quality.
-\end{enumerate}
-
-\subsection{Conclusions summary}
+\subsection{Conclusions}
 
 These are final conclusions regarding evaluation of algorithms for Chamberlin-Courant Problem based on all executed test cases.
 
 \begin{enumerate}
-	\item There is no significant difference between results for Square and Strange satisfaction functions. It seems that the most important part of the satisfaction function is near the top of the preference order, because middle and bottom alternatives are rarely selected and differences between them are not very important, and both Square and Strange functions are similar for the top alternatives. Results could be much different for some kind of exponential function.
-	\item Algorithm C and Algorithm GM are viable for every tested case. One should use Algorithm C to get solution with the best quality possible (potentially increasing input parameter $d$ for a chance to find an even better solution). Algorithm GM always returns slightly weaker result than Algorithm C, but it runs much faster, so it may be used as a compromise between execution time and solution quality.
-	\item Algorithm P returns substantially weaker solutions than Algorithm GM, but it runs extremely fast. It may be used if solution does not have to be good but not necessarily close to optimal (e.g., in recommendation systems), but there is a need to obtain it as fast as possible. This algorithm should not be used for small data sets, because the solution may be of very low quality, but this should not be a problem, because for small instances Algorithms GM runs very fast too.
-	\item For large cases, Algorithm R can provide good results with moderate execution time. However, due to high level of randomization, this algorithm should only be used to supplement another one, so it can possibly find a better solution.
-	\item It is possible that Genetic Algorithm may be a good option for large cases with high winner count, but it requires further research.
+	\item Solution quality compared to the upper bound is generally a bit better for Best-and-Worst satisfaction function. This is because for top alternatives Square function decreases faster compared to the first alternative (see chart below), so algorithms score is relatively worse when selecting second or third alternative in the preference order.
+	\begin{center}
+		\includegraphics[scale=0.75]{satfuncomp1}
+	\end{center}
+	However, this is valid for all the algorithms, so differences between them are similar for both functions. It seems that the most important part of the satisfaction function is near the top of the preference order, because middle and bottom alternatives are rarely selected and differences between them are not very important, and both Square and Best-and-Worst functions are similar for the top alternatives. Results could be much different for some kind of exponential function.
+	\item The difference between MPolya and IC is clearly visible for larger instances (MPolya could still be too random for smaller instances to see the difference). It is much easier to find a solution close to the upper bound for an MPolya generation model, as there is a group of alternatives that are ranked high by most agents, while IC is totally random.
+	\item Algorithm C and Algorithm GM are viable for every tested case. One should use Algorithm C to get solution with the best quality possible. For many cases, increasing the number of stored functions ($d$) improves the solution quality (e.g., quality changes from 89.757\% to 89.769\% when increasing $d$ from 10 to 15 for medium instance, $K = 10$, Square function, IC), so if we seek the best solution possible, setting higher $d$ is reasonable. Algorithm GM always returns slightly weaker result than Algorithm C (or the same in case of large instance, 200 winners and MPolya, where both algorithms achieve 100\% solution quality), but it runs much faster (e.g., 4.04 seconds vs 50.19 seconds for large instance, $K = 200$, Square function, MPolya), so it may be used as a compromise between execution time and solution quality.
+	\item Algorithm P returns substantially weaker solutions than Algorithm GM (e.g., 96.939\% vs 99.403\% for medium instance, $K = 25$, MPolya, Best-and-Worst function) but it runs extremely fast (4.39 ms vs 51.68 ms for the same example). It may be used if solution does not have to be very close to optimal (e.g., in recommendation systems), but there is a need to obtain it as fast as possible. This algorithm should not be used for small data sets, because the solution may be of very low quality (it has very large standard deviation for the smallest data set, which means that for some instances it returns much better result than average, but for some much worse), but this should not be a problem, because for small instances Algorithms GM runs very fast too. For larger problem, standard deviation becomes much lower and there should be no instances for which the solution quality is much worse than average.
+	\item For large cases, Algorithm R can provide good results with moderate execution time (e.g., for large instance, $K = 50$, Best-and-Worst function, IC: Algorithm GM returns 98.438\% in 1.49 s, Algorithm R returns 97.264\% in 0.329 s and Algorithm P returns 96.881\% in 0.0583 s) and it is possible that this algorithm gets relatively better for even larger data sets. However, due to high level of randomization, this algorithm should only be used to supplement another one, so it can possibly find a better solution. For small and medium cases, Algorithm R does not seem to be useful. It executes longer than Algorithm C and returns worse results (e.g., for medium instance, $K = 25$, Square function, IC: Algorithm C returns 97.585\% in 569.8 ms while Algorithm R returns 97.041\% in 2142.40 ms).
+    \item Genetic Algorithm and Simulated Annealing execute much too long to be useful for small and medium instances (Algorithm GM is faster and returns better results). However, Genetic Algorithm becomes much better for large data sets where there is a lot of winners. For large instance and $K = 200$, it becomes similar to Algorithm GM in means of both execution time and solution quality (e.g., for Square function, IC: Algorithm GM returns 99.952\% in 4.00 s, while Algorithm R returns 99.737\% in 1.29 s). It is possible that this algorithm may be better for even larger data sets, but it requires further research.
+	\item Test cases from large instance turned out to be very easy for tested algorithms - all solutions are of very high quality compared to the upper bound. The reason of this is very high number of winners, which allows many agents to have their favourite alternative assigned, even for data generated with IC model. For MPolya and 200 winners, many algorithms always return an optimal solution which has the same total satisfaction as the upper bound - allowing 200 out of 300 candidates to win and using MPolya model allows for every agent to be maximally satisfied in virtually every case.
 \end{enumerate}
 
 \section{Monroe Problem Evaluation}
@@ -619,19 +549,8 @@ In this section we present evaluation results for Monroe problem.
 Results for small instance ($n = 30$, $m = 10$). Results are compared to optimal results.
 \\
 
-Evaluated algorithms:
-\begin{itemize}
-	\item Algorithm A
-	\item Algorithm B
-	\item Algorithm C ($d = 10$)
-	\item Algorithm C ($d = 15$)
-	\item Algorithm R ($k = 100$)
-	\item Algorithm AR ($e = 0.215$, $\lambda = 0.75$)
-	\item Algorithm AR ($e = 0.015$, $\lambda = 0.9$)
-	\item Algorithm GM
-	\item Genetic Algorithm ($I = 15, c = 5$)
-	\item Simulated Annealing ($T_{start} = 100, c = 0.1$)
-\end{itemize}
+Algorithms evaluated for small instance are Algorithm A, Algorithm B, Algorithm C (in two versions, with $d = 10$ and $d = 15$), Algorithm R (with $k = 100$), Algorithm AR (in two versions, with $e = 0.215$, $\lambda = 0.75$ and $e = 0.015$, $\lambda = 0.9$), Algorithm GM, Genetic Algorithm (with $I = 15, c = 5$) and Simulated Annealing (with $T_{start} = 100, c = 0.1$).
+\\
 
 \newpage
 
@@ -642,7 +561,7 @@ Results for 2 winners:
 	\hline
 	\multicolumn{5}{| c |}{$n = 30$, $m = 10$, $K = 2$, Square function} \\
 	\hline
-	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{Polya} & \multicolumn{2}{c |}{IC} \\
+	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{MPolya} & \multicolumn{2}{c |}{IC} \\
 	\cline{2-5}
 	& \multicolumn{1}{c |}{time [ms]} & \multicolumn{1}{c |}{quality} & \multicolumn{1}{c |}{time [ms]} & \multicolumn{1}{c |}{quality} \\
 	\hline
@@ -672,9 +591,9 @@ Results for 2 winners:
 
 \begin{tabular}{| l | r | r | r | r |}
 	\hline
-	\multicolumn{5}{| c |}{$n = 30$, $m = 10$, $K = 2$, Strange function} \\
+	\multicolumn{5}{| c |}{$n = 30$, $m = 10$, $K = 2$, Best-and-Worst function} \\
 	\hline
-	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{Polya} & \multicolumn{2}{c |}{IC} \\
+	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{MPolya} & \multicolumn{2}{c |}{IC} \\
 	\cline{2-5}
 	& \multicolumn{1}{c |}{time [ms]} & \multicolumn{1}{c |}{quality} & \multicolumn{1}{c |}{time [ms]} & \multicolumn{1}{c |}{quality} \\
 	\hline
@@ -711,7 +630,7 @@ Results for 5 winners:
 	\hline
 	\multicolumn{5}{| c |}{$n = 30$, $m = 10$, $K = 5$, Square function} \\
 	\hline
-	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{Polya} & \multicolumn{2}{c |}{IC} \\
+	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{MPolya} & \multicolumn{2}{c |}{IC} \\
 	\cline{2-5}
 	& \multicolumn{1}{c |}{time [ms]} & \multicolumn{1}{c |}{quality} & \multicolumn{1}{c |}{time [ms]} & \multicolumn{1}{c |}{quality} \\
 	\hline
@@ -741,9 +660,9 @@ Results for 5 winners:
 
 \begin{tabular}{| l | r | r | r | r |}
 	\hline
-	\multicolumn{5}{| c |}{$n = 30$, $m = 10$, $K = 5$, Strange function} \\
+	\multicolumn{5}{| c |}{$n = 30$, $m = 10$, $K = 5$, Best-and-Worst function} \\
 	\hline
-	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{Polya} & \multicolumn{2}{c |}{IC} \\
+	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{MPolya} & \multicolumn{2}{c |}{IC} \\
 	\cline{2-5}
 	& \multicolumn{1}{c |}{time [ms]} & \multicolumn{1}{c |}{quality} & \multicolumn{1}{c |}{time [ms]} & \multicolumn{1}{c |}{quality} \\
 	\hline
@@ -769,39 +688,17 @@ Results for 5 winners:
 	\hline
 \end{tabular}
 
-\subsubsection{Conclusions}
-
-Conclusions from small instance results:
-\begin{enumerate}
-	\item For most cases algorithms generally return a bit higher satisfaction for the Strange function than for the Square function. It is caused by the fact that Square function is decreasing relatively faster for top alternatives (as described in section 5.4.2.1).
-	\item Algorithm AR gives the best quality of solution among tested algorithms for every case (it always returns an optimal solution), but it is very slow (extremely slow for 5 winners case). It remains to be seen it is viable for use with larger problem instances.
-	\item Algorithm C returns almost as good quality of solution as Algorithm AR and is much faster. For this problem size, it often returns an optimal solution, or the one very close to optimal. Increasing number of stored functions ($d$) can improve the result slightly.
-	\item Execution times for Algorithm GM are very similar to Algorithm C and they are only of slightly lower quality. However, execution times are expected to rise fast when problem size is increased, because this algorithm requires many min-flow/max-cost function calls, which are very time-consuming.
-	\item Quality of solution generated by Algorithm B is always significantly lower than the one generated by Algorithm C, but the algorithm itself is much faster (by one order of magnitude).
-	\item For this problem size, Algorithm A is the fastest algorithm, but its quality of solution is very low.
-	\item Algorithm R is not a good choice for this problem size, because it runs much longer than Algorithm C and returns worse results.
-	\item Genetic Algorithm and Simulated Annealing perform really poorly. It was expected, as they require many calls of min-cost/max-flow function and are much better suited for CC problem.
-	\item Results seem to be very similar for Polya and IC for such small instance. This problem size seems to be too small to make Polya results less random.
-\end{enumerate}
-
 \subsection{Medium instance}
 
-Results for medium instance ($n = 400$, $m = 50$). Results are compared to upper bound.
+Results for medium instance ($n = 400$, $m = 50$). Results are compared to the upper bound.
 \\
 
-Evaluated algorithms:
-\begin{itemize}
-	\item Algorithm A
-	\item Algorithm B
-	\item Algorithm C ($d = 10$)
-	\item Algorithm C ($d = 15$)
-	\item Algorithm R ($k = 100$)
-	\item Algorithm AR ($e = 0.215$, $\lambda = 0.75$)
-\end{itemize}
+Algorithms evaluated for medium instance are Algorithm A, Algorithm B, Algorithm C (in two versions, with $d = 10$ and $d = 15$), Algorithm R (with $k = 100$) and Algorithm AR (with $e = 0.215$, $\lambda = 0.75$).
+\\
 
 \newpage
 
-Algorithm GM, Genetic Algorithm and Simulated Annealing have been omitted from results for this case, as their execution time is too long. These are example results for one execution of each algorithm (10 winners, Polya, Square function):
+Algorithm GM, Genetic Algorithm and Simulated Annealing have been omitted from results for this case, as their execution time is too long. These are example results for one execution of each algorithm (10 winners, MPolya, Square function):
 \\
 
 \begin{tabular}{| l | c | c |}
@@ -825,7 +722,7 @@ Results for 10 winners:
 	\hline
 	\multicolumn{5}{| c |}{$n = 400$, $m = 50$, $K = 10$, Square function} \\
 	\hline
-	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{Polya} & \multicolumn{2}{c |}{IC} \\
+	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{MPolya} & \multicolumn{2}{c |}{IC} \\
 	\cline{2-5}
 	& \multicolumn{1}{c |}{time [s]} & \multicolumn{1}{c |}{quality} & \multicolumn{1}{c |}{time [s]} & \multicolumn{1}{c |}{quality} \\
 	\hline
@@ -847,9 +744,9 @@ Results for 10 winners:
 
 \begin{tabular}{| l | r | r | r | r |}
 	\hline
-	\multicolumn{5}{| c |}{$n = 400$, $m = 50$, $K = 10$, Strange function} \\
+	\multicolumn{5}{| c |}{$n = 400$, $m = 50$, $K = 10$, Best-and-Worst function} \\
 	\hline
-	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{Polya} & \multicolumn{2}{c |}{IC} \\
+	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{MPolya} & \multicolumn{2}{c |}{IC} \\
 	\cline{2-5}
 	& \multicolumn{1}{c |}{time [s]} & \multicolumn{1}{c |}{quality} & \multicolumn{1}{c |}{time [s]} & \multicolumn{1}{c |}{quality} \\
 	\hline
@@ -878,7 +775,7 @@ Results for 25 winners:
 	\hline
 	\multicolumn{5}{| c |}{$n = 400$, $m = 50$, $K = 25$, Square function} \\
 	\hline
-	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{Polya} & \multicolumn{2}{c |}{IC} \\
+	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{MPolya} & \multicolumn{2}{c |}{IC} \\
 	\cline{2-5}
 	& \multicolumn{1}{c |}{time [s]} & \multicolumn{1}{c |}{quality} & \multicolumn{1}{c |}{time [s]} & \multicolumn{1}{c |}{quality} \\
 	\hline
@@ -900,9 +797,9 @@ Results for 25 winners:
 
 \begin{tabular}{| l | r | r | r | r |}
 	\hline
-	\multicolumn{5}{| c |}{$n = 400$, $m = 50$, $K = 25$, Strange function} \\
+	\multicolumn{5}{| c |}{$n = 400$, $m = 50$, $K = 25$, Best-and-Worst function} \\
 	\hline
-	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{Polya} & \multicolumn{2}{c |}{IC} \\
+	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{MPolya} & \multicolumn{2}{c |}{IC} \\
 	\cline{2-5}
 	& \multicolumn{1}{c |}{time [s]} & \multicolumn{1}{c |}{quality} & \multicolumn{1}{c |}{time [s]} & \multicolumn{1}{c |}{quality} \\
 	\hline
@@ -920,34 +817,18 @@ Results for 25 winners:
 	\hline
 \end{tabular}
 
-\subsubsection{Conclusions}
-
-Conclusions from medium instance results:
-\begin{enumerate}
-	\item Generally, algorithms achieve much higher solution quality for data generated with Polya (especially with 10 winners). This is an expected behaviour, as with Polya it is easier to include more candidates from the top in the solution. The only exception to this rule is Algorithm R. It may be caused by high randomization of IC data, which causes random solutions to be relatively better.
-	\item For this problem size, Algorithm C generated the best quality solutions. Increasing $d$ improves the solution slightly, so it may be possible to increase it even more to get the better solution.
-	\item Algorithm B results are not far from Algorithm C results in terms of solution quality, but Algorithm B runs faster by an order of magnitude.
-	\item Algorithm A returns much weaker solutions than other algorithms, but it is very fast. Such solution could still be viable for some applications if execution time is more important than optimal result.
-	\item Algorithm AR seems useless in this configuration - other algorithms give better solutions faster. Maybe changing parameters could help, but it would further increase execution time.
-	\item Solution quality is generally much higher compared to upper bound when there are more winners - results for $K = 25$ are surprisingly good.
-\end{enumerate}
-
 \subsection{Large instance}
 
-Results for large instance ($n = 400$, $m = 300$). Results are compared to upper bound.
+Results for large instance ($n = 400$, $m = 300$). Results are compared to the upper bound.
 \\
 
-Evaluated algorithms:
-\begin{itemize}
-	\item Algorithm A
-	\item Algorithm B
-	\item Algorithm C ($d = 5$)
-	\item Algorithm R ($k = 10$)
-	\item Algorithm AR ($e = 0.215$, $\lambda = 0.75$)
-\end{itemize}
+Algorithms evaluated for large instance are Algorithm A, Algorithm B, Algorithm C (with $d = 5$), Algorithm R (with $k = 10$) and Algorithm AR (with $e = 0.215$, $\lambda = 0.75$).
+\\
 
 Parameters of algorithms C and R were adjusted to maintain reasonable execution time.
 \\
+
+\newpage
 
 Results for 50 winners:
 \\
@@ -956,7 +837,7 @@ Results for 50 winners:
 	\hline
 	\multicolumn{5}{| c |}{$n = 400$, $m = 300$, $K = 50$, Square function} \\
 	\hline
-	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{Polya} & \multicolumn{2}{c |}{IC} \\
+	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{MPolya} & \multicolumn{2}{c |}{IC} \\
 	\cline{2-5}
 	& \multicolumn{1}{c |}{time [s]} & \multicolumn{1}{c |}{quality} & \multicolumn{1}{c |}{time [s]} & \multicolumn{1}{c |}{quality} \\
 	\hline
@@ -976,9 +857,9 @@ Results for 50 winners:
 
 \begin{tabular}{| l | r | r | r | r |}
 	\hline
-	\multicolumn{5}{| c |}{$n = 400$, $m = 300$, $K = 50$, Strange function} \\
+	\multicolumn{5}{| c |}{$n = 400$, $m = 300$, $K = 50$, Best-and-Worst function} \\
 	\hline
-	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{Polya} & \multicolumn{2}{c |}{IC} \\
+	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{MPolya} & \multicolumn{2}{c |}{IC} \\
 	\cline{2-5}
 	& \multicolumn{1}{c |}{time [s]} & \multicolumn{1}{c |}{quality} & \multicolumn{1}{c |}{time [s]} & \multicolumn{1}{c |}{quality} \\
 	\hline
@@ -1005,7 +886,7 @@ Results for 200 winners:
 	\hline
 	\multicolumn{5}{| c |}{$n = 400$, $m = 300$, $K = 200$, Square function} \\
 	\hline
-	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{Polya} & \multicolumn{2}{c |}{IC} \\
+	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{MPolya} & \multicolumn{2}{c |}{IC} \\
 	\cline{2-5}
 	& \multicolumn{1}{c |}{time [s]} & \multicolumn{1}{c |}{quality} & \multicolumn{1}{c |}{time [s]} & \multicolumn{1}{c |}{quality} \\
 	\hline
@@ -1027,7 +908,7 @@ Results for 200 winners:
 	\hline
 	\multicolumn{5}{| c |}{$n = 400$, $m = 300$, $K = 200$, Square function} \\
 	\hline
-	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{Polya} & \multicolumn{2}{c |}{IC} \\
+	\multirow{2}{*}{algorithm} & \multicolumn{2}{c |}{MPolya} & \multicolumn{2}{c |}{IC} \\
 	\cline{2-5}
 	& \multicolumn{1}{c |}{time [s]} & \multicolumn{1}{c |}{quality} & \multicolumn{1}{c |}{time [s]} & \multicolumn{1}{c |}{quality} \\
 	\hline
@@ -1043,22 +924,17 @@ Results for 200 winners:
 	\hline
 \end{tabular}
 
-\subsubsection{Conclusions}
-
-Conclusions from medium instance results:
-\begin{enumerate}
-	\item Quality of solution returned by algorithms for this test cases is extremely high compared to upper bound. The reason is that number of winners is very high compared to number of agents ($50/400$, $200/400$) and to the number of alternatives ($50/300$, $200/300$). Such situation allows to assign favourite alternatives to most agents, especially with data generated by Polya.
-	\item Relation between algorithms A, B and C is similar as for previous data sets, but difference between execution times of A and B is much lower, because for larger cases reassignment of agents, which is the only difference between the algorithms, becomes less significant.
-	\item There seems to be no reason to use Algorithm R or Algorithm AR for these cases.
-\end{enumerate}
-
-\subsection{Conclusions summary}
+\subsection{Conclusions}
 
 These are final conclusions regarding evaluation of algorithms for Monroe Problem based on all executed test cases.
 
 \begin{enumerate}
-	\item There is no significant difference between results for Square and Strange satisfaction functions, the same as for Chamberlin-Courant problem. Using much different function, e.g. an exponential one, could potentially change the results.
-	\item Algorithm C seems to be the best and universal option to attain a very high quality solution. It can be also adjusted to one's needs by modifying number of stored functions (parameter $d$).
-	\item Algorithm B always returns significantly weaker results than Algorithm C (it is in fact Algorithm C with $d = 1$), but it is faster by an order of magnitude, so it may be seen as a trade-off between solution quality and execution time.
-	\item For small and medium cases, Algorithm A may be a good option for some appliances, as it returns result very fast. Its quality is far from optimal, but there may be some systems where it is not as important as execution time. For larger instances, it is better to use Algorithm B instead, as difference in execution time becomes relatively lower when we increase problem size.
+	\item For most cases algorithms generally return a bit higher satisfaction for the Best-and-Worst function than for the Square function. It is caused by the fact that Square function is decreasing relatively faster for top alternatives (as described in section 4.4.4). However, differences between the algorithms are similar, the same as for Chamberlin-Courant problem. Using much different function, e.g. an exponential one, could potentially change the results.
+	\item Generally, algorithms achieve higher solution quality for data generated with MPolya (especially with less winners). This is an expected behaviour, as with MPolya it is easier to include more candidates from the top in the solution. The only exception to this rule is Algorithm R. It may be caused by high randomization of IC data, which causes random solutions to be relatively better.
+	\item Algorithm C seems to be the best and universal option to attain a very high quality solution for most cases. It is sometimes a bit worse than Algorithm AR for the small instance (e.g. 99.994\% vs 100\% for $K = 2$, Best-and-Worst function, IC), but runs much faster (7.63 ms vs 22.55 ms for the same case). It can be also adjusted to one's needs by modifying number of stored functions (parameter $d$) and in many cases it improves the solution quality (e.g. for medium instance, $K = 10$, Square function, IC, quality changes from 89.390\% to 89.442\% after increasing $d$ from 10 to 15).
+	\item Quality of solution generated by Algorithm B is always significantly lower than the one generated by Algorithm C (e.g. 90.070\% vs 90.402\% for medium instance, $K = 10$, Best-and-Worst function, IC), but the algorithm itself is much faster (0.854 s vs 9.70 s for the same case). It may be seen as a trade-off between solution quality and execution time.
+	\item For small and medium cases, Algorithm A may be a good option for some appliances, as it returns result very fast. Its quality is far from optimal, but there may be some systems where it is not as important as execution time. For larger instances, it is better to use Algorithm B instead, as difference in execution time becomes relatively lower when we increase problem size (e.g. 7.60 s vs 8.58 s for large instance, $K = 50$, Best-and-Worst function, IC), because for larger cases reassignment of agents, which is the only difference between the algorithms, becomes less significant.
+	\item Algorithm AR gives the best quality of solution among tested algorithms for the small instance, but it is very slow. It seems to be underperforming for larger instances - other algorithms give better solutions faster. Maybe changing parameters could help, but it would further increase execution time.
+    \item Algorithm R is not a good choice, because for each case there is an algorithm that returns better solution in shorter time.
+	\item Quality of solution returned by algorithms for the large instance is extremely high compared to the upper bound. The reason is that number of winners is very high compared to number of agents ($50/400$, $200/400$) and to the number of alternatives ($50/300$, $200/300$). Such situation allows to assign favourite alternatives to most agents, especially with data generated by MPolya.
 \end{enumerate}

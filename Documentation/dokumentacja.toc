@@ -2,44 +2,36 @@
 \contentsline {chapter}{\numberline {1}Introduction}{5}
 \contentsline {chapter}{\numberline {2}Preliminaries}{7}
 \contentsline {section}{\numberline {2.1}Basic Notions}{7}
-\contentsline {section}{\numberline {2.2}Monroe and Chamberlin-Courant Rules}{9}
+\contentsline {section}{\numberline {2.2}Monroe and Chamberlin-Courant Rules}{8}
 \contentsline {section}{\numberline {2.3}Approximate Solutions}{9}
-\contentsline {chapter}{\numberline {3}State of the Art}{10}
-\contentsline {chapter}{\numberline {4}Implemented Algorithms}{11}
-\contentsline {section}{\numberline {4.1}Existing Algorithms}{11}
-\contentsline {subsection}{\numberline {4.1.1}Algorithms A, B and C}{11}
-\contentsline {subsection}{\numberline {4.1.2}Algorithm R}{14}
-\contentsline {subsection}{\numberline {4.1.3}Algorithm AR}{14}
-\contentsline {subsection}{\numberline {4.1.4}Algorithm GM}{15}
-\contentsline {subsection}{\numberline {4.1.5}Algorithm P}{15}
-\contentsline {section}{\numberline {4.2}New Algorithms}{16}
-\contentsline {subsection}{\numberline {4.2.1}Genetic Algorithm}{16}
-\contentsline {subsection}{\numberline {4.2.2}Simulated Annealing}{17}
-\contentsline {chapter}{\numberline {5}Evaluation Results}{19}
-\contentsline {section}{\numberline {5.1}Testing rig}{19}
-\contentsline {section}{\numberline {5.2}Test data}{19}
-\contentsline {subsection}{\numberline {5.2.1}Problem size}{19}
-\contentsline {subsection}{\numberline {5.2.2}Number of winners}{19}
-\contentsline {subsection}{\numberline {5.2.3}Data generation model}{20}
-\contentsline {subsection}{\numberline {5.2.4}Satisfaction function}{20}
-\contentsline {subsection}{\numberline {5.2.5}Summary}{22}
-\contentsline {section}{\numberline {5.3}Test Methodology}{22}
-\contentsline {section}{\numberline {5.4}Chamberlin-Courant Problem Evaluation}{23}
-\contentsline {subsection}{\numberline {5.4.1}Small instance}{23}
-\contentsline {subsubsection}{\numberline {5.4.1.1}Conclusions}{24}
-\contentsline {subsection}{\numberline {5.4.2}Medium instance}{25}
-\contentsline {subsubsection}{\numberline {5.4.2.1}Conclusions}{28}
-\contentsline {subsection}{\numberline {5.4.3}Large instance}{29}
-\contentsline {subsubsection}{\numberline {5.4.3.1}Conclusions}{31}
-\contentsline {subsection}{\numberline {5.4.4}Conclusions summary}{32}
-\contentsline {section}{\numberline {5.5}Monroe Problem Evaluation}{33}
-\contentsline {subsection}{\numberline {5.5.1}Small instance}{33}
-\contentsline {subsubsection}{\numberline {5.5.1.1}Conclusions}{35}
-\contentsline {subsection}{\numberline {5.5.2}Medium instance}{36}
-\contentsline {subsubsection}{\numberline {5.5.2.1}Conclusions}{38}
-\contentsline {subsection}{\numberline {5.5.3}Large instance}{39}
-\contentsline {subsubsection}{\numberline {5.5.3.1}Conclusions}{40}
-\contentsline {subsection}{\numberline {5.5.4}Conclusions summary}{40}
-\contentsline {chapter}{\numberline {6}Summary}{42}
-\contentsline {section}{\numberline {6.1}Further Research}{42}
-\contentsline {chapter}{List of Tables}{43}
+\contentsline {section}{\numberline {2.4}State of the Art}{9}
+\contentsline {chapter}{\numberline {3}Implemented Algorithms}{10}
+\contentsline {section}{\numberline {3.1}Existing Algorithms}{10}
+\contentsline {subsection}{\numberline {3.1.1}Algorithms A, B and C}{10}
+\contentsline {subsection}{\numberline {3.1.2}Algorithm R}{13}
+\contentsline {subsection}{\numberline {3.1.3}Algorithm AR}{13}
+\contentsline {subsection}{\numberline {3.1.4}Algorithm GM}{14}
+\contentsline {subsection}{\numberline {3.1.5}Algorithm P}{14}
+\contentsline {section}{\numberline {3.2}New Algorithms}{15}
+\contentsline {subsection}{\numberline {3.2.1}Genetic Algorithm}{15}
+\contentsline {subsection}{\numberline {3.2.2}Simulated Annealing}{16}
+\contentsline {chapter}{\numberline {4}Evaluation Results}{19}
+\contentsline {section}{\numberline {4.1}Testing Rig}{19}
+\contentsline {section}{\numberline {4.2}Test Data}{19}
+\contentsline {subsection}{\numberline {4.2.1}Problem Size and Number of Winners}{19}
+\contentsline {subsection}{\numberline {4.2.2}Data Generation Model}{20}
+\contentsline {subsection}{\numberline {4.2.3}Satisfaction Function}{20}
+\contentsline {subsection}{\numberline {4.2.4}Summary of Generated Election}{22}
+\contentsline {section}{\numberline {4.3}Test Methodology}{22}
+\contentsline {section}{\numberline {4.4}Chamberlin-Courant Problem Evaluation}{23}
+\contentsline {subsection}{\numberline {4.4.1}Small instance}{23}
+\contentsline {subsection}{\numberline {4.4.2}Medium instance}{24}
+\contentsline {subsection}{\numberline {4.4.3}Large instance}{26}
+\contentsline {subsection}{\numberline {4.4.4}Conclusions}{28}
+\contentsline {section}{\numberline {4.5}Monroe Problem Evaluation}{30}
+\contentsline {subsection}{\numberline {4.5.1}Small instance}{30}
+\contentsline {subsection}{\numberline {4.5.2}Medium instance}{32}
+\contentsline {subsection}{\numberline {4.5.3}Large instance}{34}
+\contentsline {subsection}{\numberline {4.5.4}Conclusions}{36}
+\contentsline {chapter}{\numberline {5}Summary}{38}
+\contentsline {chapter}{List of Tables}{40}
