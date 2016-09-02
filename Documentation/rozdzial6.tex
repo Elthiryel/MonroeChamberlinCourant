@@ -2,16 +2,13 @@
 \label{cha:evaluationResults}
 
 In this chapter we present algorithm evaluation results and conclusions.
+\\
 
-\section{Testing Rig}
-
-All algorithms were run on Lenovo W530 notebook with the Intel Core i7-3740QM (2.7 GHz) CPU, 16 GB of RAM and Windows 7 Enterprise 64-bit operating system. All tests were performed under "Maximum Performance" setting.
-
-\section{Test Data}
+All algorithms were run on Lenovo W530 notebook with the Intel Core i7-3740QM (2.7 GHz) CPU, 16 GB of RAM and Windows 7 Enterprise 64-bit operating system. All tests were performed under the "Maximum Performance" setting.
+\\
 
 Numerous test cases were generated, varying in problem size, number of winners, generation model and satisfaction function.
-
-\subsection{Problem Size and Number of Winners}
+\\
 
 Problem size is defined by the number of agents ($n$) and the number of alternatives ($m$). We selected three problem sizes for testing:
 \begin{itemize}
@@ -19,6 +16,7 @@ Problem size is defined by the number of agents ($n$) and the number of alternat
 	\item Medium instances: $n = 400$, $m = 50$
 	\item Large instances: $n = 400$, $m = 300$
 \end{itemize}
+\vspace{16pt}
 
 For each problem size, we selected two different numbers of winners ($K$) - the first one to take a small part of alternatives as winners (around 15-20\%) and the second one to take about half of alternatives as winners:
 \begin{itemize}
@@ -26,8 +24,7 @@ For each problem size, we selected two different numbers of winners ($K$) - the 
 	\item Medium instances: $K = 10$ or $K = 25$
 	\item Large instances: $K = 50$ or $K = 200$
 \end{itemize}
-
-\subsection{Data Generation Model}
+\vspace{16pt}
 
 Test data was generated using two different models.
 \\
@@ -38,8 +35,8 @@ Test data was generated using two different models.
 
 \noindent
 \textbf{Impartial culture model (IC)} \hspace{.1in} In this model, for each agent we generate preference order independently. For each agent, every preference order (every permutation of alternatives) has equal probability of being drawn. This model generates preference profile with no clearly dominating alternatives.
-
-\subsection{Satisfaction Function}
+\\
+\vspace{16pt}
 
 Two different satisfaction functions were used, each of them trying to model real preferences of the voters.
 \\
@@ -52,13 +49,13 @@ Two different satisfaction functions were used, each of them trying to model rea
 \end{gather}
 \\
 
-\newpage
-
 Example of the function for $m = 20$:
 
 \begin{center}
 	\includegraphics[scale=0.75]{satfun1}
 \end{center}
+
+\newpage
 
 \noindent
 \textbf{Best-and-Worst function} \hspace{.1in} This function assumes that for the voter the difference between two candidates from the top is the same as the difference between two candidates from the bottom, while differences between candidates from the middle of the preference order are much less significant. The function is given as follows, where $m$ is the number of alternatives and $i$ is position of the alternative in the agent's preference order:
@@ -77,7 +74,7 @@ Example of the function for $m = 20$:
 	\includegraphics[scale=0.75]{satfun2}
 \end{center}
 
-\subsection{Summary of Generated Election}
+\newpage
 
 Table below presents all generated test cases.
 
@@ -122,24 +119,25 @@ Table below presents all generated test cases.
 	\hline
 \end{tabular}
 \\
+\vspace{16pt}
 
-\section{Test Methodology}
-
-For each combination of problem size and generation model 100 elections were generated independently. Algorithms were evaluated against all the test files for each test case. We measured execution time and solution quality (total satisfaction) which was compared with brute-force (optimal) result for small instances and the upper bound (total satisfaction if every agent has his top alternative assigned) for medium and large instances. Execution time and solution quality are presented as an average of 100 results (with standard deviation).
+For each combination of problem size and generation model 100 elections were generated independently. Algorithms were evaluated against all the test files for each test case. We measured execution time and solution quality (total satisfaction) which was compared with brute-force (optimal) result for small instances and the upper bound (total satisfaction if every agent has his top alternative assigned) for the medium and large instances. Execution time and solution quality are presented as an average of 100 results (with standard deviation).
 \\
 
 All test cases were used for both Chamberlin-Courant and Monroe problems.
+
+\newpage
 
 \section{Chamberlin-Courant Problem Evaluation}
 
 In this section we present evaluation results for Chamberlin-Courant problem.
 
-\subsection{Small instance}
+\subsection{Small Instances}
 
-Results for small instance ($n = 30$, $m = 10$). Results are compared to optimal results.
+Results for the small instances ($n = 30$, $m = 10$). Results are compared to optimal results.
 \\
 
-Algorithms evaluated for small instance are Algorithm C (in two versions, with $d = 10$ and $d = 15$, where $d$ is the number of functions stored), Algorithm R (with $k = 100$ computations of a random assignment), Algorithm GM, Algorithm P, Genetic Algorithm (with $I = 15$ iterations and $c = 5$ creatures) and Simulated Annealing (with initial temperature $T_{start} = 100$ and cooling rate $c = 0.1$).
+Algorithms evaluated for the small instances are Algorithm C (in two versions, with $d = 10$ and $d = 15$, where $d$ is the number of functions stored), Algorithm R (with $k = 100$ computations of a random assignment), Algorithm GM, Algorithm P, Genetic Algorithm (with $I = 15$ iterations and $c = 5$ creatures) and Simulated Annealing (with initial temperature $T_{start} = 100$ and cooling rate $c = 0.1$).
 \\
 
 Results for 2 winners:
@@ -197,6 +195,8 @@ Results for 2 winners:
 
 \vspace{16pt}
 
+\newpage
+
 Results for 5 winners:
 \\
 
@@ -250,12 +250,12 @@ Results for 5 winners:
 	\hline
 \end{tabular}
 
-\subsection{Medium instance}
+\subsection{Medium Instances}
 
-Results for medium instance ($n = 400$, $m = 50$). Results are compared to the upper bound.
+Results for the medium instances ($n = 400$, $m = 50$). Results are compared to the upper bound.
 \\
 
-Algorithms evaluated for medium instance are Algorithm C (in two versions, with $d = 10$ and $d = 15$), Algorithm R (with $k = 100$), Algorithm GM, Algorithm P, Genetic Algorithm (in two versions, with $I = 100, c = 20$ and $I = 200, c = 25$) and Simulated Annealing (in two versions, with $T_{start} = 100, c = 0.01$ and $T_{start} = 100, c = 0.005$).
+Algorithms evaluated for the medium instances are Algorithm C (in two versions, with $d = 10$ and $d = 15$), Algorithm R (with $k = 100$), Algorithm GM, Algorithm P, Genetic Algorithm (in two versions, with $I = 100, c = 20$ and $I = 200, c = 25$) and Simulated Annealing (in two versions, with $T_{start} = 100, c = 0.01$ and $T_{start} = 100, c = 0.005$).
 \\
 
 \newpage
@@ -386,12 +386,12 @@ Results for 25 winners:
 	\hline
 \end{tabular}
 
-\subsection{Large instance}
+\subsection{Large Instances}
 
-Results for large instance ($n = 400$, $m = 300$). Results are compared to the upper bound.
+Results for the large instances ($n = 400$, $m = 300$). Results are compared to the upper bound.
 \\
 
-Algorithms evaluated for large instance are Algorithm C (in two versions, with $d = 10$ and $d = 15$), Algorithm R (with $k = 100$), Algorithm GM, Algorithm P, Genetic Algorithm (in two versions, with $I = 100, c = 20$ and $I = 200, c = 25$) and Simulated Annealing (in two versions, with $T_{start} = 100, c = 0.01$ and $T_{start} = 100, c = 0.005$).
+Algorithms evaluated for the large instances are Algorithm C (in two versions, with $d = 10$ and $d = 15$), Algorithm R (with $k = 100$), Algorithm GM, Algorithm P, Genetic Algorithm (in two versions, with $I = 100, c = 20$ and $I = 200, c = 25$) and Simulated Annealing (in two versions, with $T_{start} = 100, c = 0.01$ and $T_{start} = 100, c = 0.005$).
 \\
 
 \newpage
@@ -522,34 +522,38 @@ Results for 200 winners:
 	\hline
 \end{tabular}
 
+\newpage
+
 \subsection{Conclusions}
 
-These are final conclusions regarding evaluation of algorithms for Chamberlin-Courant Problem based on all executed test cases.
+These are the final conclusions regarding evaluation of algorithms for Chamberlin-Courant Problem based on all the executed test cases.
 
 \begin{enumerate}
-	\item Solution quality compared to the upper bound is generally a bit better for Best-and-Worst satisfaction function. This is because for top alternatives Square function decreases faster compared to the first alternative (see chart below), so algorithms score is relatively worse when selecting second or third alternative in the preference order.
+	\item Solution quality compared to the upper bound is generally a bit better for Best-and-Worst satisfaction function. This is because for the top alternatives Square function decreases faster compared to the first alternative (see the chart below), so algorithms' score is relatively worse when selecting second or third alternative in the preference order.
 	\begin{center}
 		\includegraphics[scale=0.75]{satfuncomp1}
 	\end{center}
-	However, this is valid for all the algorithms, so differences between them are similar for both functions. It seems that the most important part of the satisfaction function is near the top of the preference order, because middle and bottom alternatives are rarely selected and differences between them are not very important, and both Square and Best-and-Worst functions are similar for the top alternatives. Results could be much different for some kind of exponential function.
+	However, this is valid for all the algorithms, so differences between them are similar for both functions. It seems that the most important part of the satisfaction function is near the top of the preference order, because the middle and bottom alternatives are rarely selected and differences between them are not very important, and both Square and Best-and-Worst functions are similar for the top alternatives. Results could be much different for some kind of an exponential function.
 	\item The difference between MPolya and IC is clearly visible for larger instances (MPolya could still be too random for smaller instances to see the difference). It is much easier to find a solution close to the upper bound for an MPolya generation model, as there is a group of alternatives that are ranked high by most agents, while IC is totally random.
-	\item Algorithm C and Algorithm GM are viable for every tested case. One should use Algorithm C to get solution with the best quality possible. For many cases, increasing the number of stored functions ($d$) improves the solution quality (e.g., quality changes from 89.757\% to 89.769\% when increasing $d$ from 10 to 15 for medium instance, $K = 10$, Square function, IC), so if we seek the best solution possible, setting higher $d$ is reasonable. Algorithm GM always returns slightly weaker result than Algorithm C (or the same in case of large instance, 200 winners and MPolya, where both algorithms achieve 100\% solution quality), but it runs much faster (e.g., 4.04 seconds vs 50.19 seconds for large instance, $K = 200$, Square function, MPolya), so it may be used as a compromise between execution time and solution quality.
-	\item Algorithm P returns substantially weaker solutions than Algorithm GM (e.g., 96.939\% vs 99.403\% for medium instance, $K = 25$, MPolya, Best-and-Worst function) but it runs extremely fast (4.39 ms vs 51.68 ms for the same example). It may be used if solution does not have to be very close to optimal (e.g., in recommendation systems), but there is a need to obtain it as fast as possible. This algorithm should not be used for small data sets, because the solution may be of very low quality (it has very large standard deviation for the smallest data set, which means that for some instances it returns much better result than average, but for some much worse), but this should not be a problem, because for small instances Algorithms GM runs very fast too. For larger problem, standard deviation becomes much lower and there should be no instances for which the solution quality is much worse than average.
-	\item For large cases, Algorithm R can provide good results with moderate execution time (e.g., for large instance, $K = 50$, Best-and-Worst function, IC: Algorithm GM returns 98.438\% in 1.49 s, Algorithm R returns 97.264\% in 0.329 s and Algorithm P returns 96.881\% in 0.0583 s) and it is possible that this algorithm gets relatively better for even larger data sets. However, due to high level of randomization, this algorithm should only be used to supplement another one, so it can possibly find a better solution. For small and medium cases, Algorithm R does not seem to be useful. It executes longer than Algorithm C and returns worse results (e.g., for medium instance, $K = 25$, Square function, IC: Algorithm C returns 97.585\% in 569.8 ms while Algorithm R returns 97.041\% in 2142.40 ms).
-    \item Genetic Algorithm and Simulated Annealing execute much too long to be useful for small and medium instances (Algorithm GM is faster and returns better results). However, Genetic Algorithm becomes much better for large data sets where there is a lot of winners. For large instance and $K = 200$, it becomes similar to Algorithm GM in means of both execution time and solution quality (e.g., for Square function, IC: Algorithm GM returns 99.952\% in 4.00 s, while Algorithm R returns 99.737\% in 1.29 s). It is possible that this algorithm may be better for even larger data sets, but it requires further research.
-	\item Test cases from large instance turned out to be very easy for tested algorithms - all solutions are of very high quality compared to the upper bound. The reason of this is very high number of winners, which allows many agents to have their favourite alternative assigned, even for data generated with IC model. For MPolya and 200 winners, many algorithms always return an optimal solution which has the same total satisfaction as the upper bound - allowing 200 out of 300 candidates to win and using MPolya model allows for every agent to be maximally satisfied in virtually every case.
+	\item Algorithm C and Algorithm GM are viable for every tested case. One should use Algorithm C to get solutions with the best quality possible. For many cases, increasing the number of stored functions ($d$) improves the solution quality (e.g., quality changes from 89.757\% to 89.769\% when increasing $d$ from 10 to 15 for the medium instances, $K = 10$, Square function, IC), so if we seek the best solution possible, setting higher $d$ is reasonable. Algorithm GM always returns slightly weaker results than Algorithm C (or the same in case of the large instances, 200 winners and MPolya, where both algorithms achieve 100\% solution quality), but it runs much faster (e.g., 4.04 seconds vs 50.19 seconds for the large instances, $K = 200$, Square function, MPolya), so it may be used as a compromise between execution time and solution quality.
+	\item Algorithm P returns substantially weaker solutions than Algorithm GM (e.g., 96.939\% vs 99.403\% for the medium instances, $K = 25$, MPolya, Best-and-Worst function) but it runs extremely fast (4.39 ms vs 51.68 ms for the same example). It may be used if the solution does not have to be very close to optimal (e.g., in recommendation systems), but there is a need to obtain it as quickly as possible. This algorithm should not be used for small data sets, because the solution may be of very low quality (it has very large standard deviation for the smallest data set, which means that for some instances it returns much better result than average, but for some much worse), but this should not be a problem, because for small instances Algorithms GM runs very fast too. For larger problems, standard deviation becomes much lower and there should be no instances for which the solution quality is much worse than average.
+	\item For large cases, Algorithm R can provide good results with moderate execution time (e.g., for the large instances, $K = 50$, Best-and-Worst function, IC: Algorithm GM returns 98.438\% in 1.49 s, Algorithm R returns 97.264\% in 0.329 s and Algorithm P returns 96.881\% in 0.0583 s) and it is possible that this algorithm gets relatively better for even larger data sets. However, due to high level of randomization, this algorithm should only be used to supplement another one, so it can possibly find a better solution. For small and medium cases, Algorithm R does not seem to be useful. It executes longer than Algorithm C and returns worse results (e.g., for the medium instances, $K = 25$, Square function, IC: Algorithm C returns 97.585\% in 569.8 ms while Algorithm R returns 97.041\% in 2142.40 ms).
+    \item Genetic Algorithm and Simulated Annealing executefor  much too long to be useful for the small and medium instances (Algorithm GM is faster and returns better results). However, Genetic Algorithm becomes much better for large data sets where there is a lot of winners. For the large instances and $K = 200$, it becomes similar to Algorithm GM in means of both execution time and solution quality (e.g., for Square function, IC: Algorithm GM returns 99.952\% in 4.00 s, while Algorithm R returns 99.737\% in 1.29 s). It is possible that this algorithm may be better for even larger data sets, but it requires further research.
+	\item Test cases from the large instances turned out to be very easy for tested algorithms - all solutions are of very high quality compared to the upper bound. The reason of this is very high number of winners, which allows many agents to have their favourite alternative assigned, even for data generated with IC model. For MPolya and 200 winners, many algorithms always return an optimal solution which has the same total satisfaction as the upper bound - allowing 200 out of 300 candidates to win and using MPolya model allows for every agent to be maximally satisfied in virtually every case.
 \end{enumerate}
+
+\newpage
 
 \section{Monroe Problem Evaluation}
 
 In this section we present evaluation results for Monroe problem.
 
-\subsection{Small instance}
+\subsection{Small Instances}
 
-Results for small instance ($n = 30$, $m = 10$). Results are compared to optimal results.
+Results for the small instances ($n = 30$, $m = 10$). Results are compared to optimal results.
 \\
 
-Algorithms evaluated for small instance are Algorithm A, Algorithm B, Algorithm C (in two versions, with $d = 10$ and $d = 15$), Algorithm R (with $k = 100$), Algorithm AR (in two versions, with $e = 0.215$, $\lambda = 0.75$ and $e = 0.015$, $\lambda = 0.9$), Algorithm GM, Genetic Algorithm (with $I = 15, c = 5$) and Simulated Annealing (with $T_{start} = 100, c = 0.1$).
+Algorithms evaluated for the small instances are Algorithm A, Algorithm B, Algorithm C (in two versions, with $d = 10$ and $d = 15$), Algorithm R (with $k = 100$), Algorithm AR (in two versions, with $e = 0.215$, $\lambda = 0.75$ and $e = 0.015$, $\lambda = 0.9$), Algorithm GM, Genetic Algorithm (with $I = 15, c = 5$) and Simulated Annealing (with $T_{start} = 100, c = 0.1$).
 \\
 
 \newpage
@@ -688,12 +692,12 @@ Results for 5 winners:
 	\hline
 \end{tabular}
 
-\subsection{Medium instance}
+\subsection{Medium Instances}
 
-Results for medium instance ($n = 400$, $m = 50$). Results are compared to the upper bound.
+Results for the medium instances ($n = 400$, $m = 50$). Results are compared to the upper bound.
 \\
 
-Algorithms evaluated for medium instance are Algorithm A, Algorithm B, Algorithm C (in two versions, with $d = 10$ and $d = 15$), Algorithm R (with $k = 100$) and Algorithm AR (with $e = 0.215$, $\lambda = 0.75$).
+Algorithms evaluated for the medium instances are Algorithm A, Algorithm B, Algorithm C (in two versions, with $d = 10$ and $d = 15$), Algorithm R (with $k = 100$) and Algorithm AR (with $e = 0.215$, $\lambda = 0.75$).
 \\
 
 \newpage
@@ -817,12 +821,12 @@ Results for 25 winners:
 	\hline
 \end{tabular}
 
-\subsection{Large instance}
+\subsection{Large Instances}
 
-Results for large instance ($n = 400$, $m = 300$). Results are compared to the upper bound.
+Results for the large instances ($n = 400$, $m = 300$). Results are compared to the upper bound.
 \\
 
-Algorithms evaluated for large instance are Algorithm A, Algorithm B, Algorithm C (with $d = 5$), Algorithm R (with $k = 10$) and Algorithm AR (with $e = 0.215$, $\lambda = 0.75$).
+Algorithms evaluated for the large instances are Algorithm A, Algorithm B, Algorithm C (with $d = 5$), Algorithm R (with $k = 10$) and Algorithm AR (with $e = 0.215$, $\lambda = 0.75$).
 \\
 
 Parameters of algorithms C and R were adjusted to maintain reasonable execution time.
@@ -926,15 +930,15 @@ Results for 200 winners:
 
 \subsection{Conclusions}
 
-These are final conclusions regarding evaluation of algorithms for Monroe Problem based on all executed test cases.
+These are the final conclusions regarding evaluation of algorithms for Monroe Problem based on all executed test cases.
 
 \begin{enumerate}
 	\item For most cases algorithms generally return a bit higher satisfaction for the Best-and-Worst function than for the Square function. It is caused by the fact that Square function is decreasing relatively faster for top alternatives (as described in section 4.4.4). However, differences between the algorithms are similar, the same as for Chamberlin-Courant problem. Using much different function, e.g. an exponential one, could potentially change the results.
 	\item Generally, algorithms achieve higher solution quality for data generated with MPolya (especially with less winners). This is an expected behaviour, as with MPolya it is easier to include more candidates from the top in the solution. The only exception to this rule is Algorithm R. It may be caused by high randomization of IC data, which causes random solutions to be relatively better.
-	\item Algorithm C seems to be the best and universal option to attain a very high quality solution for most cases. It is sometimes a bit worse than Algorithm AR for the small instance (e.g. 99.994\% vs 100\% for $K = 2$, Best-and-Worst function, IC), but runs much faster (7.63 ms vs 22.55 ms for the same case). It can be also adjusted to one's needs by modifying number of stored functions (parameter $d$) and in many cases it improves the solution quality (e.g. for medium instance, $K = 10$, Square function, IC, quality changes from 89.390\% to 89.442\% after increasing $d$ from 10 to 15).
-	\item Quality of solution generated by Algorithm B is always significantly lower than the one generated by Algorithm C (e.g. 90.070\% vs 90.402\% for medium instance, $K = 10$, Best-and-Worst function, IC), but the algorithm itself is much faster (0.854 s vs 9.70 s for the same case). It may be seen as a trade-off between solution quality and execution time.
-	\item For small and medium cases, Algorithm A may be a good option for some appliances, as it returns result very fast. Its quality is far from optimal, but there may be some systems where it is not as important as execution time. For larger instances, it is better to use Algorithm B instead, as difference in execution time becomes relatively lower when we increase problem size (e.g. 7.60 s vs 8.58 s for large instance, $K = 50$, Best-and-Worst function, IC), because for larger cases reassignment of agents, which is the only difference between the algorithms, becomes less significant.
-	\item Algorithm AR gives the best quality of solution among tested algorithms for the small instance, but it is very slow. It seems to be underperforming for larger instances - other algorithms give better solutions faster. Maybe changing parameters could help, but it would further increase execution time.
+	\item Algorithm C seems to be the best and universal option to attain a very high quality solution for most cases. It is sometimes a bit worse than Algorithm AR for the small instances (e.g. 99.994\% vs 100\% for $K = 2$, Best-and-Worst function, IC), but runs much faster (7.63 ms vs 22.55 ms for the same case). It can be also adjusted to one's needs by modifying number of stored functions (parameter $d$) and in many cases it improves the solution quality (e.g. for the medium instances, $K = 10$, Square function, IC, quality changes from 89.390\% to 89.442\% after increasing $d$ from 10 to 15).
+	\item Quality of solution generated by Algorithm B is always significantly lower than the one generated by Algorithm C (e.g. 90.070\% vs 90.402\% for the medium instances, $K = 10$, Best-and-Worst function, IC), but the algorithm itself is much faster (0.854 s vs 9.70 s for the same case). It may be seen as a trade-off between solution quality and execution time.
+	\item For small and medium cases, Algorithm A may be a good option for some appliances, as it returns result very fast. Its quality is far from optimal, but there may be some systems where it is not as important as execution time. For larger instances, it is better to use Algorithm B instead, as difference in execution time becomes relatively lower when we increase problem size (e.g. 7.60 s vs 8.58 s for the large instances, $K = 50$, Best-and-Worst function, IC), because for larger cases reassignment of agents, which is the only difference between the algorithms, becomes less significant.
+	\item Algorithm AR gives the best quality of solution among tested algorithms for the small instances, but it is very slow. It seems to be underperforming for larger instances - other algorithms give better solutions faster. Maybe changing parameters could help, but it would further increase execution time.
     \item Algorithm R is not a good choice, because for each case there is an algorithm that returns better solution in shorter time.
-	\item Quality of solution returned by algorithms for the large instance is extremely high compared to the upper bound. The reason is that number of winners is very high compared to number of agents ($50/400$, $200/400$) and to the number of alternatives ($50/300$, $200/300$). Such situation allows to assign favourite alternatives to most agents, especially with data generated by MPolya.
+	\item Quality of solutions returned by the algorithms for the large instances is extremely high compared to the upper bound. The reason is that the number of winners is very high compared to the number of agents ($50/400$, $200/400$) and to the number of alternatives ($50/300$, $200/300$). Such situation allows to assign favourite alternatives to most agents, especially with data generated by MPolya.
 \end{enumerate}

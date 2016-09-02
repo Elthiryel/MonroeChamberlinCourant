@@ -16,22 +16,14 @@
 \contentsline {subsection}{\numberline {3.2.1}Genetic Algorithm}{15}
 \contentsline {subsection}{\numberline {3.2.2}Simulated Annealing}{16}
 \contentsline {chapter}{\numberline {4}Evaluation Results}{19}
-\contentsline {section}{\numberline {4.1}Testing Rig}{19}
-\contentsline {section}{\numberline {4.2}Test Data}{19}
-\contentsline {subsection}{\numberline {4.2.1}Problem Size and Number of Winners}{19}
-\contentsline {subsection}{\numberline {4.2.2}Data Generation Model}{20}
-\contentsline {subsection}{\numberline {4.2.3}Satisfaction Function}{20}
-\contentsline {subsection}{\numberline {4.2.4}Summary of Generated Election}{22}
-\contentsline {section}{\numberline {4.3}Test Methodology}{22}
-\contentsline {section}{\numberline {4.4}Chamberlin-Courant Problem Evaluation}{23}
-\contentsline {subsection}{\numberline {4.4.1}Small instance}{23}
-\contentsline {subsection}{\numberline {4.4.2}Medium instance}{24}
-\contentsline {subsection}{\numberline {4.4.3}Large instance}{26}
-\contentsline {subsection}{\numberline {4.4.4}Conclusions}{28}
-\contentsline {section}{\numberline {4.5}Monroe Problem Evaluation}{30}
-\contentsline {subsection}{\numberline {4.5.1}Small instance}{30}
-\contentsline {subsection}{\numberline {4.5.2}Medium instance}{32}
-\contentsline {subsection}{\numberline {4.5.3}Large instance}{34}
-\contentsline {subsection}{\numberline {4.5.4}Conclusions}{36}
-\contentsline {chapter}{\numberline {5}Summary}{38}
-\contentsline {chapter}{List of Tables}{40}
+\contentsline {section}{\numberline {4.1}Chamberlin-Courant Problem Evaluation}{23}
+\contentsline {subsection}{\numberline {4.1.1}Small Instances}{23}
+\contentsline {subsection}{\numberline {4.1.2}Medium Instances}{24}
+\contentsline {subsection}{\numberline {4.1.3}Large Instances}{26}
+\contentsline {subsection}{\numberline {4.1.4}Conclusions}{29}
+\contentsline {section}{\numberline {4.2}Monroe Problem Evaluation}{31}
+\contentsline {subsection}{\numberline {4.2.1}Small Instances}{31}
+\contentsline {subsection}{\numberline {4.2.2}Medium Instances}{33}
+\contentsline {subsection}{\numberline {4.2.3}Large Instances}{35}
+\contentsline {subsection}{\numberline {4.2.4}Conclusions}{37}
+\contentsline {chapter}{\numberline {5}Summary}{39}
