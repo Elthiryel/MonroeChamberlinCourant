@@ -68,9 +68,9 @@ Opiekun pracy: & {\itshape \@supervisor}\\
 
 \def\thesistable{
 \begin{tabular}{p{45mm}l}
-Author: & {\itshape \@author}\\[-1mm]
-Degree programme: & {\itshape \@degreeprogramme}\\[-1mm]
-Supervisor: & {\itshape \@supervisor}\\
+Autor: & {\itshape \@author}\\[-1mm]
+Kierunek studiów: & {\itshape \@degreeprogramme}\\[-1mm]
+Opiekun pracy: & {\itshape \@supervisor}\\
 \end{tabular}
 }
 }
@@ -90,7 +90,7 @@ Supervisor: & {\itshape \@supervisor}\\
 
 {\sffamily{\large{\bfseries{\scshape Akademia G\'{o}rniczo-Hutnicza im. Stanis\l{}awa Staszica w Krakowie}}}
 
-\vspace*{1mm}
+\vspace*{3mm}
 
 {\small\bfseries \MakeUppercase{\@faculty}}}
 \vspace*{3mm}
@@ -98,13 +98,13 @@ Supervisor: & {\itshape \@supervisor}\\
 {\small{\MakeUppercase{\@department}}}
 \vspace*{12mm}
 
-{\sffamily\Large \@thesistype}
-\vspace*{9mm}
-
-{\sffamily\Large\itshape \@titlePL}
-\vspace*{1mm}
+{\sffamily{\small\bfseries \MakeUppercase{\@thesistype}}}
+\vspace*{12mm}
 
 {\sffamily\Large\itshape \@titleEN}
+\vspace*{3mm}
+
+{\sffamily\small\itshape \@titlePL}
 \vspace*{38mm}
 \end{center}
 
@@ -113,7 +113,7 @@ Supervisor: & {\itshape \@supervisor}\\
 \thesistable
 }
 
-\vspace*{17mm}
+\vspace*{10mm}
 
 \centerline{\small\sffamily Krak\'{o}w, \@date}
 
@@ -121,8 +121,8 @@ Supervisor: & {\itshape \@supervisor}\\
 
 {~~}\vspace{20mm}
 
-%{\large\itshape O\'swiadczam, \'swiadomy(-a) odpowiedzialno\'sci karnej za po\'swiadczenie nieprawdy, \.ze \mbox{niniejsz\k{a}} prac\k{e} dyplomow\k{a} wykona\l{}em(-am) osobi\'scie i samodzielnie i nie korzysta\l{}em(-am) ze \'zr\'ode\l{} innych ni\.z wymienione w pracy.}
-{\large\itshape O\'swiadczamy, \'swiadomi odpowiedzialno\'sci karnej za po\'swiadczenie nieprawdy, \.ze niniejsz\k{a} prac\k{e} dyplomow\k{a} wykonali\'smy osobi\'scie i samodzielnie (w zakresie wyszczeg\'olnionym we wst\k{e}pie) i \.ze nie korzystali\'smy ze \'zr\'ode\l{} innych ni\.z wymienione w pracy.}
+%{\large\itshape O\'swiadczam, \'swiadomy(-a) odpowiedzialno\'sci karnejœ za po\'swiadczenie nieprawdy, \.ze \mbox{niniejsz\k{a}} prac\k{e} dyplomow\k{a} wykona\l{}em(-am) osobi\'scie i samodzielnie i nie korzysta\l{}em(-am) ze \'zr\'ode\l{} innych ni\.z wymienione w pracy.}
+{\large\itshape Uprzedzony o odpowiedzialno\'sci karnej na podstawie art. 115 ust. 1 i 2 ustawy z dnia 4 lutego 1994 r. o prawie autorskim i prawach pokrewnych (t.j. Dz.U. z 2006 r. Nr 90, poz. 631 z p\'o\'zn. zm.): ,,Kto przyw\l{}aszcza sobie autorstwo albo wprowadza w b\l{}\k{a}d co do autorstwa ca\l{}o\'sci lub cz\k{e}\'sci cudzego utworu albo artystycznego wykonania, podlega grzywnie, karze ograniczenia wolno\'sci albo pozbawienia wolno\'sci do lat 3. Tej samej karze podlega, kto rozpowszechnia bez podania nazwiska lub pseudonimu tw\'orcy cudzy utw\'or w wersji oryginalnej albo w postaci opracowania, artystyczne wykonanie, fonogram, wideogram lub nadanie.", a tak\.ze uprzedzony o odpowiedzialno\'sci dyscyplinarnej na podstawie art. 211 ust. 1 ustawy z dnia 27 lipca 2005 r. Prawo o szkolnictwie wy\.zszym (t.j. Dz. U. z 2012 r. poz. 572, z p\'o\'zn. zm.) ,,Za naruszenie przepis\'ow obowi\k{a}zuj\k{a}cych w uczelni oraz za czyny uchybiaj\k{a}ce godno\'sci studenta student ponosi odpowiedzialno\'s\'c dyscyplinarn\k{a} albo przed s\k{a}dem kole\.zenskim samorz\k{a}du studenckiego, zwanym dalej ,,s\k{a}dem kole\.ze\'nskim", o\'swiadczam, \.ze niniejsz\k{a} prac\k{e} dyplomow\k{a} wykona\l{}em osobi\'scie i samodzielnie i nie korzysta\l{}em ze \'zr\'ode\l{} innych ni\.z wymienione w pracy. }
 
 \clearpage
 
